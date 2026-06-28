@@ -1,23 +1,30 @@
+import { NavLink } from 'react-router-dom'
+
 function Navbar() {
   return (
-    <nav className="bg-black text-white px-6 py-4 flex items-center justify-between border-b border-zinc-800">
-      <h1 className="text-xl font-bold tracking-wide">🎬 Cine Blog</h1>
+    <header className="border-b border-zinc-800">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <h1 className="text-xl font-bold">LOGO</h1>
 
-      <div className="flex gap-6 text-sm">
-        <a className="hover:text-red-400 transition" href="/">
-          Inicio
-        </a>
-        <a className="hover:text-red-400 transition" href="/reviews">
-          Reseñas
-        </a>
-        <a className="hover:text-red-400 transition" href="/movies">
-          Películas
-        </a>
-        <a className="hover:text-red-400 transition" href="/about">
-          Acerca de
-        </a>
-      </div>
-    </nav>
+        <ul className="flex items-center gap-8">
+          <li>
+            <NavLink to="/">Inicio</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/reviews">Reseñas</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/movies">Películas</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/about">Acerca de</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
   )
 }
 

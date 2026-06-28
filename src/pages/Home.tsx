@@ -1,3 +1,4 @@
+import Hero from '@/components/hero/Hero'
 import Container from '@/components/ui/Container'
 import SectionTitle from '@/components/ui/SectionTitle'
 import MovieGrid from '@/components/movie/MovieGrid'
@@ -24,6 +25,7 @@ function Home() {
 
   return (
     <Container>
+      <Hero movie={movies[0]} />
       <SectionTitle>Películas populares</SectionTitle>
 
       <MovieGrid movies={movies} />
