@@ -85,14 +85,14 @@
 
 ## Tokens
 
-- [ ] background
-- [ ] surface
-- [ ] accent
-- [ ] rating
-- [ ] border
-- [ ] text-primary
-- [ ] text-secondary
-- [ ] text-muted
+- [x] background
+- [x] surface
+- [x] accent
+- [x] rating
+- [x] border
+- [x] text-primary
+- [x] text-secondary
+- [x] text-muted
 
 # Design Tokens
 
@@ -156,12 +156,12 @@ danger
 
 ## Componentes UI
 
-- [ ] Button
-- [ ] Card
-- [ ] Badge
-- [ ] Spinner
-- [ ] Container
-- [ ] SectionTitle
+- [x] Button
+- [x] Card
+- [x] Badge
+- [x] Spinner
+- [x] Container
+- [x] SectionTitle
 
 ---
 

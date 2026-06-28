@@ -14,6 +14,6 @@ export function mapMovie(movie: TmdbMovie): Movie {
 
     year: Number(movie.release_date.slice(0, 4)),
 
-    rating: movie.vote_average,
+    tmdbRating: movie.vote_average,
   }
 }

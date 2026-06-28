@@ -5,5 +5,5 @@ export interface Movie {
   backdrop: string
   overview: string
   year: number
-  rating: number
+  tmdbRating: number
 }
