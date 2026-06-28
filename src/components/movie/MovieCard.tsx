@@ -1,4 +1,5 @@
 import type { Movie } from '@/types/Movie'
+import Card from '@/components/ui/Card'
 
 interface Props {
   movie: Movie
@@ -6,7 +7,7 @@ interface Props {
 
 function MovieCard({ movie }: Props) {
   return (
-    <article className="bg-zinc-900 rounded-xl overflow-hidden shadow-lg">
+    <Card>
       <img
         src={movie.poster}
         alt={movie.title}
@@ -20,7 +21,7 @@ function MovieCard({ movie }: Props) {
           {movie.year} · ⭐ {movie.rating}
         </div>
       </div>
-    </article>
+    </Card>
   )
 }
 
