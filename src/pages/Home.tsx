@@ -1,20 +1,33 @@
+import Container from '@/components/ui/Container'
+import SectionTitle from '@/components/ui/SectionTitle'
 import MovieGrid from '@/components/movie/MovieGrid'
-import type { Movie } from '@/types/Movie'
-import type { TmdbMovie } from '@/types/TmdbMovie'
-import { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { getPopularMovies } from '@/services/tmdb'
 
 function Home() {
-  useEffect(() => {
-    getPopularMovies().then((data) => {
-      console.log(data)
-    })
-  }, [])
+  const {
+    data: movies,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['popular-movies'],
+    queryFn: getPopularMovies,
+  })
+
+  if (isLoading) {
+    return <p>Cargando películas...</p>
+  }
+
+  if (error) {
+    return <p>Ha ocurrido un error.</p>
+  }
 
   return (
-    <div>
-      <h1 className="text-4xl">Home</h1>
-    </div>
+    <Container>
+      <SectionTitle>Películas populares</SectionTitle>
+
+      <MovieGrid movies={movies} />
+    </Container>
   )
 }
 
