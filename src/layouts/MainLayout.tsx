@@ -5,15 +5,15 @@ import Footer from '@/components/layout/Footer'
 
 function MainLayout() {
   return (
-    <>
+    <div className="min-h-screen bg-zinc-950 text-white flex flex-col">
       <Navbar />
 
-      <main>
+      <main className="flex-1 px-6 py-8 max-w-6xl mx-auto w-full">
         <Outlet />
       </main>
 
       <Footer />
-    </>
+    </div>
   )
 }
 
