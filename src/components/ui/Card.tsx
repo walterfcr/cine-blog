@@ -10,12 +10,13 @@ function Card({ children }: CardProps) {
       className="
         rounded-xl
         border
-        border-zinc-800
-        bg-zinc-900
+        border-border
+        bg-surface
+        hover:border-surface-hover
         overflow-hidden
         transition-all
         duration-300
-        hover:border-zinc-700
+        
       "
     >
       {children}
