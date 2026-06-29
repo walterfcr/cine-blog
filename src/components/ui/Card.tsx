@@ -16,7 +16,8 @@ function Card({ children, className = '' }: CardProps) {
         overflow-hidden
         transition-all
         duration-300
-        hover:border-surface-hover
+        hover:border-border
+        hover:bg-surface-hover
         ${className}
       `}
     >

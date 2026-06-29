@@ -17,7 +17,7 @@ function MovieCard({ movie }: Props) {
       <div className="p-4">
         <h2 className="font-bold text-lg">{movie.title}</h2>
 
-        <div className="text-sm text-zinc-400 mt-2">
+        <div className="mt-2 text-sm text-text-muted">
           {movie.year} · ⭐ {movie.tmdbRating}
         </div>
       </div>
