@@ -2,22 +2,23 @@ import type { ReactNode } from 'react'
 
 interface CardProps {
   children: ReactNode
+  className?: string
 }
 
-function Card({ children }: CardProps) {
+function Card({ children, className = '' }: CardProps) {
   return (
     <article
-      className="
+      className={`
         rounded-xl
         border
         border-border
         bg-surface
-        hover:border-surface-hover
         overflow-hidden
         transition-all
         duration-300
-        
-      "
+        hover:border-surface-hover
+        ${className}
+      `}
     >
       {children}
     </article>

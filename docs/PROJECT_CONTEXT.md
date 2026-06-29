@@ -1,258 +1,468 @@
-# 🎬 Cine Blog - Roadmap
+# 🎬 PROJECT_CONTEXT.md
 
-## Sprint 0 — Foundation ✅
+## Nombre del proyecto
 
-**Objetivo:** Dejar lista toda la base técnica.
-
-### Setup
-
-- [x] Vite
-- [x] React 19
-- [x] TypeScript
-- [x] Tailwind CSS
-- [x] React Router
-- [x] TanStack Query
-- [x] Axios
-
-### Proyecto
-
-- [x] Alias (@)
-- [x] Estructura de carpetas
-- [x] Variables de entorno
-- [x] Conexión con TMDB
-- [x] Servicio TMDB
-- [x] Modelo Movie
-- [x] Mapper
-- [x] MovieCard
-- [x] MovieGrid
+> Pendiente de definir.
 
 ---
 
-# Sprint 1 — Design System 🎨
+# Visión
 
-**Objetivo:** Definir completamente la identidad visual.
+Crear una **revista digital de cine en español**, donde el contenido principal sean reseñas originales escritas por el equipo editorial.
 
-## Identidad
+El sitio **no pretende ser un clon de IMDb o TMDB**.
 
-- [x] Personalidad del sitio
-- [x] Moodboard
-- [x] Inspiraciones
+Las películas son el contexto.
 
-## Colores
-
-- [x] Paleta principal
-- [x] Colores semánticos
-- [x] Estados (hover, disabled...)
-
-## Tipografía
-
-- [x] Fuente principal
-- [ ] Fuente secundaria (si aplica)
-- [x] Escala tipográfica
-
-## Espaciado
-
-- [x]Sistema de spacing
-- [x] Márgenes
-- [x] Padding
-
-- Secciones: py-16
-- Cards: gap-6
-- Bloques: gap-8
-
-## Bordes
-
-- [x] Border radius
-- [x] Bordes
-- [x] Elevación
-
-### Border Radius
-
-- Hero: rounded-2xl
-- Cards: rounded-xl
-- Buttons: rounded-lg
-- Badges: rounded-full
-
-## Iconografía
-
-- [x] Librería
-- [x] Tamaños
-- [x] Uso
-
-- Icono pequeño text-base
-- Icono normal text-lg
-- Icono destacado text-xl
-
-## Tokens
-
-- [x] background
-- [x] surface
-- [x] accent
-- [x] rating
-- [x] border
-- [x] text-primary
-- [x] text-secondary
-- [x] text-muted
-
-# Design Tokens
-
-## Background
-
-background
-
-- Fondo principal del sitio.
-
-surface
-
-- Cards, navbar y footer.
-
-surface-hover
-
-- Hover de cards y superficies.
-
-## Brand
-
-accent
-
-- Botón principal.
-- CTA.
-- Links destacados.
-
-accent-hover
-
-- Hover del botón principal.
-
-## Rating
-
-rating
-
-- Estrellas y puntuaciones.
-
-## Text
-
-text-primary
-
-- Títulos.
-
-text-secondary
-
-- Contenido principal.
-
-text-muted
-
-- Información auxiliar.
-
-## Border
-
-border
-
-- Separadores y contenedores.
-
-## Feedback
-
-success
-warning
-danger
-
-## Componentes UI
-
-- [x] Button
-- [x] Card
-- [x] Badge
-- [x] Spinner
-- [x] Container
-- [x] SectionTitle
+Las reseñas son el producto.
 
 ---
 
-# Sprint 2 — Layout
+# Objetivos
 
-**Objetivo:** Construir el esqueleto del sitio.
-
-- [ ] Navbar
-- [ ] Footer
-- [ ] MainLayout
-- [ ] Responsive
-- [ ] Navegación
-- [ ] Estados activos
+- Crear un portfolio de nivel profesional con React + TypeScript.
+- Aplicar buenas prácticas de arquitectura frontend.
+- Aprender desarrollo escalable.
+- Construir una aplicación que pueda evolucionar a producción.
+- Publicar el proyecto en GitHub como pieza principal del portfolio.
 
 ---
 
-# Sprint 3 — Home
+# Stack
 
-**Objetivo:** Crear la portada.
-
-- [ ] Hero
-- [ ] Película destacada
-- [ ] Sección de películas populares
-- [ ] CTA
-- [ ] Responsive
-
----
-
-# Sprint 4 — Reviews
-
-**Objetivo:** Sistema de reseñas.
-
-- [ ] Modelo Review
-- [ ] ReviewCard
-- [ ] Página Reviews
-- [ ] Review Detail
+- React 19
+- TypeScript
+- Vite
+- React Router
+- React Query
+- Axios
+- Tailwind CSS v4
+- Supabase (más adelante)
+- React Icons
 
 ---
 
-# Sprint 5 — Movies
+# Idioma
 
-**Objetivo:** Catálogo de películas.
+## Código
 
-- [ ] Grid
-- [ ] Filtros
-- [ ] Búsqueda
-- [ ] Paginación
+Todo el código estará en inglés.
 
----
+- variables
+- funciones
+- interfaces
+- comentarios (cuando existan)
 
-# Sprint 6 — Supabase
+## Sitio
 
-**Objetivo:** Backend.
-
-- [ ] Proyecto
-- [ ] Base de datos
-- [ ] Tablas
-- [ ] Storage
-- [ ] Autenticación
+Todo el contenido visible para el usuario estará en español.
 
 ---
 
-# Sprint 7 — Panel de administración
+# Identidad visual
 
-**Objetivo:** Que tu hermana pueda administrar el contenido.
+## Personalidad
 
-- [ ] Login
-- [ ] Dashboard
-- [ ] CRUD de reseñas
-- [ ] Subida de imágenes
+- Revista editorial
+- Cinematográfica
+- Moderna
+- Elegante
+- Oscura
+- Centrada en la lectura
 
----
+No buscamos parecer Netflix.
 
-# Sprint 8 — Extras
-
-- [ ] Tema claro (opcional)
-- [ ] Animaciones
-- [ ] Skeletons
-- [ ] SEO
-- [ ] Open Graph
-- [ ] Sitemap
-- [ ] Performance
-- [ ] Accesibilidad
+No buscamos parecer IMDb.
 
 ---
 
-# Sprint 9 — Deploy 🚀
+# Paleta
 
-- [ ] Dominio
-- [ ] Vercel
-- [ ] Analytics
-- [ ] Documentación
-- [ ] README
-- [ ] Portfolio
+| Uso            | Color   |
+| -------------- | ------- |
+| Background     | #121212 |
+| Surface        | #1E1E1E |
+| Surface Hover  | #292929 |
+| Accent         | #8B1E3F |
+| Accent Hover   | #6D1832 |
+| Rating         | #D4AF37 |
+| Text Primary   | #F5F5F5 |
+| Text Secondary | #CCCCCC |
+| Text Muted     | #8A8A8A |
+| Border         | #313131 |
+
+---
+
+# Tipografía
+
+Principal:
+
+- Inter
+
+---
+
+# Espaciado
+
+Usar una escala consistente.
+
+Ejemplos:
+
+- gap-6
+- mb-8
+- py-16
+
+Evitar valores arbitrarios sin necesidad.
+
+---
+
+# Border Radius
+
+Button
+
+- rounded-lg
+
+Card
+
+- rounded-xl
+
+Badge
+
+- rounded-full
+
+---
+
+# Iconografía
+
+React Icons
+
+Principalmente Lucide.
+
+---
+
+# Principios de arquitectura
+
+## 1.
+
+Los componentes renderizan datos.
+
+No transforman datos.
+
+---
+
+## 2.
+
+Los mappers transforman datos.
+
+---
+
+## 3.
+
+Los servicios obtienen datos.
+
+---
+
+## 4.
+
+React no depende directamente de TMDB.
+
+---
+
+## 5.
+
+Supabase será la fuente de verdad.
+
+---
+
+## 6.
+
+Todo el contenido editorial pertenece al proyecto.
+
+---
+
+## 7.
+
+Los componentes UI son genéricos.
+
+No conocen el dominio.
+
+Ejemplos:
+
+- Button
+- Card
+- Badge
+- Spinner
+
+---
+
+## 8.
+
+Los componentes de dominio conocen el negocio.
+
+Ejemplos:
+
+- MovieCard
+- ReviewCard
+- Hero
+
+---
+
+# Arquitectura
+
+Actualmente:
+
+```
+TMDB
+   ↓
+Movie Mapper
+   ↓
+Movie
+```
+
+Objetivo final:
+
+```
+                TMDB
+                  │
+          (solo importar)
+                  │
+                  ▼
+             Supabase
+        ┌──────────────┐
+        │ Movies       │
+        │ Reviews      │
+        │ Authors      │
+        └──────────────┘
+                  │
+                  ▼
+               React
+```
+
+TMDB será únicamente una herramienta para importar información.
+
+La aplicación pública consumirá datos desde Supabase.
+
+---
+
+# Modelos
+
+## API
+
+- TmdbMovie
+
+---
+
+## Dominio
+
+- Movie
+- Review
+
+---
+
+## View Models
+
+- ReviewCardData
+- HeroData (pendiente)
+
+---
+
+# Mappers
+
+- movie.mapper.ts
+- review.mapper.ts
+- hero.mapper.ts (pendiente)
+
+---
+
+# Componentes UI
+
+- Container
+- Card
+- Button
+- Badge
+- Spinner
+- SectionTitle
+
+Todos reutilizables.
+
+---
+
+# Componentes de dominio
+
+Movies
+
+- MovieCard
+- MovieGrid
+
+Reviews
+
+- ReviewCard
+- ReviewGrid
+
+Hero
+
+- Hero
+
+---
+
+# Flujo de datos
+
+```
+API / Supabase
+        │
+        ▼
+     Services
+        │
+        ▼
+     Mappers
+        │
+        ▼
+   View Models
+        │
+        ▼
+   React Components
+```
+
+---
+
+# Convenciones
+
+## Componentes
+
+Los componentes reciben datos listos para mostrar.
+
+Nunca consultan APIs.
+
+Nunca transforman datos.
+
+---
+
+## Servicios
+
+Obtienen información.
+
+Ejemplos:
+
+- TMDB
+- Supabase
+
+---
+
+## Mappers
+
+Convierten un modelo en otro.
+
+Ejemplo:
+
+```
+TmdbMovie
+     ↓
+Movie
+```
+
+o
+
+```
+Review + Movie
+      ↓
+ReviewCardData
+```
+
+---
+
+# Roadmap
+
+## Sprint 1
+
+✅ Design System
+
+- Paleta
+- Tipografía
+- Tokens
+- Componentes UI
+
+---
+
+## Sprint 2
+
+🚧 Arquitectura de contenido
+
+- Movie
+- Review
+- ReviewCardData
+- Mappers
+
+---
+
+## Sprint 3
+
+UI completa
+
+- Header
+- Hero
+- Home
+- Movies
+- Reviews
+- Footer
+
+Todo usando datos mock.
+
+---
+
+## Sprint 4
+
+Supabase
+
+- Movies
+- Reviews
+- Authors
+
+---
+
+## Sprint 5
+
+Panel de administración
+
+- Importar película desde TMDB
+- Crear reseña
+- Publicar contenido
+
+---
+
+## Sprint 6
+
+Sitio público consumiendo Supabase.
+
+---
+
+## Sprint 7
+
+Refactor de arquitectura.
+
+Migrar a estructura por features.
+
+---
+
+# Forma de trabajo
+
+Trabajar en cambios pequeños.
+
+Cada paso debe indicar:
+
+- Objetivo
+- Archivos involucrados
+- Motivo del cambio
+- Revisión
+- Commit (cuando corresponda)
+
+Evitar cambios grandes que afecten muchos archivos al mismo tiempo.
+
+---
+
+# Objetivo final
+
+Construir un proyecto que:
+
+- sea útil para el mundo real,
+- sirva como pieza principal del portfolio,
+- demuestre buenas prácticas de React y TypeScript,
+- y pueda evolucionar hasta una aplicación de producción.
