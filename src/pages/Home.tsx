@@ -4,6 +4,7 @@ import SectionTitle from '@/components/ui/SectionTitle'
 import MovieGrid from '@/components/movie/MovieGrid'
 import { useQuery } from '@tanstack/react-query'
 import { getPopularMovies } from '@/services/tmdb'
+import { featuredHero } from '@/data/home'
 
 function Home() {
   const {
@@ -25,10 +26,10 @@ function Home() {
 
   return (
     <Container>
-      <Hero movie={movies[0]} />
+      <Hero data={featuredHero} />
       <SectionTitle>Películas populares</SectionTitle>
 
-      <MovieGrid movies={movies} />
+      <MovieGrid movies={movies ?? []} />
     </Container>
   )
 }

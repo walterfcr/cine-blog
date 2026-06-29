@@ -11,5 +11,5 @@ export interface HeroData {
 
   readReviewUrl: string
 
-  movieUrl: string
+  movieDetailsUrl: string
 }
