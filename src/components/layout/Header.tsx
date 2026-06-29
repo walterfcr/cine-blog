@@ -9,19 +9,55 @@ function Header() {
         <div className="flex h-20 items-center justify-between">
           <NavLink
             to="/"
-            className="text-2xl font-bold tracking-wide text-text-primary"
+            className="text-2xl font-semibold tracking-[0.2em] text-text-primary"
           >
             LOGO
           </NavLink>
 
-          <nav className="flex items-center gap-8">
-            <NavLink to="/">Inicio</NavLink>
+          <nav className="flex items-center gap-8 text-sm font-medium">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-accent'
+                  : 'text-text-secondary hover:text-text-primary'
+              }
+            >
+              Inicio
+            </NavLink>
 
-            <NavLink to="/movies">Películas</NavLink>
+            <NavLink
+              to="/movies"
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-accent'
+                  : 'text-text-secondary hover:text-text-primary'
+              }
+            >
+              Películas
+            </NavLink>
 
-            <NavLink to="/reviews">Reseñas</NavLink>
+            <NavLink
+              to="/reviews"
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-accent'
+                  : 'text-text-secondary hover:text-text-primary'
+              }
+            >
+              Reseñas
+            </NavLink>
 
-            <NavLink to="/about">Acerca de</NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? 'text-accent'
+                  : 'text-text-secondary hover:text-text-primary'
+              }
+            >
+              Acerca de
+            </NavLink>
           </nav>
         </div>
       </Container>
