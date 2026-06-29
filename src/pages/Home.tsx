@@ -5,6 +5,7 @@ import MovieGrid from '@/components/movie/MovieGrid'
 import { useQuery } from '@tanstack/react-query'
 import { getPopularMovies } from '@/services/tmdb'
 import { featuredHero } from '@/data/home'
+import Spinner from '@/components/ui/Spinner'
 
 function Home() {
   const {
@@ -17,7 +18,7 @@ function Home() {
   })
 
   if (isLoading) {
-    return <p>Cargando películas...</p>
+    return <Spinner />
   }
 
   if (error) {
