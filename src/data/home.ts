@@ -14,5 +14,5 @@ export const featuredHero: HeroData = {
 
   readReviewUrl: '/reviews/interstellar',
 
-  movieUrl: '/movies/interstellar',
+  movieDetailsUrl: '/movies/interstellar',
 }

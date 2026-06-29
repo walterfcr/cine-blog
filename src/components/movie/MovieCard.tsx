@@ -1,4 +1,5 @@
 import type { Movie } from '@/types/Movie'
+
 import Card from '@/components/ui/Card'
 
 interface Props {
@@ -7,18 +8,74 @@ interface Props {
 
 function MovieCard({ movie }: Props) {
   return (
-    <Card>
-      <img
-        src={movie.poster}
-        alt={movie.title}
-        className="w-full h-80 object-cover"
-      />
+    <Card
+      className="
+        group
+        cursor-pointer
+        overflow-hidden
+        transition-all
+        duration-300
+        hover:border-accent
+      "
+    >
+      <div className="relative overflow-hidden">
+        <img
+          src={movie.poster}
+          alt={movie.title}
+          className="
+           block
+          aspect-[2/3]
+          w-full
+          object-cover
+          transition-transform
+          duration-500
+          group-hover:scale-105
+          "
+        />
+
+        <div
+          className="
+              absolute
+              inset-0
+              flex
+              items-end
+              justify-center
+              bg-gradient-to-t
+              from-black/70
+              via-black/20
+              to-transparent
+              opacity-0
+              transition-opacity
+              duration-300
+              group-hover:opacity-100
+              p-5
+            "
+        >
+          <p
+            className="
+              mb-2
+              translate-y-2
+              opacity-0
+              transition-all
+              duration-300
+              group-hover:translate-y-0
+              group-hover:opacity-100
+            "
+          >
+            Descubrir →
+          </p>
+        </div>
+      </div>
 
       <div className="p-4">
-        <h2 className="font-bold text-lg">{movie.title}</h2>
+        <h2 className="text-lg font-semibold text-text-primary">
+          {movie.title}
+        </h2>
 
-        <div className="mt-2 text-sm text-text-muted">
-          {movie.year} · ⭐ {movie.tmdbRating}
+        <div className="mt-2 flex items-center justify-between text-sm">
+          <span className="text-text-muted">{movie.year}</span>
+
+          <span className="text-rating">★ {movie.tmdbRating}</span>
         </div>
       </div>
     </Card>
