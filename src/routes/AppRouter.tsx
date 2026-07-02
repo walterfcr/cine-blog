@@ -7,6 +7,7 @@ import Movies from '@/pages/Movies'
 import Reviews from '@/pages/Reviews'
 import About from '@/pages/About'
 import NotFound from '@/pages/NotFound'
+import MovieDetail from '@/pages/MovieDetail'
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: 'movies',
         element: <Movies />,
+      },
+      {
+        path: 'movies/:movieId',
+        element: <MovieDetail />,
       },
       {
         path: 'reviews',

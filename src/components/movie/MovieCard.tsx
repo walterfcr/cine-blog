@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import type { Movie } from '@/types/Movie'
 
 import Card from '@/components/ui/Card'
@@ -8,8 +10,9 @@ interface Props {
 
 function MovieCard({ movie }: Props) {
   return (
-    <Card
-      className="
+    <Link to={`/movies/${movie.id}`} className="block">
+      <Card
+        className="
         group
         cursor-pointer
         overflow-hidden
@@ -17,12 +20,12 @@ function MovieCard({ movie }: Props) {
         duration-300
         hover:border-accent
       "
-    >
-      <div className="relative overflow-hidden">
-        <img
-          src={movie.poster}
-          alt={movie.title}
-          className="
+      >
+        <div className="relative overflow-hidden">
+          <img
+            src={movie.poster}
+            alt={movie.title}
+            className="
            block
           aspect-[2/3]
           w-full
@@ -31,10 +34,10 @@ function MovieCard({ movie }: Props) {
           duration-500
           group-hover:scale-105
           "
-        />
+          />
 
-        <div
-          className="
+          <div
+            className="
               absolute
               inset-0
               flex
@@ -50,9 +53,9 @@ function MovieCard({ movie }: Props) {
               group-hover:opacity-100
               p-5
             "
-        >
-          <p
-            className="
+          >
+            <p
+              className="
               mb-2
               translate-y-2
               opacity-0
@@ -61,24 +64,25 @@ function MovieCard({ movie }: Props) {
               group-hover:translate-y-0
               group-hover:opacity-100
             "
-          >
-            Descubrir →
-          </p>
+            >
+              Descubrir →
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="p-4">
-        <h2 className="text-lg font-semibold text-text-primary">
-          {movie.title}
-        </h2>
+        <div className="p-4">
+          <h2 className="text-lg font-semibold text-text-primary">
+            {movie.title}
+          </h2>
 
-        <div className="mt-2 flex items-center justify-between text-sm">
-          <span className="text-text-muted">{movie.year}</span>
+          <div className="mt-2 flex items-center justify-between text-sm">
+            <span className="text-text-muted">{movie.year}</span>
 
-          <span className="text-rating">★ {movie.tmdbRating}</span>
+            <span className="text-rating">★ {movie.tmdbRating}</span>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   )
 }
 
