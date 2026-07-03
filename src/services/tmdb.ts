@@ -14,3 +14,9 @@ export async function getPopularMovies() {
 
   return response.data.results.map(mapMovie)
 }
+
+export async function getMovieDetails(movieId: string) {
+  const response = await tmdbApi.get(`/movie/${movieId}`)
+
+  return mapMovie(response.data)
+}
