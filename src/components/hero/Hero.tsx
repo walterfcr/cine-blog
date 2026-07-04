@@ -65,6 +65,7 @@ function Hero({ data }: HeroProps) {
         </div>
 
         <div>
+          <p className="text-xs text-red-500">{data.backdrop}</p>
           <img
             src={data.backdrop}
             alt={data.movieTitle}

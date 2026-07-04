@@ -5,6 +5,7 @@ import { getMovieDetails } from '@/services/tmdb'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import BackButton from '@/components/ui/BackButton'
+import { formatDate } from '@/utils/formatDate'
 
 function ReviewDetail() {
   const { reviewId } = useParams()
@@ -26,15 +27,21 @@ function ReviewDetail() {
         <div className="flex items-center gap-4">
           <Badge variant="accent">Reseña</Badge>
 
-          <span className="text-rating">★ {review.rating}/10</span>
+          <span className="font-semibold text-rating">
+            ★ {review.rating}/10
+          </span>
         </div>
 
-        <h1 className="text-5xl font-bold tracking-tight">{review.title}</h1>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+          {review.title}
+        </h1>
 
-        <div className="flex items-center gap-6 text-sm text-text-muted">
-          <span>{review.author}</span>
+        <div className="flex flex-wrap items-center gap-3 text-sm text-text-muted">
+          <span>Por {review.author}</span>
 
-          <span>{review.createdAt}</span>
+          <span>•</span>
+
+          <span>{formatDate(review.createdAt)}</span>
         </div>
         {movie && (
           <p className="text-text-secondary">
@@ -54,7 +61,7 @@ function ReviewDetail() {
         )}
       </header>
 
-      <div className="h-px bg-border" />
+      <div className="my-2 h-px bg-border" />
 
       <section>
         <p className="leading-8 text-lg text-text-secondary">

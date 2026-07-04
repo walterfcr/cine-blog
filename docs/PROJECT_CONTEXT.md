@@ -466,3 +466,4 @@ Construir un proyecto que:
 - sirva como pieza principal del portfolio,
 - demuestre buenas prácticas de React y TypeScript,
 - y pueda evolucionar hasta una aplicación de producción.
+  "Continuing Cine Blog. Remember: this is my sister's personal movie blog. TMDB is only for movie metadata. Reviews are the main content and will come from Supabase."
