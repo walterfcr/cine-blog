@@ -1,4 +1,5 @@
 import type { HeroData } from '@/types/HeroData'
+import { Link } from 'react-router-dom'
 
 interface HeroProps {
   data: HeroData
@@ -26,19 +27,40 @@ function Hero({ data }: HeroProps) {
           <div className="mb-6 text-rating">★ {data.rating}</div>
 
           <div className="flex gap-4">
-            <a
-              href={data.readReviewUrl}
-              className="rounded-lg bg-accent px-5 py-3 text-sm font-medium text-white hover:bg-accent-hover"
+            <Link
+              to={data.readReviewUrl}
+              className="
+                rounded-lg
+                bg-accent
+                px-5
+                py-3
+                text-sm
+                font-medium
+                text-white
+                transition-colors
+                hover:bg-accent-hover
+              "
             >
               Leer reseña
-            </a>
+            </Link>
 
-            <a
-              href={data.movieDetailsUrl}
-              className="rounded-lg border border-border px-5 py-3 text-sm font-medium text-text-primary hover:bg-surface-hover"
+            <Link
+              to={data.movieDetailsUrl}
+              className="
+                rounded-lg
+                border
+                border-border
+                px-5
+                py-3
+                text-sm
+                font-medium
+                text-text-primary
+                transition-colors
+                hover:bg-surface-hover
+              "
             >
-              Ver Detalles
-            </a>
+              Descubrir
+            </Link>
           </div>
         </div>
 
