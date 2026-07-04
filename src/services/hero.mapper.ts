@@ -13,6 +13,6 @@ export function mapHeroData(movie: Movie, review: Review): HeroData {
     rating: review.rating,
 
     readReviewUrl: `/reviews/${review.id}`,
-    movieUrl: `/movies/${movie.id}`,
+    movieDetailsUrl: `/movies/${movie.id}`,
   }
 }
