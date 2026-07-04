@@ -3,6 +3,7 @@ import { getReview } from '@/services/review.service'
 import Badge from '@/components/ui/Badge'
 import { getMovieDetails } from '@/services/tmdb'
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 
 function ReviewDetail() {
   const { reviewId } = useParams()
@@ -35,10 +36,18 @@ function ReviewDetail() {
         </div>
         {movie && (
           <p className="text-text-secondary">
-            Reseña de:{' '}
-            <span className="font-semibold text-text-primary">
+            Reseña de{' '}
+            <Link
+              to={`/movies/${movie.id}`}
+              className="
+              font-semibold
+              text-text-primary
+              transition-colors
+              hover:text-accent
+            "
+            >
               {movie.title}
-            </span>
+            </Link>
           </p>
         )}
       </header>
