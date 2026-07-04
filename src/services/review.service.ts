@@ -13,3 +13,7 @@ export function getReviewByMovieId(movieId: number) {
     (review) => review.movieId === movieId && review.published,
   )
 }
+
+export async function getReviewAsync(id: string) {
+  return getReview(id)
+}
