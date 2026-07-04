@@ -4,6 +4,7 @@ import Badge from '@/components/ui/Badge'
 import { getMovieDetails } from '@/services/tmdb'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+import BackButton from '@/components/ui/BackButton'
 
 function ReviewDetail() {
   const { reviewId } = useParams()
@@ -20,6 +21,7 @@ function ReviewDetail() {
   }
   return (
     <article className="mx-auto max-w-4xl space-y-8">
+      <BackButton />
       <header className="space-y-4">
         <div className="flex items-center gap-4">
           <Badge variant="accent">Reseña</Badge>

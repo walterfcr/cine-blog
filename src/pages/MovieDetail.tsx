@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Spinner from '@/components/ui/Spinner'
 import { getMovieDetails } from '@/services/tmdb'
 import PageHeader from '@/components/ui/PageHeader'
+import BackButton from '@/components/ui/BackButton'
 
 function MovieDetail() {
   const { movieId } = useParams()
@@ -30,6 +31,7 @@ function MovieDetail() {
 
   return (
     <div className="space-y-8">
+      <BackButton />
       <section className="space-y-4">
         <div className="relative overflow-hidden rounded-xl">
           <img
