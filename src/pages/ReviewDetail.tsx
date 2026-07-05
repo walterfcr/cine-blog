@@ -1,9 +1,8 @@
-import { useParams } from 'react-router-dom'
-import { getReviewAsync } from '@/services/review.service'
+import { Link, useParams } from 'react-router-dom'
+import { getReview } from '@/services/review.supabase'
 import Badge from '@/components/ui/Badge'
 import { getMovieDetails } from '@/services/tmdb'
 import { useQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
 import BackButton from '@/components/ui/BackButton'
 import { formatDate } from '@/utils/formatDate'
 import Spinner from '@/components/ui/Spinner'
@@ -16,7 +15,7 @@ function ReviewDetail() {
     error,
   } = useQuery({
     queryKey: ['review', reviewId],
-    queryFn: () => getReviewAsync(reviewId!),
+    queryFn: () => getReview(reviewId!),
     enabled: !!reviewId,
   })
   const { data: movie } = useQuery({

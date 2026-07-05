@@ -1,13 +1,21 @@
-export interface Review {
+export interface SupabaseReview {
   id: string
-  movieId: number
+
+  movie_id: number
+
   title: string
+
   excerpt: string
+
   content: string
+
   rating: number
-  author: string
-  createdAt: string
-  updatedAt?: string
+
   published: boolean
+
+  created_at: string
+
+  updated_at: string
+
   featured: boolean
 }

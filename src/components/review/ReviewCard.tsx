@@ -3,6 +3,7 @@ import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import { LuStar, LuUser, LuCalendar } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
+import { formatDate } from '@/utils/formatDate'
 
 interface ReviewCardProps {
   review: ReviewCardData
@@ -35,7 +36,7 @@ function ReviewCard({ review }: ReviewCardProps) {
 
           <span className="flex items-center gap-1">
             <LuCalendar />
-            {review.createdAt}
+            {formatDate(review.createdAt)}
           </span>
         </div>
       </Card>

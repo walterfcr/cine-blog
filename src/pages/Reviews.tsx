@@ -1,14 +1,34 @@
 import Container from '@/components/ui/Container'
 import SectionTitle from '@/components/ui/SectionTitle'
 import ReviewGrid from '@/components/review/ReviewGrid'
-import { reviews } from '@/data/reviews'
+import { useQuery } from '@tanstack/react-query'
+import Spinner from '@/components/ui/Spinner'
+import { getReviews } from '@/services/review.supabase'
 
 function Reviews() {
+  const {
+    data: reviews,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['reviews'],
+    queryFn: getReviews,
+  })
+
+  console.log(reviews)
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  if (error) {
+    return <p>Ha ocurrido un error.</p>
+  }
   return (
     <Container className="py-16">
       <SectionTitle>Reseñas</SectionTitle>
 
-      <ReviewGrid reviews={reviews} />
+      <ReviewGrid reviews={reviews ?? []} />
     </Container>
   )
 }
