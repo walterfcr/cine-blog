@@ -24,3 +24,18 @@ export async function getReview(id: string) {
 
   return mapSupabaseReview(data)
 }
+
+export async function getFeaturedReview() {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .eq('published', true)
+    .eq('featured', true)
+    .single()
+
+  if (error) {
+    throw error
+  }
+
+  return mapSupabaseReview(data)
+}

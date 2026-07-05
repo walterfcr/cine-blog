@@ -4,7 +4,7 @@ import SectionTitle from '@/components/ui/SectionTitle'
 import MovieGrid from '@/components/movie/MovieGrid'
 import { useQuery } from '@tanstack/react-query'
 import { getPopularMovies } from '@/services/tmdb'
-import { featuredHero } from '@/data/home'
+import { getHeroData } from '@/services/hero.service'
 import Spinner from '@/components/ui/Spinner'
 
 function Home() {
@@ -17,17 +17,26 @@ function Home() {
     queryFn: getPopularMovies,
   })
 
-  if (isLoading) {
+  const {
+    data: hero,
+    isLoading: heroLoading,
+    error: heroError,
+  } = useQuery({
+    queryKey: ['hero'],
+    queryFn: getHeroData,
+  })
+
+  if (isLoading || heroLoading) {
     return <Spinner />
   }
 
-  if (error) {
+  if (error || heroError) {
     return <p>Ha ocurrido un error.</p>
   }
 
   return (
     <Container>
-      <Hero data={featuredHero} />
+      {hero && <Hero data={hero} />}
       <SectionTitle>Películas populares</SectionTitle>
 
       <MovieGrid movies={movies ?? []} />
