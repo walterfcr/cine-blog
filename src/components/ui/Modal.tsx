@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import Button from '@/components/ui/Button'
 
 interface ModalProps {
   open: boolean
@@ -27,22 +28,36 @@ function Modal({ open, title, children, onClose }: ModalProps) {
     >
       <div
         className="
+          flex
           max-h-[90vh]
           w-full
           max-w-6xl
-          overflow-auto
+          flex-col
+          overflow-hidden
           rounded-xl
+          border
+          border-border
           bg-background
-          p-6
         "
       >
-        <div className="mb-6 flex items-center justify-between">
+        <div
+          className="
+            flex
+            items-center
+            justify-between
+            border-b
+            border-border
+            p-6
+          "
+        >
           <h2 className="text-2xl font-semibold">{title}</h2>
 
-          <button onClick={onClose}>✕</button>
+          <Button variant="ghost" onClick={onClose}>
+            ✕
+          </Button>
         </div>
 
-        {children}
+        <div className="overflow-y-auto p-6">{children}</div>
       </div>
     </div>
   )

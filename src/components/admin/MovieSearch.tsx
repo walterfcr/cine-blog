@@ -27,17 +27,18 @@ function MovieSearch({ onSelect }: MovieSearchProps) {
         onChange={(e) => setQuery(e.target.value)}
       />
 
-      <div className="space-y-2">
-        {query.length >= 2 &&
-          movies?.map((movie) => (
-            <button
-              key={movie.id}
-              type="button"
-              onClick={() => {
-                onSelect(movie)
-                setQuery('')
-              }}
-              className="
+      {query.length >= 2 && (
+        <div className="space-y-2">
+          {query.length >= 2 &&
+            movies?.map((movie) => (
+              <button
+                key={movie.id}
+                type="button"
+                onClick={() => {
+                  onSelect(movie)
+                  setQuery('')
+                }}
+                className="
               w-full
               rounded-lg
               border
@@ -47,13 +48,14 @@ function MovieSearch({ onSelect }: MovieSearchProps) {
               transition-colors
               hover:bg-surface-hover
             "
-            >
-              <strong>{movie.title}</strong>
+              >
+                <strong>{movie.title}</strong>
 
-              <p className="text-sm text-text-muted">{movie.year}</p>
-            </button>
-          ))}
-      </div>
+                <p className="text-sm text-text-muted">{movie.year}</p>
+              </button>
+            ))}
+        </div>
+      )}
     </div>
   )
 }

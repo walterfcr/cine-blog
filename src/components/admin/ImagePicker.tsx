@@ -20,22 +20,49 @@ function ImagePicker({ title, images, selected, onSelect }: ImagePickerProps) {
             type="button"
             onClick={() => onSelect(image.file_path)}
             className={`
-              overflow-hidden
-              rounded-lg
-              border-2
-              transition-all
-              ${
-                selected === image.file_path
-                  ? 'border-accent'
-                  : 'border-transparent'
-              }
-            `}
+    group
+    relative
+    overflow-hidden
+    rounded-lg
+    border-2
+    cursor-pointer
+    transition-all
+    ${
+      selected === image.file_path
+        ? 'border-accent ring-2 ring-accent'
+        : 'border-transparent hover:border-border'
+    }
+  `}
           >
             <img
               src={getImageUrl(image.file_path)}
               alt=""
-              className="aspect-[2/3] w-full object-cover"
+              className="
+                aspect-[2/3]
+                w-full
+                object-cover
+                transition-transform
+                duration-300
+                group-hover:scale-105
+              "
             />
+
+            <div
+              className="
+                absolute
+                inset-0
+                flex
+                items-center
+                justify-center
+                bg-black/50
+                opacity-0
+                transition-opacity
+                duration-300
+                group-hover:opacity-100
+              "
+            >
+              <span className="font-medium text-white">Elegir imagen</span>
+            </div>
           </button>
         ))}
       </div>

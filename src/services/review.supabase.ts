@@ -39,3 +39,21 @@ export async function getFeaturedReview() {
 
   return mapSupabaseReview(data)
 }
+
+export async function createReview(review: {
+  movieId: number
+  title: string
+  excerpt: string
+  content: string
+  rating: number
+  posterPath: string | null
+  backdropPath: string | null
+  featured: boolean
+  published: boolean
+}) {
+  const { error } = await supabase.from('reviews').insert(review)
+
+  if (error) {
+    throw error
+  }
+}
