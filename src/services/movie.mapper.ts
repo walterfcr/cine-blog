@@ -1,5 +1,6 @@
 import type { Movie } from '@/types/Movie'
 import type { TmdbMovie } from '@/types/TmdbMovie'
+import { getImageUrl } from '@/utils/image'
 
 export function mapMovie(movie: TmdbMovie): Movie {
   return {
@@ -7,13 +8,13 @@ export function mapMovie(movie: TmdbMovie): Movie {
 
     title: movie.title,
 
-    poster: movie.poster_path
-      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-      : '',
+    poster: getImageUrl(movie.poster_path, 'w500'),
 
-    backdrop: movie.backdrop_path
-      ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-      : '',
+    backdrop: getImageUrl(movie.backdrop_path, 'original'),
+
+    posterPath: movie.poster_path,
+
+    backdropPath: movie.backdrop_path,
 
     overview: movie.overview,
 

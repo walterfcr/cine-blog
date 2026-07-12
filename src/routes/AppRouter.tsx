@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import MainLayout from '@/layouts/MainLayout'
+import AdminLayout from '@/layouts/AdminLayout'
 
 import ProtectedRoute from '@/components/admin/ProtectedRoute'
 
@@ -14,6 +15,7 @@ import NotFound from '@/pages/NotFound'
 
 import Login from '@/pages/admin/Login'
 import Dashboard from '@/pages/admin/Dashboard'
+import NewReview from '@/pages/admin/NewReview'
 
 export const router = createBrowserRouter([
   {
@@ -56,9 +58,19 @@ export const router = createBrowserRouter([
   {
     path: '/admin',
     element: (
-      <ProtectedRoute>
-        <Dashboard />
-      </ProtectedRoute>
+      //<ProtectedRoute>
+      <AdminLayout />
+      //</ProtectedRoute>
     ),
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: 'reviews/new',
+        element: <NewReview />,
+      },
+    ],
   },
 ])

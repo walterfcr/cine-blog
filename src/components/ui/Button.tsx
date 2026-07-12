@@ -12,7 +12,7 @@ function Button({
   ...props
 }: ButtonProps) {
   const variants = {
-    primary: 'bg-accent text-text-primary hover:bg-accent-hover',
+    primary: 'bg-accent text-white hover:bg-accent-hover',
     secondary:
       'bg-surface text-text-primary border border-border hover:bg-surface-hover',
     ghost: 'text-text-secondary hover:text-text-primary',
