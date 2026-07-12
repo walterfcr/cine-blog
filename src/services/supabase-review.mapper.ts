@@ -15,7 +15,9 @@ export function mapSupabaseReview(review: SupabaseReview): Review {
 
     rating: review.rating,
 
-    author: 'Admin',
+    posterPath: review.poster_path,
+
+    backdropPath: review.backdrop_path,
 
     createdAt: review.created_at,
 

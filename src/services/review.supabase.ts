@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { mapSupabaseReview } from '@/services/supabase-review.mapper'
+import type { Review } from '@/types/Review'
 
 export async function getReviews() {
   const { data, error } = await supabase.from('reviews').select('*')
@@ -40,18 +41,28 @@ export async function getFeaturedReview() {
   return mapSupabaseReview(data)
 }
 
-export async function createReview(review: {
-  movieId: number
-  title: string
-  excerpt: string
-  content: string
-  rating: number
-  posterPath: string | null
-  backdropPath: string | null
-  featured: boolean
-  published: boolean
-}) {
-  const { error } = await supabase.from('reviews').insert(review)
+export async function createReview(
+  review: Omit<Review, 'id' | 'createdAt' | 'updatedAt'>,
+) {
+  const { error } = await supabase.from('reviews').insert({
+    movie_id: review.movieId,
+
+    title: review.title,
+
+    excerpt: review.excerpt,
+
+    content: review.content,
+
+    rating: review.rating,
+
+    poster_path: review.posterPath,
+
+    backdrop_path: review.backdropPath,
+
+    featured: review.featured,
+
+    published: review.published,
+  })
 
   if (error) {
     throw error

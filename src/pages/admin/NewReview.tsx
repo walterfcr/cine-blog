@@ -10,11 +10,14 @@ import ToggleSwitch from '@/components/ui/ToggleSwitch'
 import Button from '@/components/ui/Button'
 import MovieSelectionCard from '@/components/admin/MovieSelectionCard'
 import { getMovieImages } from '@/services/tmdb'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import Modal from '@/components/ui/Modal'
 import ImagePicker from '@/components/admin/ImagePicker'
+import { createReview } from '@/services/review.supabase'
+import { useNavigate } from 'react-router-dom'
 
 function NewReview() {
+  const navigate = useNavigate()
   const [movie, setMovie] = useState<Movie | null>(null)
   const [posterPath, setPosterPath] = useState<string | null>(null)
   const [backdropPath, setBackdropPath] = useState<string | null>(null)
@@ -43,6 +46,47 @@ function NewReview() {
     queryFn: () => getMovieImages(String(movie!.id)),
     enabled: !!movie,
   })
+
+  const createReviewMutation = useMutation({
+    mutationFn: createReview,
+
+    onSuccess: () => {
+      navigate('/admin')
+    },
+
+    onError: (error) => {
+      console.error(error)
+      alert('No se pudo guardar la reseña.')
+    },
+  })
+
+  function handleSave() {
+    if (!movie) {
+      alert('Selecciona una película.')
+
+      return
+    }
+
+    createReviewMutation.mutate({
+      movieId: movie.id,
+
+      title,
+
+      excerpt,
+
+      content,
+
+      rating,
+
+      posterPath,
+
+      backdropPath,
+
+      featured,
+
+      published,
+    })
+  }
 
   return (
     <div className="space-y-6">
@@ -153,7 +197,15 @@ function NewReview() {
               />
             </div>
 
-            <Button className="w-full">Guardar reseña</Button>
+            <Button
+              className="w-full"
+              onClick={handleSave}
+              disabled={createReviewMutation.isPending}
+            >
+              {createReviewMutation.isPending
+                ? 'Guardando...'
+                : 'Guardar reseña'}
+            </Button>
           </div>
         </div>
       </div>
