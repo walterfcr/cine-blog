@@ -10,6 +10,9 @@ export const tmdbApi = axios.create({
     Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
     accept: 'application/json',
   },
+  params: {
+    language: 'es-ES',
+  },
 })
 
 export async function getPopularMovies() {

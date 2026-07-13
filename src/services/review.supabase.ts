@@ -17,7 +17,7 @@ export async function getReview(id: string) {
     .from('reviews')
     .select('*')
     .eq('id', id)
-    .single()
+    .maybeSingle()
 
   if (error) {
     throw error
@@ -32,7 +32,7 @@ export async function getFeaturedReview() {
     .select('*')
     .eq('published', true)
     .eq('featured', true)
-    .single()
+    .maybeSingle()
 
   if (error) {
     throw error

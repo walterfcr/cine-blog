@@ -7,7 +7,7 @@ interface ReviewGridProps {
 
 function ReviewGrid({ reviews }: ReviewGridProps) {
   return (
-    <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <section className="grid grid-cols-1 gap-8 md:grid-cols-2">
       {reviews.map((review) => (
         <ReviewCard key={review.id} review={review} />
       ))}
