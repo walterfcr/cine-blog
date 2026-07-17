@@ -2,13 +2,18 @@ import type { ReactNode } from 'react'
 
 interface BadgeProps {
   children: ReactNode
-  variant?: 'default' | 'accent'
+  variant?: 'default' | 'accent' | 'success' | 'warning'
 }
 
 function Badge({ children, variant = 'default' }: BadgeProps) {
   const variants = {
-    default: 'bg-surface text-text-secondary border-border',
-    accent: 'bg-accent text-text-primary',
+    default: 'border-border bg-surface text-text-secondary',
+
+    accent: 'bg-accent text-white',
+
+    success: 'border-green-500/20 bg-green-500/10 text-green-400',
+
+    warning: 'border-yellow-500/20 bg-yellow-500/10 text-yellow-400',
   }
 
   return (
