@@ -26,6 +26,19 @@ export async function getReview(id: string) {
   return mapSupabaseReview(data)
 }
 
+export async function getAllReviews() {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    throw error
+  }
+
+  return data.map(mapSupabaseReview)
+}
+
 export async function getFeaturedReview() {
   const { data, error } = await supabase
     .from('reviews')
