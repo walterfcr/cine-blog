@@ -64,13 +64,13 @@ function AdminReviewCard({ review, onDelete }: AdminReviewCardProps) {
 
         <div className="mt-auto flex gap-3 pt-6">
           <Link to={`/admin/reviews/${review.id}`}>
-            <Button variant="secondary">
+            <Button variant="primary">
               <LuPencil />
               Editar
             </Button>
           </Link>
 
-          <Button variant="danger" onClick={() => onDelete(review.id)}>
+          <Button variant="secondary" onClick={() => onDelete(review.id)}>
             <LuTrash2 />
             Eliminar
           </Button>

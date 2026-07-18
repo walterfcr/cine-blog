@@ -1,16 +1,27 @@
 import { Link } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import Button from '@/components/ui/Button'
 import Spinner from '@/components/ui/Spinner'
 import AdminReviewCard from '@/components/admin/AdminReviewCard'
 
-import { getAllReviews } from '@/services/review.supabase'
+import { deleteReview, getAllReviews } from '@/services/review.supabase'
 
 function Dashboard() {
+  const queryClient = useQueryClient()
   const { data: reviews, isLoading } = useQuery({
     queryKey: ['admin-reviews'],
     queryFn: getAllReviews,
+  })
+
+  const deleteReviewMutation = useMutation({
+    mutationFn: deleteReview,
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['admin-reviews'],
+      })
+    },
   })
 
   if (isLoading) {
@@ -82,7 +93,11 @@ function Dashboard() {
               key={review.id}
               review={review}
               onDelete={(id) => {
-                console.log('Delete', id)
+                if (!confirm('¿Eliminar esta reseña?')) {
+                  return
+                }
+
+                deleteReviewMutation.mutate(id)
               }}
             />
           ))}

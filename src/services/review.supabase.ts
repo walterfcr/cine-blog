@@ -81,3 +81,11 @@ export async function createReview(
     throw error
   }
 }
+
+export async function deleteReview(id: string) {
+  const { error } = await supabase.from('reviews').delete().eq('id', id)
+
+  if (error) {
+    throw error
+  }
+}
