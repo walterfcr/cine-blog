@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Movie } from '@/types/Movie'
 
-import MovieSearch from '@/components/admin/MovieSearch'
 import Input from '@/components/ui/Input'
 import Textarea from '@/components/ui/Textarea'
 import FormField from '@/components/ui/FormField'
@@ -15,9 +14,11 @@ import Modal from '@/components/ui/Modal'
 import ImagePicker from '@/components/admin/ImagePicker'
 import { getReview, updateReview } from '@/services/review.supabase'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 
 function EditReview() {
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
   const { reviewId } = useParams()
   const [movie, setMovie] = useState<Movie | null>(null)
   const [posterPath, setPosterPath] = useState<string | null>(null)
@@ -98,6 +99,8 @@ function EditReview() {
     }) => updateReview(reviewId!, data),
 
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin-reviews'] })
+      queryClient.invalidateQueries({ queryKey: ['reviews'] })
       navigate('/admin')
     },
 
@@ -139,10 +142,6 @@ function EditReview() {
     <div className="space-y-6">
       <div>
         <h1 className="text-4xl font-bold">Editar reseña</h1>
-
-        <p className="text-text-secondary">
-          Crea una nueva reseña para el blog.
-        </p>
       </div>
 
       <Modal
@@ -171,7 +170,6 @@ function EditReview() {
           />
         )}
       </Modal>
-      <MovieSearch onSelect={handleMovieSelect} />
 
       <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
         {/* LEFT COLUMN */}
@@ -251,7 +249,7 @@ function EditReview() {
             >
               {updateReviewMutation.isPending
                 ? 'Guardando...'
-                : 'Editar reseña'}
+                : 'Guardar cambios'}
             </Button>
           </div>
         </div>
