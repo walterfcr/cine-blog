@@ -89,3 +89,45 @@ export async function deleteReview(id: string) {
     throw error
   }
 }
+
+export async function updateReview(
+  id: string,
+  review: {
+    movieId: number
+    title: string
+    excerpt: string
+    content: string
+    rating: number
+    posterPath: string | null
+    backdropPath: string | null
+    featured: boolean
+    published: boolean
+  },
+) {
+  const { error } = await supabase
+    .from('reviews')
+    .update({
+      movie_id: review.movieId,
+
+      title: review.title,
+
+      excerpt: review.excerpt,
+
+      content: review.content,
+
+      rating: review.rating,
+
+      poster_path: review.posterPath,
+
+      backdrop_path: review.backdropPath,
+
+      featured: review.featured,
+
+      published: review.published,
+    })
+    .eq('id', id)
+
+  if (error) {
+    throw error
+  }
+}

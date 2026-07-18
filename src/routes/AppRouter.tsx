@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import MainLayout from '@/layouts/MainLayout'
 import AdminLayout from '@/layouts/AdminLayout'
 
-import ProtectedRoute from '@/components/admin/ProtectedRoute'
+//import ProtectedRoute from '@/components/admin/ProtectedRoute'
 
 import Home from '@/pages/Home'
 import Movies from '@/pages/Movies'
@@ -16,6 +16,7 @@ import NotFound from '@/pages/NotFound'
 import Login from '@/pages/admin/Login'
 import Dashboard from '@/pages/admin/Dashboard'
 import NewReview from '@/pages/admin/NewReview'
+import EditReview from '@/pages/admin/EditReview'
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: 'reviews/new',
         element: <NewReview />,
+      },
+      {
+        path: 'reviews/:reviewId',
+        element: <EditReview />,
       },
     ],
   },
