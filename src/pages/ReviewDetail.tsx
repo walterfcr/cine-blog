@@ -7,6 +7,7 @@ import BackButton from '@/components/ui/BackButton'
 import { formatDate } from '@/utils/formatDate'
 import Spinner from '@/components/ui/Spinner'
 import { getImageUrl } from '@/utils/image'
+import { reviewKeys } from '@/services/queryKeys'
 
 function ReviewDetail() {
   const { reviewId } = useParams()
@@ -15,7 +16,7 @@ function ReviewDetail() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['review', reviewId],
+    queryKey: reviewKeys.detail(reviewId!),
     queryFn: () => getReview(reviewId!),
     enabled: !!reviewId,
   })

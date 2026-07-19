@@ -4,6 +4,7 @@ import ReviewGrid from '@/components/review/ReviewGrid'
 import { useQuery } from '@tanstack/react-query'
 import Spinner from '@/components/ui/Spinner'
 import { getReviews } from '@/services/review.supabase'
+import { reviewKeys } from '@/services/queryKeys'
 
 function Reviews() {
   const {
@@ -11,7 +12,7 @@ function Reviews() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['reviews'],
+    queryKey: reviewKeys.all,
     queryFn: getReviews,
   })
 

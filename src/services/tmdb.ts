@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { mapMovie } from './movie.mapper'
 import type { Movie } from '@/types/Movie'
-import type { TmdbSearchResponse } from '@/types/TmdbSearchResponse'
 import type { TmdbImagesResponse } from '@/types/TmdbImagesResponse'
 
 export const tmdbApi = axios.create({

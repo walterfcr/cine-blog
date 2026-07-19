@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 
 import Card from '@/components/ui/Card'
 import Input from '@/components/ui/Input'
-import { signIn } from '@/services/auth.service'
+import { useAuth } from '@/hooks/useAuth'
 
 function Login() {
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -15,7 +16,7 @@ function Login() {
     e.preventDefault()
 
     try {
-      await signIn(email, password)
+      await login(email, password)
 
       navigate('/admin')
     } catch {

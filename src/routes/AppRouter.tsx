@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import MainLayout from '@/layouts/MainLayout'
 import AdminLayout from '@/layouts/AdminLayout'
 
-//import ProtectedRoute from '@/components/admin/ProtectedRoute'
+import ProtectedRoute from '@/components/admin/ProtectedRoute'
 
 import Home from '@/pages/Home'
 import Movies from '@/pages/Movies'
@@ -59,9 +59,9 @@ export const router = createBrowserRouter([
   {
     path: '/admin',
     element: (
-      //<ProtectedRoute>
-      <AdminLayout />
-      //</ProtectedRoute>
+      <ProtectedRoute>
+        <AdminLayout />
+      </ProtectedRoute>
     ),
     children: [
       {

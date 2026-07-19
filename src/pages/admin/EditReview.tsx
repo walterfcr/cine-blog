@@ -15,6 +15,7 @@ import ImagePicker from '@/components/admin/ImagePicker'
 import { getReview, updateReview } from '@/services/review.supabase'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
+import { reviewKeys } from '@/services/queryKeys'
 
 function EditReview() {
   const navigate = useNavigate()
@@ -35,14 +36,6 @@ function EditReview() {
 
   const [pickerType, setPickerType] = useState<'poster' | 'backdrop'>('poster')
 
-  function handleMovieSelect(movie: Movie) {
-    setMovie(movie)
-
-    setPosterPath(movie.posterPath)
-
-    setBackdropPath(movie.backdropPath)
-  }
-
   const { data: images } = useQuery({
     queryKey: ['movie-images', movie?.id],
     queryFn: () => getMovieImages(String(movie!.id)),
@@ -50,7 +43,7 @@ function EditReview() {
   })
 
   const { data: review } = useQuery({
-    queryKey: ['review', reviewId],
+    queryKey: reviewKeys.detail(reviewId!),
     queryFn: () => getReview(reviewId!),
     enabled: !!reviewId,
   })
@@ -99,8 +92,12 @@ function EditReview() {
     }) => updateReview(reviewId!, data),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['admin-reviews'] })
-      queryClient.invalidateQueries({ queryKey: ['reviews'] })
+      queryClient.invalidateQueries({
+        queryKey: reviewKeys.admin,
+      })
+      queryClient.invalidateQueries({
+        queryKey: reviewKeys.all,
+      })
       navigate('/admin')
     },
 

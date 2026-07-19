@@ -6,11 +6,12 @@ import Spinner from '@/components/ui/Spinner'
 import AdminReviewCard from '@/components/admin/AdminReviewCard'
 
 import { deleteReview, getAllReviews } from '@/services/review.supabase'
+import { reviewKeys } from '@/services/queryKeys'
 
 function Dashboard() {
   const queryClient = useQueryClient()
   const { data: reviews, isLoading } = useQuery({
-    queryKey: ['admin-reviews'],
+    queryKey: reviewKeys.admin,
     queryFn: getAllReviews,
   })
 
@@ -19,7 +20,7 @@ function Dashboard() {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['admin-reviews'],
+        queryKey: reviewKeys.admin,
       })
     },
   })
