@@ -1,21 +1,54 @@
 @theme {
-  /* Backgrounds */
   --color-background: #121212;
   --color-surface: #1e1e1e;
   --color-surface-hover: #292929;
 
-  /* Brand */
   --color-accent: #8b1e3f;
   --color-accent-hover: #6d1832;
 
-  /* Rating */
   --color-rating: #d4af37;
 
-  /* Text */
   --color-text-primary: #f5f5f5;
   --color-text-secondary: #cccccc;
   --color-text-muted: #8a8a8a;
 
-  /* Border */
   --color-border: #313131;
+}
+
+/* ---------- DARK ---------- */
+
+:root {
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --color-surface-hover: #292929;
+
+  --color-accent: #8b1e3f;
+  --color-accent-hover: #6d1832;
+
+  --color-rating: #d4af37;
+
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #cccccc;
+  --color-text-muted: #8a8a8a;
+
+  --color-border: #313131;
+}
+
+/* ---------- LIGHT ---------- */
+
+[data-theme='light'] {
+  --color-background: #f8f5ef;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f1ede7;
+
+  --color-accent: #8b1e3f;
+  --color-accent-hover: #6d1832;
+
+  --color-rating: #c49b12;
+
+  --color-text-primary: #1f1f1f;
+  --color-text-secondary: #4d4d4d;
+  --color-text-muted: #7a7a7a;
+
+  --color-border: #e2ddd5;
 }

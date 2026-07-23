@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 
 import Container from '@/components/ui/Container'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 
 function Header() {
   return (
@@ -58,6 +59,7 @@ function Header() {
             >
               Acerca de
             </NavLink>
+            <ThemeToggle />
           </nav>
         </div>
       </Container>

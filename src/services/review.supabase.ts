@@ -30,6 +30,7 @@ export async function getAllReviews() {
   const { data, error } = await supabase
     .from('reviews')
     .select('*')
+    .eq('published', true)
     .order('created_at', { ascending: false })
 
   if (error) {

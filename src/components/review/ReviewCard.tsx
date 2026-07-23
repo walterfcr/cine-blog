@@ -19,20 +19,20 @@ function ReviewCard({ review }: ReviewCardProps) {
         flex
         h-full
         overflow-hidden
-        p-6
+        p-5
         transition-all
         duration-300
         hover:border-accent
         hover:shadow-xl
       "
       >
-        <div className="flex h-full gap-6">
+        <div className="flex h-full gap-8">
           <img
             src={getImageUrl(review.posterPath, 'w342')}
             alt={review.title}
             className="
-            h-64
-            w-40
+            h-56
+            w-36
             flex-shrink-0
             rounded-lg
             object-cover
@@ -69,7 +69,7 @@ function ReviewCard({ review }: ReviewCardProps) {
               className="
               mb-6
               flex-1
-              line-clamp-3
+              line-clamp-4
               leading-7
               text-text-secondary
             "
