@@ -7,7 +7,7 @@ import ReviewGrid from '@/components/review/ReviewGrid'
 import Spinner from '@/components/ui/Spinner'
 
 import { getHeroData } from '@/services/hero.service'
-import { getAllReviews } from '@/services/review.supabase'
+import { getAllReviews } from '@/services/review.service'
 
 function Home() {
   const {

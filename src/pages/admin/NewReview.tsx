@@ -9,11 +9,11 @@ import StarRating from '@/components/ui/StarRating'
 import ToggleSwitch from '@/components/ui/ToggleSwitch'
 import Button from '@/components/ui/Button'
 import MovieSelectionCard from '@/components/admin/MovieSelectionCard'
-import { getMovieImages } from '@/services/tmdb'
+import { getMovieImages } from '@/services/tmdb.service'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import Modal from '@/components/ui/Modal'
 import ImagePicker from '@/components/admin/ImagePicker'
-import { createReview } from '@/services/review.supabase'
+import { createReview } from '@/services/review.service'
 import { useNavigate } from 'react-router-dom'
 
 function NewReview() {

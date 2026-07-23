@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { mapMovie } from './movie.mapper'
+import { mapMovie } from '../mappers/movie.mapper'
 import type { Movie } from '@/types/Movie'
 import type { TmdbImagesResponse } from '@/types/TmdbImagesResponse'
 

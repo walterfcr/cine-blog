@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { mapSupabaseReview } from '@/services/supabase-review.mapper'
+import { mapSupabaseReview } from '@/mappers/supabase-review.mapper'
 import type { Review } from '@/types/Review'
 
 export async function getReviews() {

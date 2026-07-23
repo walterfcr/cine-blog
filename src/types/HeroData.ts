@@ -9,6 +9,8 @@ export interface HeroData {
 
   rating: number
 
+  poster?: string
+
   readReviewUrl: string
 
   movieDetailsUrl: string

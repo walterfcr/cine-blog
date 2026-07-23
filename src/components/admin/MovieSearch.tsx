@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import Input from '@/components/ui/Input'
-import { searchMovies } from '@/services/tmdb'
+import { searchMovies } from '@/services/tmdb.service'
 
 import type { Movie } from '@/types/Movie'
 

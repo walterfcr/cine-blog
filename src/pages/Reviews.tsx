@@ -3,8 +3,8 @@ import SectionTitle from '@/components/ui/SectionTitle'
 import ReviewGrid from '@/components/review/ReviewGrid'
 import { useQuery } from '@tanstack/react-query'
 import Spinner from '@/components/ui/Spinner'
-import { getReviews } from '@/services/review.supabase'
-import { reviewKeys } from '@/services/queryKeys'
+import { getReviews } from '@/services/review.service'
+import { reviewKeys } from '@/queries/queryKeys'
 
 function Reviews() {
   const {

@@ -1,13 +1,13 @@
 import { Link, useParams } from 'react-router-dom'
-import { getReview } from '@/services/review.supabase'
+import { getReview } from '@/services/review.service'
 import Badge from '@/components/ui/Badge'
-import { getMovieDetails } from '@/services/tmdb'
+import { getMovieDetails } from '@/services/tmdb.service'
 import { useQuery } from '@tanstack/react-query'
 import BackButton from '@/components/ui/BackButton'
 import { formatDate } from '@/utils/formatDate'
 import Spinner from '@/components/ui/Spinner'
 import { getImageUrl } from '@/utils/image'
-import { reviewKeys } from '@/services/queryKeys'
+import { reviewKeys } from '@/queries/queryKeys'
 
 function ReviewDetail() {
   const { reviewId } = useParams()
@@ -47,39 +47,24 @@ function ReviewDetail() {
             className="h-[600px] w-full object-cover"
           />
 
-          <div
-            className="
-            absolute
-            inset-0
-            bg-black/40
-          "
-          />
+          {/* Simple overlay only */}
+          <div className="absolute inset-0 bg-black/40" />
 
           <div
             className="
             absolute
             inset-0
-            bg-gradient-to-r
-            from-background
-            via-background/70
-            to-transparent
-          "
-          />
-
-          <div
-            className="
-             absolute
-              inset-0
-              z-10
-              flex
-              max-w-3xl
-              flex-col
-              justify-center
-              p-8
-              md:p-16
+            z-10
+            flex
+            max-w-3xl
+            flex-col
+            justify-center
+            p-8
+            md:p-16
           "
           >
             <BackButton />
+
             <header className="max-w-3xl space-y-4">
               <div className="flex items-center gap-4">
                 <Badge variant="accent">Reseña</Badge>
@@ -89,25 +74,28 @@ function ReviewDetail() {
                 </span>
               </div>
 
-              <h1 className="text-4xl font-bold md:text-6xl">{review.title}</h1>
+              <h1 className="text-white text-4xl font-bold md:text-6xl">
+                {review.title}
+              </h1>
 
               <div className="flex flex-wrap items-center gap-3 text-sm text-text-muted">
                 <span>•</span>
-
-                <span>{formatDate(review.createdAt)}</span>
+                <span className="text-white/80">
+                  {formatDate(review.createdAt)}
+                </span>
               </div>
 
               {movie && (
-                <p className="text-lg text-text-secondary">
+                <p className="text-lg text text-white/70">
                   Reseña de{' '}
                   <Link
                     to={`/movies/${movie.id}`}
                     className="
-                    font-semibold
-                    text-text-primary
-                    transition-colors
-                    hover:text-accent
-                  "
+              
+              text-white
+              transition-colors
+              hover:text-accent
+            "
                   >
                     {movie.title}
                   </Link>

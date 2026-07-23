@@ -5,8 +5,8 @@ import Button from '@/components/ui/Button'
 import Spinner from '@/components/ui/Spinner'
 import AdminReviewCard from '@/components/admin/AdminReviewCard'
 
-import { deleteReview, getAllReviews } from '@/services/review.supabase'
-import { reviewKeys } from '@/services/queryKeys'
+import { deleteReview, getAllReviews } from '@/services/review.service'
+import { reviewKeys } from '@/queries/queryKeys'
 
 function Dashboard() {
   const queryClient = useQueryClient()

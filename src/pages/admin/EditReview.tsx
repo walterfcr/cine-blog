@@ -8,14 +8,14 @@ import StarRating from '@/components/ui/StarRating'
 import ToggleSwitch from '@/components/ui/ToggleSwitch'
 import Button from '@/components/ui/Button'
 import MovieSelectionCard from '@/components/admin/MovieSelectionCard'
-import { getMovieDetails, getMovieImages } from '@/services/tmdb'
+import { getMovieDetails, getMovieImages } from '@/services/tmdb.service'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import Modal from '@/components/ui/Modal'
 import ImagePicker from '@/components/admin/ImagePicker'
-import { getReview, updateReview } from '@/services/review.supabase'
+import { getReview, updateReview } from '@/services/review.service'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
-import { reviewKeys } from '@/services/queryKeys'
+import { reviewKeys } from '@/queries/queryKeys'
 
 function EditReview() {
   const navigate = useNavigate()

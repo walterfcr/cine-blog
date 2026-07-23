@@ -32,6 +32,9 @@
   --color-text-muted: #8a8a8a;
 
   --color-border: #313131;
+
+  --color-hero-panel: rgba(0, 0, 0, 0.55);
+  --color-hero-border: rgba(255, 255, 255, 0.12);
 }
 
 /* ---------- LIGHT ---------- */
@@ -51,4 +54,7 @@
   --color-text-muted: #7a7a7a;
 
   --color-border: #e2ddd5;
+
+  --color-hero-panel: rgba(255, 255, 255, 0.72);
+  --color-hero-border: rgba(0, 0, 0, 0.08);
 }

@@ -1,6 +1,6 @@
-import { getFeaturedReview } from './review.supabase'
-import { getMovieDetails } from './tmdb'
-import { mapHeroData } from './hero.mapper'
+import { getFeaturedReview } from './review.service'
+import { getMovieDetails } from './tmdb.service'
+import { mapHeroData } from '../mappers/hero.mapper'
 
 export async function getHeroData() {
   const review = await getFeaturedReview()

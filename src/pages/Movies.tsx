@@ -4,7 +4,7 @@ import MovieGrid from '@/components/movie/MovieGrid'
 import Spinner from '@/components/ui/Spinner'
 
 import { useQuery } from '@tanstack/react-query'
-import { getPopularMovies } from '@/services/tmdb'
+import { getPopularMovies } from '@/services/tmdb.service'
 
 function Movies() {
   const {
