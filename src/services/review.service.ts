@@ -105,30 +105,31 @@ export async function updateReview(
     published: boolean
   },
 ) {
+  // If this review is becoming featured,
+  // remove the featured flag from every other review.
+  if (review.featured) {
+    const { error: resetError } = await supabase
+      .from('reviews')
+      .update({ featured: false })
+      .neq('id', id)
+
+    if (resetError) throw resetError
+  }
+
   const { error } = await supabase
     .from('reviews')
     .update({
       movie_id: review.movieId,
-
       title: review.title,
-
       excerpt: review.excerpt,
-
       content: review.content,
-
       rating: review.rating,
-
       poster_path: review.posterPath,
-
       backdrop_path: review.backdropPath,
-
       featured: review.featured,
-
       published: review.published,
     })
     .eq('id', id)
 
-  if (error) {
-    throw error
-  }
+  if (error) throw error
 }
