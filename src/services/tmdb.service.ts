@@ -2,6 +2,7 @@ import axios from 'axios'
 import { mapMovie } from '../mappers/movie.mapper'
 import type { Movie } from '@/types/Movie'
 import type { TmdbImagesResponse } from '@/types/TmdbImagesResponse'
+import type { TmdbCast } from '@/types/TmdbCast'
 
 export const tmdbApi = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -53,4 +54,14 @@ export async function getMovieImages(movieId: string) {
   )
 
   return response.data
+}
+
+export async function getMovieCredits(movieId: string): Promise<TmdbCast[]> {
+  const response = await tmdbApi.get(`/movie/${movieId}/credits`, {
+    params: {
+      language: 'es-ES',
+    },
+  })
+
+  return response.data.cast
 }

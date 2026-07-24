@@ -4,6 +4,8 @@ import Spinner from '@/components/ui/Spinner'
 import { getMovieDetails } from '@/services/tmdb.service'
 import PageHeader from '@/components/ui/PageHeader'
 import BackButton from '@/components/ui/BackButton'
+import MovieCast from '@/components/movie/MovieCast'
+import { getMovieCredits } from '@/services/tmdb.service'
 
 function MovieDetail() {
   const { movieId } = useParams()
@@ -19,6 +21,11 @@ function MovieDetail() {
   } = useQuery({
     queryKey: ['movie', movieId],
     queryFn: () => getMovieDetails(movieId),
+  })
+
+  const { data: cast } = useQuery({
+    queryKey: ['movie-cast', movieId],
+    queryFn: () => getMovieCredits(movieId),
   })
 
   if (isLoading) {
@@ -74,6 +81,11 @@ function MovieDetail() {
       <p className="max-w-3xl leading-8 text-text-secondary">
         {movie?.overview}
       </p>
+      <p className="max-w-3xl leading-8 text-text-secondary">
+        {movie?.overview}
+      </p>
+
+      {cast && <MovieCast cast={cast} />}
     </div>
   )
 }
