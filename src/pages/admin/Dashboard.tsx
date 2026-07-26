@@ -38,21 +38,15 @@ function Dashboard() {
         </p>
       </div>
 
-      <Link
-        to="/admin/reviews/new"
-        className="
-          rounded-lg
-          bg-accent
-          px-5
-          py-3
-          font-medium
-          text-white
-          transition-colors
-          hover:bg-accent-hover
-        "
-      >
-        <Button>Nueva reseña</Button>
-      </Link>
+      <div className="flex gap-4">
+        <Link to="/admin/reviews/new">
+          <Button>Nueva reseña</Button>
+        </Link>
+
+        <Link to="/admin/watchlist/new">
+          <Button variant="secondary">Película que quiero ver</Button>
+        </Link>
+      </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-xl border border-border p-6">

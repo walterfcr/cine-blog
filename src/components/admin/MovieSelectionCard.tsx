@@ -9,8 +9,8 @@ interface MovieSelectionCardProps {
   posterPath: string | null
   backdropPath: string | null
 
-  onChangePoster: () => void
-  onChangeBackdrop: () => void
+  onChangePoster?: () => void
+  onChangeBackdrop?: () => void
 }
 
 function MovieSelectionCard({
@@ -42,9 +42,11 @@ function MovieSelectionCard({
             className="h-72 rounded-lg object-cover"
           />
 
-          <Button variant="secondary" onClick={onChangePoster}>
-            Cambiar
-          </Button>
+          {onChangePoster && (
+            <Button variant="secondary" onClick={onChangePoster}>
+              Cambiar
+            </Button>
+          )}
         </div>
 
         <div className="space-y-3">
@@ -56,9 +58,11 @@ function MovieSelectionCard({
             className="h-40 w-full rounded-lg object-cover"
           />
 
-          <Button variant="secondary" onClick={onChangeBackdrop}>
-            Cambiar
-          </Button>
+          {onChangeBackdrop && (
+            <Button variant="secondary" onClick={onChangeBackdrop}>
+              Cambiar
+            </Button>
+          )}
         </div>
       </div>
     </div>

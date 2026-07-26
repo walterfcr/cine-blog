@@ -133,3 +133,18 @@ export async function updateReview(
 
   if (error) throw error
 }
+
+export async function getReviewByMovie(movieId: number) {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .eq('movie_id', movieId)
+    .eq('published', true)
+    .maybeSingle()
+
+  if (error) {
+    throw error
+  }
+
+  return data ? mapSupabaseReview(data) : null
+}

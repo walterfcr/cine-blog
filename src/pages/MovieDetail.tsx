@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import Spinner from '@/components/ui/Spinner'
-import { getMovieDetails } from '@/services/tmdb.service'
 import PageHeader from '@/components/ui/PageHeader'
 import BackButton from '@/components/ui/BackButton'
 import MovieCast from '@/components/movie/MovieCast'
-import { getMovieCredits } from '@/services/tmdb.service'
+import { getMovieCredits, getMovieDetails } from '@/services/tmdb.service'
+import { getReviewByMovie } from '@/services/review.service'
 
 function MovieDetail() {
   const { movieId } = useParams()
@@ -21,6 +21,12 @@ function MovieDetail() {
   } = useQuery({
     queryKey: ['movie', movieId],
     queryFn: () => getMovieDetails(movieId),
+  })
+
+  const { data: review } = useQuery({
+    queryKey: ['movie-review', movie?.id],
+    queryFn: () => getReviewByMovie(movie!.id),
+    enabled: !!movie,
   })
 
   const { data: cast } = useQuery({
@@ -66,24 +72,78 @@ function MovieDetail() {
               p-10
             "
           >
-            <PageHeader title={movie?.title ?? ''} />
+            <div className="space-y-5">
+              <p className="text-sm uppercase tracking-[0.35em] text-white/70">
+                FICHA TÉCNICA
+              </p>
 
-            <div className="mt-3 flex items-center gap-6 text-sm text-zinc-300">
-              <span>{movie?.year}</span>
+              <h1 className="text-5xl font-black tracking-tight text-white md:text-7xl">
+                {movie?.title}
+              </h1>
 
-              <span className="text-rating">
-                ★ {movie?.tmdbRating.toFixed(1)}
-              </span>
+              <div className="flex flex-wrap items-center gap-5 text-white/80">
+                <span>{movie?.year}</span>
+
+                <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
+
+                <span className="font-semibold text-rating">
+                  TMDB ★ {movie?.tmdbRating.toFixed(1)}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <p className="max-w-3xl leading-8 text-text-secondary">
-        {movie?.overview}
-      </p>
-      <p className="max-w-3xl leading-8 text-text-secondary">
-        {movie?.overview}
-      </p>
+      <section className="space-y-4">
+        <h2 className="text-2xl font-bold">Sinopsis</h2>
+
+        <p className="max-w-3xl leading-8 text-text-secondary">
+          {movie?.overview}
+        </p>
+      </section>
+
+      <section className="space-y-5 rounded-2xl border border-border bg-surface p-8">
+        <h2 className="text-2xl font-bold">Mi opinión</h2>
+
+        {review ? (
+          <>
+            <div className="flex items-center gap-3">
+              <span className="text-rating text-xl">
+                {'★'.repeat(Math.round(review.rating))}
+                {'☆'.repeat(10 - Math.round(review.rating))}
+              </span>
+
+              <span className="font-semibold text-rating">
+                {review.rating}/10
+              </span>
+            </div>
+
+            <p className="leading-8 text-text-secondary">{review.excerpt}</p>
+
+            <Link
+              to={`/reviews/${review.id}`}
+              className="
+          inline-flex
+          items-center
+          rounded-lg
+          bg-accent
+          px-5
+          py-3
+          font-medium
+          text-white
+          transition-colors
+          hover:bg-accent-hover
+        "
+            >
+              Leer reseña completa →
+            </Link>
+          </>
+        ) : (
+          <p className="leading-8 text-text-secondary">
+            Todavía no he publicado una reseña para esta película.
+          </p>
+        )}
+      </section>
 
       {cast && <MovieCast cast={cast} />}
     </div>

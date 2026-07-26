@@ -17,6 +17,7 @@ import Login from '@/pages/admin/Login'
 import Dashboard from '@/pages/admin/Dashboard'
 import NewReview from '@/pages/admin/NewReview'
 import EditReview from '@/pages/admin/EditReview'
+import NewWatchlistMovie from '@/pages/admin/NewWatchlistMovie'
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: 'reviews/new',
         element: <NewReview />,
+      },
+      {
+        path: 'watchlist/new',
+        element: <NewWatchlistMovie />,
       },
       {
         path: 'reviews/:reviewId',
