@@ -7,6 +7,8 @@ export function mapSupabaseReview(review: SupabaseReview): Review {
 
     movieId: review.movie_id,
 
+    movieTitle: review.movie_title,
+
     title: review.title,
 
     excerpt: review.excerpt,

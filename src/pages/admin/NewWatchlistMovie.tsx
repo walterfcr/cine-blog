@@ -12,6 +12,7 @@ import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 
 import { createWatchlistMovie } from '@/services/watchlist.service'
+import PrioritySelector from '@/components/ui/PrioritySelector'
 
 function NewWatchlistMovie() {
   const navigate = useNavigate()
@@ -101,14 +102,8 @@ function NewWatchlistMovie() {
         />
       </FormField>
 
-      <FormField label="Prioridad (1-10)">
-        <Input
-          type="number"
-          min={1}
-          max={10}
-          value={priority}
-          onChange={(e) => setPriority(Number(e.target.value))}
-        />
+      <FormField label="Prioridad">
+        <PrioritySelector value={priority} onChange={setPriority} />
       </FormField>
 
       <Button onClick={handleSave}>Guardar</Button>

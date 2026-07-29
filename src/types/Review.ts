@@ -2,6 +2,7 @@ export interface Review {
   id: string
 
   movieId: number
+  movieTitle: string
 
   title: string
   excerpt: string

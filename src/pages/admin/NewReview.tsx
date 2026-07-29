@@ -70,6 +70,8 @@ function NewReview() {
     createReviewMutation.mutate({
       movieId: movie.id,
 
+      movieTitle: movie.title,
+
       title,
 
       excerpt,

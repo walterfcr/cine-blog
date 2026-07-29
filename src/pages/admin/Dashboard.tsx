@@ -3,16 +3,29 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import Button from '@/components/ui/Button'
 import Spinner from '@/components/ui/Spinner'
+
 import AdminReviewCard from '@/components/admin/AdminReviewCard'
+import AdminWatchlistCard from '@/components/admin/AdminWatchlistCard'
 
 import { deleteReview, getAllReviews } from '@/services/review.service'
+import {
+  deleteWatchlistMovie,
+  getWatchlistMovies,
+} from '@/services/watchlist.service'
+
 import { reviewKeys } from '@/queries/queryKeys'
 
 function Dashboard() {
   const queryClient = useQueryClient()
+
   const { data: reviews, isLoading } = useQuery({
     queryKey: reviewKeys.admin,
     queryFn: getAllReviews,
+  })
+
+  const { data: watchlist, isLoading: watchlistLoading } = useQuery({
+    queryKey: ['admin-watchlist'],
+    queryFn: getWatchlistMovies,
   })
 
   const deleteReviewMutation = useMutation({
@@ -25,9 +38,20 @@ function Dashboard() {
     },
   })
 
-  if (isLoading) {
+  const deleteWatchlistMutation = useMutation({
+    mutationFn: deleteWatchlistMovie,
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['admin-watchlist'],
+      })
+    },
+  })
+
+  if (isLoading || watchlistLoading) {
     return <Spinner />
   }
+
   return (
     <div className="space-y-8">
       <div>
@@ -79,6 +103,7 @@ function Dashboard() {
           </h2>
         </div>
       </div>
+
       <section className="space-y-6">
         <h2 className="text-2xl font-bold">Últimas reseñas</h2>
 
@@ -96,6 +121,30 @@ function Dashboard() {
               }}
             />
           ))}
+        </div>
+      </section>
+
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold">Próximas reseñas</h2>
+
+        <div className="space-y-4">
+          {watchlist?.length ? (
+            watchlist.map((movie) => (
+              <AdminWatchlistCard
+                key={movie.id}
+                movie={movie}
+                onDelete={(id) => {
+                  if (!confirm('¿Eliminar esta película?')) {
+                    return
+                  }
+
+                  deleteWatchlistMutation.mutate(id)
+                }}
+              />
+            ))
+          ) : (
+            <p className="text-text-muted">No hay películas en la lista.</p>
+          )}
         </div>
       </section>
     </div>

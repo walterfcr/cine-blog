@@ -61,6 +61,8 @@ export async function createReview(
   const { error } = await supabase.from('reviews').insert({
     movie_id: review.movieId,
 
+    movie_title: review.movieTitle,
+
     title: review.title,
 
     excerpt: review.excerpt,

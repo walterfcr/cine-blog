@@ -38,16 +38,15 @@ function ReviewDetail() {
     return <p>Review not found.</p>
   }
   return (
-    <article className="space-y-10">
+    <article className="space-y-16">
       {review.backdropPath && (
         <div className="relative overflow-hidden rounded-2xl">
           <img
             src={getImageUrl(review.backdropPath, 'original')}
             alt={review.title}
-            className="h-[600px] w-full object-cover"
+            className="  h-[360px] w-full object-cover md:h-[420px] lg:h-[600px]"
           />
 
-          {/* Simple overlay only */}
           <div className="absolute inset-0 bg-black/40" />
 
           <div
@@ -58,7 +57,10 @@ function ReviewDetail() {
             flex
             max-w-3xl
             flex-col
-            justify-center
+            justify-end
+            pb-12
+            md:justify-center
+            md:pb-16
             p-8
             md:p-16
           "
@@ -74,44 +76,57 @@ function ReviewDetail() {
                 </span>
               </div>
 
-              <h1 className="text-white text-4xl font-bold md:text-6xl">
+              <h1 className="text-2xl font-bold leading-[1.05] text-white md:text-4xl lg:text-6xl">
                 {review.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-3 text-sm text-text-muted">
-                <span>•</span>
-                <span className="text-white/80">
-                  {formatDate(review.createdAt)}
-                </span>
+              <div className="text-sm text-white/80">
+                {formatDate(review.createdAt)}
               </div>
 
               {movie && (
-                <p className="text-lg text text-white/70">
-                  Reseña de{' '}
+                <div className="space-y-1">
+                  <p className="text-sm uppercase tracking-widest text-white/50">
+                    Película
+                  </p>
+
                   <Link
                     to={`/movies/${movie.id}`}
                     className="
-              
-              text-white
-              transition-colors
-              hover:text-accent
-            "
+                    text-xl
+                    font-semibold
+                    text-white
+                    transition-colors
+                    hover:text-accent
+                  "
                   >
                     {movie.title}
                   </Link>
-                </p>
+                </div>
               )}
             </header>
           </div>
         </div>
       )}
 
-      <div className="my-2 h-px bg-border" />
+      <div className="my-16 h-px bg-border" />
 
-      <section>
-        <p className="leading-8 text-lg text-text-secondary">
-          {review.content}
-        </p>
+      <section className="mx-auto max-w-3xl space-y-8">
+        {review.content.split('\n\n').map((paragraph, index) => (
+          <p
+            key={index}
+            className="
+              text-base
+              leading-8
+              text-text-secondary
+              md:text-lg
+              md:leading-9
+              
+            "
+          >
+            {paragraph}
+          </p>
+        ))}
       </section>
     </article>
   )

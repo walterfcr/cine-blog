@@ -1,8 +1,9 @@
-import type { Review } from '@/types/Review'
-import Card from '@/components/ui/Card'
-import Badge from '@/components/ui/Badge'
-import { LuStar, LuCalendar } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
+import { LuCalendar } from 'react-icons/lu'
+
+import type { Review } from '@/types/Review'
+
+import Card from '@/components/ui/Card'
 import { formatDate } from '@/utils/formatDate'
 import { getImageUrl } from '@/utils/image'
 
@@ -15,83 +16,114 @@ function ReviewCard({ review }: ReviewCardProps) {
     <Link to={`/reviews/${review.id}`} className="block h-full no-underline">
       <Card
         className="
-        group
-        flex
-        h-full
-        overflow-hidden
-        p-5
-        transition-all
-        duration-300
-        hover:border-accent
-        hover:shadow-xl
-      "
+          group
+          flex
+          h-full
+          flex-col
+          overflow-hidden
+          transition-all
+          duration-300
+          hover:border-accent
+          hover:shadow-xl
+        "
       >
-        <div className="flex h-full gap-8">
+        <div className="relative h-28 overflow-hidden">
+          <img
+            src={getImageUrl(review.backdropPath, 'w780')}
+            alt={review.title}
+            className="
+              h-full
+              w-full
+              object-cover
+              transition-transform
+              duration-500
+              group-hover:scale-105
+            "
+          />
+
+          <div
+            className="
+              absolute
+              inset-0
+              bg-gradient-to-t
+              from-surface
+              via-surface/70
+              to-transparent
+            "
+          />
+        </div>
+
+        <div className="relative flex flex-1 flex-col md:flex-row px-6 pb-6">
           <img
             src={getImageUrl(review.posterPath, 'w342')}
             alt={review.title}
             className="
-            h-56
-            w-36
-            flex-shrink-0
-            rounded-lg
-            object-cover
-            transition-transform
-            duration-500
-            group-hover:scale-105
-          "
+              
+              h-48
+              w-32
+              flex-shrink-0
+              self-start
+              rounded-lg
+              border-2
+              border-border
+              object-cover
+              shadow-lg
+              transition-transform
+              duration-500
+              group-hover:scale-105
+            "
           />
 
-          <div className="flex flex-1 flex-col">
-            <div className="mb-4 flex items-center justify-between">
-              <Badge variant="accent">Reseña</Badge>
+          <div className="flex flex-1 flex-col pt-4 md:pl-6">
+            <div className="flex items-center justify-between">
+              <div className="text-lg font-semibold text-rating">
+                ★ {review.rating}/10
+              </div>
 
-              <div className="flex items-center gap-1 text-rating">
-                <LuStar />
-                <span>{review.rating}/10</span>
+              <div className="flex items-center gap-2 text-sm text-text-muted">
+                <LuCalendar />
+                <span>{formatDate(review.createdAt)}</span>
               </div>
             </div>
 
             <h3
               className="
-              mb-3
-              text-2xl
-              font-bold
-              transition-colors
-              duration-300
-              group-hover:text-accent
-            "
+                mt-3
+                min-h-[5rem]
+                line-clamp-2
+                text-3xl
+                font-bold
+                leading-tight
+                transition-colors
+                duration-300
+                group-hover:text-accent
+              "
             >
               {review.title}
             </h3>
 
             <p
               className="
-              mb-6
-              flex-1
-              line-clamp-4
-              leading-7
-              text-text-secondary
-            "
+                mt-4
+                min-h-[7rem]
+                flex-1
+                line-clamp-4
+                leading-7
+                text-text-secondary
+              "
             >
               {review.excerpt}
             </p>
 
-            <div className="mt-auto flex items-center justify-between pt-4">
-              <div className="flex items-center gap-2 text-sm text-text-muted">
-                <LuCalendar />
-
-                <span>{formatDate(review.createdAt)}</span>
-              </div>
-
+            <div className="mt-auto pt-6">
               <span
                 className="
-                font-medium
-                text-accent
-                transition-transform
-                duration-300
-                group-hover:translate-x-1
-              "
+                  font-medium
+                  text-accent
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-1
+                "
               >
                 Leer reseña →
               </span>

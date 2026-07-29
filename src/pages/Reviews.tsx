@@ -1,12 +1,18 @@
+import { useMemo, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+
 import Container from '@/components/ui/Container'
 import SectionTitle from '@/components/ui/SectionTitle'
-import ReviewGrid from '@/components/review/ReviewGrid'
-import { useQuery } from '@tanstack/react-query'
 import Spinner from '@/components/ui/Spinner'
+import SearchInput from '@/components/ui/SearchInput'
+import ReviewGrid from '@/components/review/ReviewGrid'
+
 import { getReviews } from '@/services/review.service'
 import { reviewKeys } from '@/queries/queryKeys'
 
 function Reviews() {
+  const [search, setSearch] = useState('')
+
   const {
     data: reviews,
     isLoading,
@@ -16,7 +22,18 @@ function Reviews() {
     queryFn: getReviews,
   })
 
-  console.log(reviews)
+  const filteredReviews = useMemo(() => {
+    if (!reviews) return []
+
+    const query = search.toLowerCase().trim()
+
+    return reviews.filter((review) => {
+      return (
+        review.movieTitle?.toLowerCase().includes(query) ||
+        review.title.toLowerCase().includes(query)
+      )
+    })
+  }, [reviews, search])
 
   if (isLoading) {
     return <Spinner />
@@ -25,11 +42,40 @@ function Reviews() {
   if (error) {
     return <p>Ha ocurrido un error.</p>
   }
-  return (
-    <Container className="py-16">
-      <SectionTitle>Reseñas</SectionTitle>
 
-      <ReviewGrid reviews={reviews ?? []} />
+  return (
+    <Container className="space-y-10 py-16">
+      <header className="space-y-4">
+        <SectionTitle>Reseñas</SectionTitle>
+
+        <p className="max-w-2xl leading-8 text-text-secondary">
+          Críticas personales sobre películas que considero memorables,
+          infravaloradas o simplemente interesantes.
+        </p>
+      </header>
+
+      <SearchInput
+        placeholder="Buscar reseña..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <p className="text-sm text-text-muted">
+        {filteredReviews.length}{' '}
+        {filteredReviews.length === 1 ? 'reseña' : 'reseñas'}
+      </p>
+
+      {filteredReviews.length > 0 ? (
+        <ReviewGrid reviews={filteredReviews} />
+      ) : (
+        <div className="rounded-xl border border-border bg-surface p-12 text-center">
+          <h3 className="text-xl font-semibold">
+            No encontramos ninguna reseña.
+          </h3>
+
+          <p className="mt-2 text-text-secondary">Intenta con otro título.</p>
+        </div>
+      )}
     </Container>
   )
 }

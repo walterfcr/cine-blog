@@ -22,4 +22,6 @@ export interface SupabaseReview {
   created_at: string
 
   updated_at: string
+
+  movie_title: string
 }
