@@ -27,11 +27,13 @@ function MovieCast({ cast }: Props) {
               "
             />
 
-            <p className="mt-2 text-sm font-semibold text-text-primary">
+            <p className="cast-text mt-2 text-sm font-semibold text-text-primary">
               {actor.name}
             </p>
 
-            <p className="text-xs text-text-muted">{actor.character}</p>
+            <p className="cast-text text-xs text-text-muted">
+              {actor.character}
+            </p>
           </div>
         ))}
       </div>

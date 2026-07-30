@@ -71,7 +71,7 @@ function ReviewDetail() {
               <div className="flex items-center gap-4">
                 <Badge variant="accent">Reseña</Badge>
 
-                <span className="font-semibold text-rating">
+                <span className="inter-text font-semibold text-rating">
                   ★ {review.rating}/10
                 </span>
               </div>
@@ -80,19 +80,20 @@ function ReviewDetail() {
                 {review.title}
               </h1>
 
-              <div className="text-sm text-white/80">
+              <div className="inter-text text-sm text-white/80">
                 {formatDate(review.createdAt)}
               </div>
 
               {movie && (
                 <div className="space-y-1">
-                  <p className="text-sm uppercase tracking-widest text-white/50">
+                  <p className="inter-text text-sm uppercase tracking-widest text-white/50">
                     Película
                   </p>
 
                   <Link
                     to={`/movies/${movie.id}`}
                     className="
+                  
                     text-xl
                     font-semibold
                     text-white

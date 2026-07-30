@@ -19,6 +19,7 @@ function Badge({ children, variant = 'default' }: BadgeProps) {
   return (
     <span
       className={`
+        inter-text
         inline-flex
         items-center
         rounded-full

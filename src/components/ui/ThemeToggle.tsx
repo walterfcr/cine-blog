@@ -48,11 +48,12 @@ function ThemeToggle() {
     gap-1
     transition-colors
     duration-300
+     cursor-pointer
     ${theme === 'dark' ? 'text-white' : 'text-text-muted'}
   `}
       >
         <LuMoon size={16} />
-        <span className="text-xs font-medium">Cinema</span>
+        <span className="inter-text text-xs font-medium">Cinema</span>
       </div>
 
       <div
@@ -66,11 +67,12 @@ function ThemeToggle() {
     gap-1
     transition-colors
     duration-300
+    cursor-pointer
     ${theme === 'light' ? 'text-white' : 'text-text-muted'}
   `}
       >
         <LuSun size={16} />
-        <span className="text-xs font-medium">Revista</span>
+        <span className="inter-text text-xs font-medium">Revista</span>
       </div>
     </button>
   )

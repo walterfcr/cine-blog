@@ -73,7 +73,7 @@ function MovieDetail() {
             "
           >
             <div className="space-y-5">
-              <p className="text-sm uppercase tracking-[0.35em] text-white/70">
+              <p className="inter-text text-sm uppercase tracking-[0.35em] text-white/70">
                 FICHA TÉCNICA
               </p>
 
@@ -81,12 +81,12 @@ function MovieDetail() {
                 {movie?.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-5 text-white/80">
+              <div className="inter-text flex flex-wrap items-center gap-5 text-white/80">
                 <span>{movie?.year}</span>
 
                 <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
 
-                <span className="font-semibold text-rating">
+                <span className="inter-text font-semibold text-rating">
                   TMDB ★ {movie?.tmdbRating.toFixed(1)}
                 </span>
               </div>

@@ -68,7 +68,9 @@ function MovieCard({ movie }: Props) {
               group-hover:opacity-100
             "
           >
-            <p className="text-sm font-medium text-white">Ver info →</p>
+            <p className="inter-text text-sm font-medium text-white">
+              Ver info →
+            </p>
           </div>
         </div>
 
@@ -87,7 +89,9 @@ function MovieCard({ movie }: Props) {
             {movie.title}
           </h2>
 
-          <p className="mt-2 text-sm text-text-muted">{movie.year}</p>
+          <p className="inter-text mt-2 text-sm text-text-muted">
+            {movie.year}
+          </p>
         </div>
       </Card>
     </Link>

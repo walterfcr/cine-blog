@@ -8,6 +8,7 @@ function BackButton() {
     <button
       onClick={() => navigate(-1)}
       className="
+        inter-text
         mb-8
         inline-flex
         items-center
