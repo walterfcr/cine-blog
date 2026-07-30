@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams, Link } from 'react-router-dom'
 import Spinner from '@/components/ui/Spinner'
-import PageHeader from '@/components/ui/PageHeader'
 import BackButton from '@/components/ui/BackButton'
 import MovieCast from '@/components/movie/MovieCast'
 import { getMovieCredits, getMovieDetails } from '@/services/tmdb.service'

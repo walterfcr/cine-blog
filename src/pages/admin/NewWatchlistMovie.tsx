@@ -8,7 +8,6 @@ import MovieSearch from '@/components/admin/MovieSearch'
 import MovieSelectionCard from '@/components/admin/MovieSelectionCard'
 import FormField from '@/components/ui/FormField'
 import Textarea from '@/components/ui/Textarea'
-import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 
 import { createWatchlistMovie } from '@/services/watchlist.service'
