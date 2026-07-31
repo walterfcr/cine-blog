@@ -3,7 +3,11 @@ import { mapSupabaseReview } from '@/mappers/supabase-review.mapper'
 import type { Review } from '@/types/Review'
 
 export async function getReviews() {
-  const { data, error } = await supabase.from('reviews').select('*')
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .eq('published', true)
+    .order('created_at', { ascending: false })
 
   if (error) {
     throw error

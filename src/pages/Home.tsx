@@ -7,7 +7,7 @@ import ReviewGrid from '@/components/review/ReviewGrid'
 import Spinner from '@/components/ui/Spinner'
 
 import { getHeroData } from '@/services/hero.service'
-import { getAllReviews } from '@/services/review.service'
+import { getReviews } from '@/services/review.service'
 import { getWatchlistMovies } from '@/services/watchlist.service'
 import WatchlistCarousel from '@/components/watchlist/WatchlistCarousel'
 
@@ -27,7 +27,7 @@ function Home() {
     error: reviewsError,
   } = useQuery({
     queryKey: ['home-reviews'],
-    queryFn: getAllReviews,
+    queryFn: getReviews,
   })
 
   const {

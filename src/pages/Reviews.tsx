@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import Container from '@/components/ui/Container'
@@ -10,8 +10,13 @@ import ReviewGrid from '@/components/review/ReviewGrid'
 import { getReviews } from '@/services/review.service'
 import { reviewKeys } from '@/queries/queryKeys'
 
+import Pagination from '@/components/ui/Pagination'
+
 function Reviews() {
   const [search, setSearch] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const REVIEWS_PER_PAGE = 8
 
   const {
     data: reviews,
@@ -34,6 +39,18 @@ function Reviews() {
       )
     })
   }, [reviews, search])
+
+  const totalPages = Math.ceil(filteredReviews.length / REVIEWS_PER_PAGE)
+
+  const paginatedReviews = useMemo(() => {
+    const start = (currentPage - 1) * REVIEWS_PER_PAGE
+
+    return filteredReviews.slice(start, start + REVIEWS_PER_PAGE)
+  }, [filteredReviews, currentPage])
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [search])
 
   if (isLoading) {
     return <Spinner />
@@ -66,7 +83,15 @@ function Reviews() {
       </p>
 
       {filteredReviews.length > 0 ? (
-        <ReviewGrid reviews={filteredReviews} />
+        <>
+          <ReviewGrid reviews={paginatedReviews} />
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </>
       ) : (
         <div className="rounded-xl border border-border bg-surface p-12 text-center">
           <h3 className="text-xl font-semibold">
