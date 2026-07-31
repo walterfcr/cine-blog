@@ -1,11 +1,17 @@
-import { getFeaturedReview } from './review.service'
+import { getFeaturedReviews } from './review.service'
 import { getMovieDetails } from './tmdb.service'
 import { mapHeroData } from '../mappers/hero.mapper'
 
 export async function getHeroData() {
-  const review = await getFeaturedReview()
+  const reviews = await getFeaturedReviews()
 
-  const movie = await getMovieDetails(String(review.movieId))
+  const heroSlides = await Promise.all(
+    reviews.map(async (review) => {
+      const movie = await getMovieDetails(String(review.movieId))
 
-  return mapHeroData(movie, review)
+      return mapHeroData(movie, review)
+    }),
+  )
+
+  return heroSlides
 }

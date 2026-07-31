@@ -43,19 +43,20 @@ export async function getAllReviews() {
   return data.map(mapSupabaseReview)
 }
 
-export async function getFeaturedReview() {
+export async function getFeaturedReviews() {
   const { data, error } = await supabase
     .from('reviews')
     .select('*')
     .eq('published', true)
     .eq('featured', true)
-    .maybeSingle()
+    .order('created_at', { ascending: false })
+    .limit(5)
 
   if (error) {
     throw error
   }
 
-  return mapSupabaseReview(data)
+  return data.map(mapSupabaseReview)
 }
 
 export async function createReview(
@@ -110,17 +111,6 @@ export async function updateReview(
     published: boolean
   },
 ) {
-  // If this review is becoming featured,
-  // remove the featured flag from every other review.
-  if (review.featured) {
-    const { error: resetError } = await supabase
-      .from('reviews')
-      .update({ featured: false })
-      .neq('id', id)
-
-    if (resetError) throw resetError
-  }
-
   const { error } = await supabase
     .from('reviews')
     .update({

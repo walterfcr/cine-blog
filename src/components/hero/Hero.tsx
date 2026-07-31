@@ -1,14 +1,35 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import type { HeroData } from '@/types/HeroData'
 
 interface HeroProps {
-  data: HeroData
+  data: HeroData[]
 }
 
 export default function Hero({ data }: HeroProps) {
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  const slide = data[current]
+
+  useEffect(() => {
+    if (data.length <= 1 || paused) return
+
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % data.length)
+    }, 7000)
+
+    return () => clearInterval(interval)
+  }, [data.length, paused])
+
+  if (!slide) {
+    return null
+  }
   return (
     <section
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
       className="
         relative
         isolate
@@ -21,8 +42,8 @@ export default function Hero({ data }: HeroProps) {
     >
       {/* Background */}
       <img
-        src={data.backdrop}
-        alt={data.movieTitle}
+        src={slide.backdrop}
+        alt={slide.movieTitle}
         className="
           absolute
           inset-0
@@ -67,15 +88,19 @@ export default function Hero({ data }: HeroProps) {
 
       {/* Content */}
       <div
+        key={current}
         className="
           relative
           z-10
           flex
           min-h-[680px]
-          items-end pb-20
+          items-end
+          pb-20
           px-8
           md:px-14
           lg:px-20
+
+          animate-fade
         "
       >
         <div className="max-w-2xl">
@@ -94,7 +119,7 @@ export default function Hero({ data }: HeroProps) {
               md:text-7xl
             "
           >
-            {data.movieTitle}
+            {slide.movieTitle}
           </h1>
 
           <h2
@@ -105,7 +130,7 @@ export default function Hero({ data }: HeroProps) {
               text-accent
             "
           >
-            {data.reviewTitle}
+            {slide.reviewTitle}
           </h2>
 
           <p
@@ -117,23 +142,23 @@ export default function Hero({ data }: HeroProps) {
               text-white/85
             "
           >
-            {data.excerpt}
+            {slide.excerpt}
           </p>
 
           <div className="mt-8 flex items-center gap-4">
             <span className="text-rating text-2xl">
-              {'★'.repeat(Math.round(data.rating))}
-              {'☆'.repeat(10 - Math.round(data.rating))}
+              {'★'.repeat(Math.round(slide.rating))}
+              {'☆'.repeat(10 - Math.round(slide.rating))}
             </span>
 
             <span className="text-2xl font-bold text-rating">
-              {data.rating}/10
+              {slide.rating}/10
             </span>
           </div>
 
           <div className="mt-10 flex gap-4">
             <Link
-              to={data.readReviewUrl}
+              to={slide.readReviewUrl}
               className="
                 rounded-lg
                 bg-accent
@@ -152,7 +177,7 @@ export default function Hero({ data }: HeroProps) {
             </Link>
 
             <Link
-              to={data.movieDetailsUrl}
+              to={slide.movieDetailsUrl}
               className="
                 rounded-lg
                 border
@@ -173,6 +198,27 @@ export default function Hero({ data }: HeroProps) {
             >
               Ficha técnica
             </Link>
+            <div className="mt-10 flex items-center gap-3">
+              {data.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrent(index)}
+                  className={`
+                    h-3
+                    w-3
+                    rounded-full
+                    transition-all
+                    duration-300
+                    ${
+                      current === index
+                        ? 'bg-accent scale-110'
+                        : 'bg-white/40 hover:bg-white/70'
+                    }
+                  `}
+                  aria-label={`Ir a la reseña ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

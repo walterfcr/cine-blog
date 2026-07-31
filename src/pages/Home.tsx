@@ -10,6 +10,7 @@ import { getHeroData } from '@/services/hero.service'
 import { getReviews } from '@/services/review.service'
 import { getWatchlistMovies } from '@/services/watchlist.service'
 import WatchlistCarousel from '@/components/watchlist/WatchlistCarousel'
+import { reviewKeys } from '@/queries/queryKeys'
 
 function Home() {
   const {
@@ -26,7 +27,7 @@ function Home() {
     isLoading: reviewsLoading,
     error: reviewsError,
   } = useQuery({
-    queryKey: ['home-reviews'],
+    queryKey: reviewKeys.all,
     queryFn: getReviews,
   })
 
