@@ -58,23 +58,26 @@ function ReviewCard({ review }: ReviewCardProps) {
             src={getImageUrl(review.posterPath, 'w342')}
             alt={review.title}
             className="
-              
-              h-48
-              w-32
-              flex-shrink-0
-              self-start
-              rounded-lg
-              border-2
-              border-border
-              object-cover
-              shadow-lg
-              transition-transform
-              duration-500
-              group-hover:scale-105
+                mx-auto
+                h-52
+                w-36
+                flex-shrink-0
+                rounded-lg
+                border-2
+                border-border
+                object-cover
+                shadow-lg
+                transition-transform
+                duration-500
+                group-hover:scale-105
+                md:mx-0
+                md:h-48
+                md:w-32
+                md:self-start
             "
           />
 
-          <div className="flex flex-1 flex-col pt-4 md:pl-6">
+          <div className="flex flex-1 flex-col pt-5 md:pt-4 md:pl-6">
             <div className="flex items-center justify-between">
               <div className="text-lg font-semibold text-rating">
                 ★ {review.rating}/10
