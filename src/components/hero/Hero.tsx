@@ -40,7 +40,6 @@ export default function Hero({ data }: HeroProps) {
         min-h-[680px]
       "
     >
-      {/* Background */}
       <img
         src={slide.backdrop}
         alt={slide.movieTitle}
@@ -54,25 +53,23 @@ export default function Hero({ data }: HeroProps) {
         "
       />
 
-      {/* Overall subtle darkening */}
       <div className="absolute inset-0 bg-black/20 dark:bg-black/35" />
 
-      {/* Soft fade only behind text */}
       <div
         className="
           absolute
           inset-y-0
           left-0
-          w-[65%]
+          w-full md:w-[70%]
+          lg:w-[65%]
 
           bg-gradient-to-r
-          from-black/75
-          via-black/40
+          from-black/95
+          via-black/60
           to-transparent
         "
       />
 
-      {/* Bottom cinematic fade */}
       <div
         className="
           absolute
@@ -81,43 +78,59 @@ export default function Hero({ data }: HeroProps) {
           h-40
 
           bg-gradient-to-t
-          from-black/70
+          from-black/85
           to-transparent
         "
       />
 
-      {/* Content */}
       <div
         key={current}
         className="
           relative
           z-10
           flex
-          min-h-[680px]
+          min-h-[520px] 
+          md:min-h-[620px] 
+          lg:min-h-[680px]
           items-end
-          pb-20
-          px-8
-          md:px-14
+          pb-10
+          px-6
+          md:pb-16
+          md:px-12
+          lg:pb-20
           lg:px-20
 
           animate-fade
         "
       >
         <div className="max-w-2xl">
-          <p className="mb-5 text-sm uppercase tracking-[0.35em] text-white/70">
+          <p
+            className="
+          mb-5 text-xs
+          tracking-[0.25em]
+          pt-10
+          md:text-sm
+          md:tracking-[0.35em] 
+          uppercase 
+          text-white/70"
+          >
             RESEÑA DESTACADA
           </p>
 
           <h1
             className="
-              text-5xl
+
               font-black
-              leading-none
               tracking-tight
               text-white
-
-              md:text-7xl
+              text-4xl
+              leading-tight
+              md:text-6xl
+              lg:text-7xl
             "
+            style={{
+              textShadow: '0 4px 20px rgba(0,0,0,.75)',
+            }}
           >
             {slide.movieTitle}
           </h1>
@@ -127,8 +140,11 @@ export default function Hero({ data }: HeroProps) {
               mt-5
               text-2xl
               font-semibold
-              text-accent
+              text-hero-highlight
             "
+            style={{
+              textShadow: '0 2px 12px rgba(0,0,0,.65)',
+            }}
           >
             {slide.reviewTitle}
           </h2>
@@ -138,9 +154,17 @@ export default function Hero({ data }: HeroProps) {
               mt-7
               max-w-xl
               text-lg
-              leading-8
+              line-clamp-3
+              text-base
+              leading-7
+              md:line-clamp-none
+              md:text-lg
+              md:leading-8
               text-white/85
             "
+            style={{
+              textShadow: '0 2px 8px rgba(0,0,0,.7)',
+            }}
           >
             {slide.excerpt}
           </p>
@@ -151,19 +175,22 @@ export default function Hero({ data }: HeroProps) {
               {'☆'.repeat(10 - Math.round(slide.rating))}
             </span>
 
-            <span className="text-2xl font-bold text-rating">
+            <span className="text-xl md:text-2xl font-bold text-rating">
               {slide.rating}/10
             </span>
           </div>
 
-          <div className="mt-10 flex gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               to={slide.readReviewUrl}
               className="
                 rounded-lg
                 bg-accent
-                px-7
+               w-full
+                px-6
                 py-3
+                text-center
+                sm:w-auto
 
                 font-semibold
                 text-white
@@ -185,8 +212,11 @@ export default function Hero({ data }: HeroProps) {
 
                 bg-white/10
 
-                px-7
+                w-full
+                px-6
                 py-3
+                text-center
+                sm:w-auto
 
                 font-semibold
                 text-white
@@ -198,7 +228,7 @@ export default function Hero({ data }: HeroProps) {
             >
               Ficha técnica
             </Link>
-            <div className="mt-10 flex items-center gap-3">
+            <div className="mt-8 justify-center md:justify-start flex items-center gap-3">
               {data.map((_, index) => (
                 <button
                   key={index}
