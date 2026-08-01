@@ -27,7 +27,8 @@ function ReviewCard({ review }: ReviewCardProps) {
           hover:shadow-xl
         "
       >
-        <div className="relative h-28 overflow-hidden">
+        <div className="relative h-36 overflow-hidden md:h-28">
+          {' '}
           <img
             src={getImageUrl(review.backdropPath, 'w780')}
             alt={review.title}
@@ -40,7 +41,6 @@ function ReviewCard({ review }: ReviewCardProps) {
               group-hover:scale-105
             "
           />
-
           <div
             className="
               absolute
@@ -58,22 +58,23 @@ function ReviewCard({ review }: ReviewCardProps) {
             src={getImageUrl(review.posterPath, 'w342')}
             alt={review.title}
             className="
-                mx-auto
-                h-52
-                w-36
-                flex-shrink-0
-                rounded-lg
-                border-2
-                border-border
-                object-cover
-                shadow-lg
-                transition-transform
-                duration-500
-                group-hover:scale-105
-                md:mx-0
-                md:h-48
-                md:w-32
-                md:self-start
+                -mt-8
+  mx-auto
+  h-52
+  w-36
+  rounded-lg
+  border-2
+  border-border
+  object-cover
+  shadow-lg
+  transition-transform
+  duration-500
+  group-hover:scale-105
+
+  md:mt-0
+  md:mx-0
+  md:h-48
+  md:w-32
             "
           />
 
@@ -118,7 +119,7 @@ function ReviewCard({ review }: ReviewCardProps) {
               {review.excerpt}
             </p>
 
-            <div className="mt-auto pt-6">
+            <div className="mt-auto pt-6 ">
               <span
                 className="
                   font-medium

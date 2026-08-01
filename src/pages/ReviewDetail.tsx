@@ -47,12 +47,20 @@ function ReviewDetail() {
             className="  h-[360px] w-full object-cover md:h-[420px] lg:h-[600px]"
           />
 
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 black/20 dark:bg-black/35" />
 
           <div
             className="
             absolute
-            inset-0
+          inset-y-0
+          left-0
+          w-full md:w-[70%]
+          lg:w-[65%]
+
+          bg-gradient-to-r
+          from-black/95
+          via-black/60
+          to-transparent
             z-10
             flex
             max-w-3xl

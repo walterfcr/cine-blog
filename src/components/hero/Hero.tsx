@@ -46,7 +46,7 @@ export default function Hero({ data }: HeroProps) {
         className="
           absolute
           inset-0
-          h-full
+          h-full 
           w-full
           object-cover
           object-center

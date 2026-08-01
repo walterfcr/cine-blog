@@ -34,7 +34,7 @@ function Header() {
             to="/"
             className="text-2xl font-semibold tracking-[0.2em] text-text-primary"
           >
-            LOGO
+            cine blog
           </NavLink>
 
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
