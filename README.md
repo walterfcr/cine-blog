@@ -8,7 +8,7 @@ Designed as a complete editorial-style application featuring a custom CMS, respo
 
 ## 🚀 Live Demo
 
-👉 https://your-url.vercel.app
+https://cine-blog-ivory.vercel.app/
 
 ---
 
