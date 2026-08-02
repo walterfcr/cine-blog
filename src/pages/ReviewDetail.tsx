@@ -51,27 +51,27 @@ function ReviewDetail() {
 
           <div
             className="
-            absolute
-          inset-y-0
-          left-0
-          w-full md:w-[70%]
-          lg:w-[65%]
+              absolute
+              inset-y-0
+              left-0
+              w-full md:w-[70%]
+              lg:w-[65%]
 
-          bg-gradient-to-r
-          from-black/95
-          via-black/60
-          to-transparent
-            z-10
-            flex
-            max-w-3xl
-            flex-col
-            justify-end
-            pb-12
-            md:justify-center
-            md:pb-16
-            p-8
-            md:p-16
-          "
+              bg-gradient-to-r
+              from-black/95
+              via-black/60
+              to-transparent
+                z-10
+                flex
+                max-w-3xl
+                flex-col
+                justify-end
+                pb-12
+                md:justify-center
+                md:pb-16
+                p-8
+                md:p-16
+              "
           >
             <BackButton />
 

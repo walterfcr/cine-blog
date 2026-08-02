@@ -1,8 +1,8 @@
 # 🎬 Cine Blog
 
-A modern **movie review platform** built with React, TypeScript, Tailwind CSS, React Query, Supabase, and TMDB.
+A modern movie review platform featuring a custom-built Content Management System (CMS), developed with React, TypeScript, Tailwind CSS, React Query, Supabase, and TMDB.
 
-Designed as a complete editorial-style application featuring a custom CMS, responsive design, dynamic movie data, and a reusable component architecture.
+Designed to separate content creation from presentation, allowing reviews, featured content, drafts, and movie assets to be managed through an integrated administration panel.
 
 ---
 
@@ -14,14 +14,22 @@ https://cine-blog-ivory.vercel.app/
 
 ## 🧩 Core Features
 
-### 🎥 Editorial Movie Reviews
+## 🖥 Custom Content Management System
 
-- Create, edit and delete reviews through a custom admin dashboard
-- Draft and published review workflow
-- Featured reviews displayed on the homepage
-- Rich movie information powered by TMDB
+Unlike traditional portfolio projects that rely on static data, Cine Blog includes a fully custom-built CMS designed specifically for editorial workflows.
 
----
+### Current capabilities
+
+- Secure administrator authentication
+- Create, edit and delete movie reviews
+- Draft and publish workflow
+- Featured review management
+- Movie search powered by TMDB
+- Poster and backdrop selection
+- Dynamic homepage content
+- Automatic synchronization with Supabase
+
+The CMS was designed independently of the public website, allowing new content to be published without modifying the application code.
 
 ### 🎬 TMDB Integration
 
@@ -188,7 +196,7 @@ This project demonstrates:
 - React component architecture
 - TypeScript best practices
 - React Query server state management
-- Supabase CRUD operations
+- Custom Content Management System (CMS)
 - Authentication
 - External API integration
 - Responsive design
