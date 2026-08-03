@@ -1,8 +1,8 @@
 # 🎬 Cine Blog
 
-A modern movie review platform featuring a custom-built Content Management System (CMS), developed with React, TypeScript, Tailwind CSS, React Query, Supabase, and TMDB.
+A modern movie review platform featuring a custom-built Content Management System (CMS), developed with **Next.js, React, TypeScript, Tailwind CSS, TanStack React Query, Supabase, and TMDB**.
 
-Designed to separate content creation from presentation, allowing reviews, featured content, drafts, and movie assets to be managed through an integrated administration panel.
+Designed as an editorial platform where movie reviews are the main content, Cine Blog separates content creation from presentation, allowing administrators to manage reviews, featured content, drafts, and movie assets through an integrated administration panel.
 
 ---
 
@@ -12,38 +12,129 @@ https://cine-blog-ivory.vercel.app/
 
 ---
 
-## 🧩 Core Features
+# 🧩 Core Features
 
 ## 🖥 Custom Content Management System
 
-Unlike traditional portfolio projects that rely on static data, Cine Blog includes a fully custom-built CMS designed specifically for editorial workflows.
+Unlike traditional portfolio projects that rely on static content, Cine Blog includes a custom-built CMS designed specifically for editorial workflows.
 
 ### Current capabilities
 
 - Secure administrator authentication
-- Create, edit and delete movie reviews
+- Protected admin routes
+- Create, edit, and delete movie reviews
 - Draft and publish workflow
 - Featured review management
 - Movie search powered by TMDB
 - Poster and backdrop selection
 - Dynamic homepage content
-- Automatic synchronization with Supabase
+- Supabase database synchronization
 
-The CMS was designed independently of the public website, allowing new content to be published without modifying the application code.
-
-### 🎬 TMDB Integration
-
-- Movie search
-- Detailed movie pages
-- Cast information
-- High-resolution posters and backdrops
-- Automatic metadata synchronization
+The CMS was designed independently from the public website, allowing new content to be published without modifying application code.
 
 ---
 
-### 🎨 Design System
+# 🎬 TMDB Integration
 
-Built using a reusable design system composed of:
+Movie data is integrated directly from TMDB to provide:
+
+- Movie search
+- Detailed movie information
+- Cast information
+- High-resolution posters and backdrops
+- Movie metadata synchronization
+
+A mapping layer transforms external API responses into application-specific models, keeping components independent from external services.
+
+---
+
+# 🏗 Architecture Overview
+
+The application follows the **Next.js App Router architecture** with a modular structure designed for scalability and maintainability.
+
+```
+app/
+ ├── Public routes
+ ├── Admin routes
+ ├── Protected routes
+ └── Layouts
+
+components/
+ ├── UI components
+ ├── Feature components
+ └── Page components
+
+lib/
+ ├── Services
+ ├── Supabase clients
+ ├── Queries
+ ├── Mappers
+ └── Utilities
+
+types/
+ └── Shared TypeScript models
+```
+
+This separation improves:
+
+- Maintainability
+- Reusability
+- Scalability
+- Type safety
+- Feature isolation
+
+---
+
+# 🧠 Technical Challenges Solved
+
+## ⚡ Data Mapping Layer
+
+Instead of exposing raw API responses throughout the application, external data is transformed into internal domain models.
+
+Examples:
+
+```
+TMDB Response → Movie Model
+
+Supabase Review → Review Model
+
+TMDB + Review → Hero Content
+```
+
+This keeps components independent from backend implementation details.
+
+---
+
+## 🔄 Server State Management
+
+Implemented TanStack React Query to manage server state and asynchronous data.
+
+Features include:
+
+- Automatic caching
+- Background synchronization
+- Query invalidation
+- Loading states
+- Mutation handling
+
+---
+
+## 🔐 Authentication & Route Protection
+
+Implemented Supabase authentication integrated with Next.js.
+
+Features include:
+
+- Secure administrator login
+- Protected admin routes
+- Middleware authentication checks
+- Cookie-based sessions using Supabase SSR
+
+---
+
+## 🎨 Design System
+
+Built a reusable design system composed of:
 
 - Button
 - Card
@@ -52,81 +143,16 @@ Built using a reusable design system composed of:
 - Container
 - Inputs
 - Form components
-- Theme Toggle
+- Toggle components
+- Rating components
 
-The entire application uses semantic design tokens to maintain consistency across light and dark themes.
-
----
-
-## 🏗 Architecture Overview
-
-The application follows a scalable folder structure designed for maintainability.
-
-- **Pages** → Route-level views
-- **Components** → Reusable UI components
-- **Layouts** → Shared application layouts
-- **Services** → API and database logic
-- **Mappers** → Transform external data into domain models
-- **Queries** → React Query keys and caching
-- **Types** → Shared TypeScript models
-- **Utils** → Pure utility functions
-- **Contexts** → Global application state
-
-This separation improves:
-
-- Maintainability
-- Reusability
-- Scalability
-- Type safety
+The application uses semantic design tokens to maintain consistency across themes and components.
 
 ---
 
-## 🧠 Technical Challenges Solved
+## 📱 Responsive Editorial Layout
 
-### ⚡ Data Mapping Layer
-
-Instead of exposing raw API responses throughout the application, external data is transformed into internal domain models.
-
-Examples include:
-
-- TMDB → Movie
-- Supabase → Review
-- TMDB + Review → Hero
-
-This keeps components independent from backend implementation details.
-
----
-
-### 🔄 Server State Management
-
-Implemented React Query to handle:
-
-- Automatic caching
-- Background refetching
-- Cache invalidation
-- Loading states
-- Optimistic UI updates
-
-Reducing unnecessary API requests while keeping the interface synchronized.
-
----
-
-### 🎨 Theme System
-
-Implemented a complete light/dark theme using:
-
-- CSS variables
-- Semantic design tokens
-- Context API
-- Local persistence
-
-Every component automatically adapts to the active theme.
-
----
-
-### 📱 Responsive Editorial Layout
-
-The interface was designed following a mobile-first approach.
+The interface was designed following a mobile-first approach focused on a magazine-style reading experience.
 
 Optimized layouts include:
 
@@ -138,118 +164,147 @@ Optimized layouts include:
 
 ---
 
-## 🛠 Tech Stack
+# 🛠 Tech Stack
 
-- **Frontend:** React 19
+## Frontend
+
+- **Framework:** Next.js 16
+- **Library:** React 19
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **Data Fetching:** TanStack React Query
-- **Backend:** Supabase
+
+## Backend & Data
+
+- **Database:** Supabase PostgreSQL
 - **Authentication:** Supabase Auth
 - **Movie API:** TMDB
-- **Routing:** React Router
-- **HTTP Client:** Axios
+
+## State Management
+
+- **Server State:** TanStack React Query
+
+## Deployment
+
 - **Hosting:** Vercel
 
 ---
 
-## 📸 Key Features
+# 📸 Key Features
 
-### ⭐ Featured Review Hero
+## ⭐ Featured Review Hero
 
-A cinematic hero section highlighting featured reviews with dynamic movie artwork and responsive layouts.
+A cinematic hero section highlighting featured reviews using dynamic movie artwork and responsive layouts.
 
 _(GIF)_
 
 ---
 
-### ✍️ Admin Dashboard
+## ✍️ Admin Dashboard
 
-Custom CMS allowing administrators to:
+A custom CMS dashboard allowing administrators to:
 
-- Publish reviews
+- Create reviews
+- Edit existing content
 - Save drafts
-- Edit existing reviews
+- Publish reviews
 - Manage featured content
 
 _(GIF)_
 
 ---
 
-### 🎥 Movie Explorer
+## 🎥 Movie Explorer
 
 Browse movies from TMDB with:
 
-- Search
+- Movie search
 - Movie details
 - Cast information
-- Direct links to reviews
+- Review connections
 
 _(GIF)_
 
 ---
 
-## 🧪 Project Highlights
+# 🧪 Project Highlights
 
 This project demonstrates:
 
+- Next.js App Router architecture
 - React component architecture
 - TypeScript best practices
-- React Query server state management
-- Custom Content Management System (CMS)
-- Authentication
+- Custom CMS development
+- Authentication systems
+- Supabase integration
 - External API integration
+- Data mapping patterns
+- Server state management
 - Responsive design
 - Design systems
-- Theme management
-- Data mapping patterns
 - Reusable UI components
+- Scalable frontend architecture
 
 ---
 
-## 🚧 Roadmap
+# 🚧 Roadmap
 
 Upcoming improvements:
 
-- Featured review carousel
-- Draft management page
-- Reading time estimation
-- Related reviews
 - SEO optimization
-- Sitemap
+- Dynamic metadata generation
+- Sitemap generation
 - Open Graph support
+- Related reviews
+- Reading time estimation
+- Draft management improvements
 - Accessibility improvements
 - Performance optimization
 
 ---
 
-## ⚙️ Installation
+# ⚙️ Installation
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/walterfcr/cine-blog.git
+```
 
+Navigate to the project:
+
+```bash
 cd cine-blog
+```
 
+Install dependencies:
+
+```bash
 npm install
+```
 
+Run the development server:
+
+```bash
 npm run dev
 ```
 
 ---
 
-## 🔑 Environment Variables
+# 🔑 Environment Variables
+
+Create a `.env.local` file:
 
 ```env
-VITE_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_URL=
 
-VITE_SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
-VITE_TMDB_TOKEN=...
+NEXT_PUBLIC_TMDB_TOKEN=
 ```
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Walter Fallas**
 
@@ -259,6 +314,6 @@ VITE_TMDB_TOKEN=...
 
 ---
 
-## 📄 License
+# 📄 License
 
 This project is intended for educational and portfolio purposes.
