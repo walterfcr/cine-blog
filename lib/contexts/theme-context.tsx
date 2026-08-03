@@ -54,7 +54,11 @@ export function useTheme() {
   const context = useContext(ThemeContext)
 
   if (!context) {
-    throw new Error('useTheme must be used inside ThemeProvider')
+    // Return a default context if not provided (for SSR)
+    return {
+      theme: 'light' as const,
+      toggleTheme: () => {},
+    }
   }
 
   return context

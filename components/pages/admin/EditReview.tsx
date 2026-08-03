@@ -15,14 +15,17 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import Modal from '@/components/ui/Modal'
 import ImagePicker from '@/components/admin/ImagePicker'
 import { getReview, updateReview } from '@/lib/services/review'
-import { useParams } 
+import { useRouter } from 'next/navigation'
 import { useQueryClient } from '@tanstack/react-query'
 import { reviewKeys } from '@/lib/queries/query-keys'
 
-function EditReview() {
+interface EditReviewProps {
+  reviewId: string
+}
+
+function EditReview({ reviewId }: EditReviewProps) {
   const router = useRouter()
   const queryClient = useQueryClient()
-  const { reviewId } = useParams()
   const [movie, setMovie] = useState<Movie | null>(null)
   const [posterPath, setPosterPath] = useState<string | null>(null)
   const [backdropPath, setBackdropPath] = useState<string | null>(null)

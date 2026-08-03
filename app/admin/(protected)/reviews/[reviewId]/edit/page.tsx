@@ -1,11 +1,15 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import EditReview from '@/components/pages/admin/EditReview'
 
-export default function EditReviewPage() {
-  const params = useParams()
-  const reviewId = params?.reviewId as string
+export const dynamic = 'force-dynamic'
+
+interface EditReviewPageProps {
+  params: Promise<{
+    reviewId: string
+  }>
+}
+
+export default async function EditReviewPage({ params }: EditReviewPageProps) {
+  const { reviewId } = await params
 
   return <EditReview reviewId={reviewId} />
 }

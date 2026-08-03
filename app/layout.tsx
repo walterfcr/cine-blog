@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from '@/lib/react-query'
-import { ThemeProvider } from '@/lib/contexts/theme-context'
 import './globals.css'
+import Providers from '@/components/providers'
 
 export const metadata: Metadata = {
   title: 'Cine Blog',
@@ -17,11 +15,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </QueryClientProvider>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

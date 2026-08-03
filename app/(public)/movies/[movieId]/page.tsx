@@ -1,11 +1,13 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import MovieDetail from '@/components/pages/MovieDetail'
 
-export default function MovieDetailPage() {
-  const params = useParams()
-  const movieId = params?.movieId as string
+interface MovieDetailPageProps {
+  params: Promise<{
+    movieId: string
+  }>
+}
+
+export default async function MovieDetailPage({ params }: MovieDetailPageProps) {
+  const { movieId } = await params
 
   return <MovieDetail movieId={movieId} />
 }

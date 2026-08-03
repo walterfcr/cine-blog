@@ -1,14 +1,11 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { LuArrowLeft } from 'react-icons/lu'
 
 function BackButton() {
-  const router = useRouter()
-
   return (
     <button
-      onClick={() => router.push(-1)}
+      onClick={() => window.history.back()}
       className="
         inter-text
         mb-8

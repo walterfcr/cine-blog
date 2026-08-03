@@ -85,7 +85,7 @@ function Dashboard() {
           <p className="text-text-muted">Publicadas</p>
 
           <h2 className="mt-2 text-3xl font-bold">
-            {reviews?.filter((r) => r.published).length ?? 0}
+            {reviews?.filter((r: any) => r.published).length ?? 0}
           </h2>
         </div>
 
@@ -93,7 +93,7 @@ function Dashboard() {
           <p className="text-text-muted">Borradores</p>
 
           <h2 className="mt-2 text-3xl font-bold">
-            {reviews?.filter((r) => !r.published).length ?? 0}
+            {reviews?.filter((r: any) => !r.published).length ?? 0}
           </h2>
         </div>
 

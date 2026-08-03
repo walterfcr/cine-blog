@@ -1,3 +1,5 @@
+'use client'
+
 import { redirect } from 'next/navigation'
 import Spinner from '@/components/ui/Spinner'
 import { useAuth } from '@/lib/hooks/use-auth'
@@ -14,7 +16,7 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
   }
 
   if (!isAuthenticated) {
-    return <Navigate href="/admin/login" replace />
+    redirect('/admin/login')
   }
 
   return children

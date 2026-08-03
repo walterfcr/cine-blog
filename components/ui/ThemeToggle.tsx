@@ -1,3 +1,5 @@
+'use client'
+
 import { LuMoon, LuSun } from 'react-icons/lu'
 import { useTheme } from '@/lib/contexts/theme-context'
 

@@ -1,8 +1,9 @@
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 import { mapWatchlistMovie } from '@/lib/mappers/watchlist.mapper'
 import type { WatchlistMovie } from '@/types/WatchlistMovie'
 
 export async function getWatchlistMovies() {
+  const supabase = getSupabaseClient()
   const { data, error } = await supabase
     .from('watchlist')
     .select('*')
@@ -18,7 +19,8 @@ export async function getWatchlistMovies() {
 export async function createWatchlistMovie(
   movie: Omit<WatchlistMovie, 'id' | 'createdAt'>,
 ) {
-  const { error } = await supabase.from('watchlist').insert({
+  const supabase = getSupabaseClient()
+  const { error } = await supabase.from('watchlist').insert([{
     movie_id: movie.movieId,
     title: movie.title,
     poster_path: movie.posterPath,
@@ -27,7 +29,7 @@ export async function createWatchlistMovie(
     tmdb_rating: movie.tmdbRating,
     notes: movie.notes,
     priority: movie.priority,
-  })
+  }] as any)
 
   if (error) {
     throw error
@@ -35,6 +37,7 @@ export async function createWatchlistMovie(
 }
 
 export async function deleteWatchlistMovie(id: string) {
+  const supabase = getSupabaseClient()
   const { error } = await supabase.from('watchlist').delete().eq('id', id)
 
   if (error) {

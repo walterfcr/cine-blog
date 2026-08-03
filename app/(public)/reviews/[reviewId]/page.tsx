@@ -1,11 +1,13 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import ReviewDetail from '@/components/pages/ReviewDetail'
 
-export default function ReviewDetailPage() {
-  const params = useParams()
-  const reviewId = params?.reviewId as string
+interface ReviewDetailPageProps {
+  params: Promise<{
+    reviewId: string
+  }>
+}
+
+export default async function ReviewDetailPage({ params }: ReviewDetailPageProps) {
+  const { reviewId } = await params
 
   return <ReviewDetail reviewId={reviewId} />
 }
