@@ -43,82 +43,147 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
     return <p>Review not found.</p>
   }
   return (
-    <article className="space-y-16">
+    <article className="space-y-16 px-4 sm:px-0">
       {review.backdropPath && (
-        <div className="relative overflow-hidden rounded-2xl">
+        <div
+          className="
+      relative
+      min-h-[520px]
+      overflow-hidden
+      rounded-2xl
+      border
+      border-border
+      md:min-h-[580px]
+      lg:min-h-[620px]
+    "
+        >
+          {/* Background */}
           <img
             src={getImageUrl(review.backdropPath, 'original')}
             alt={review.title}
-            className="  h-[360px] w-full object-cover md:h-[420px] lg:h-[600px]"
+            className="
+        absolute
+        inset-0
+        h-full
+        w-full
+        object-cover
+        object-center
+      "
           />
 
-          <div className="absolute inset-0 black/20 dark:bg-black/35" />
+          {/* Overall cinematic darkening */}
+          <div className="absolute inset-0 bg-black/20 dark:bg-black/35" />
 
+          {/* Text readability gradient */}
           <div
             className="
-              absolute
-              inset-y-0
-              left-0
-              w-full md:w-[70%]
-              lg:w-[65%]
+        absolute
+        inset-0
+        bg-gradient-to-r
+        from-black/90
+        via-black/55
+        to-black/10
+      "
+          />
 
-              bg-gradient-to-r
-              from-black/95
-              via-black/60
-              to-transparent
-                z-10
-                flex
-                max-w-3xl
-                flex-col
-                justify-end
-                pb-12
-                md:justify-center
-                md:pb-16
-                p-8
-                md:p-16
-              "
+          {/* Bottom fade */}
+          <div
+            className="
+        absolute
+        inset-x-0
+        bottom-0
+        h-48
+        bg-gradient-to-t
+        from-black/70
+        to-transparent
+      "
+          />
+
+          {/* Content */}
+          <div
+            className="
+        relative
+        z-10
+        flex
+        min-h-[520px]
+        flex-col
+        justify-end
+        p-7
+        md:min-h-[580px]
+        md:p-12
+        lg:min-h-[620px]
+        lg:p-16
+      "
           >
-            <BackButton />
+            <div className="max-w-3xl">
+              <BackButton />
 
-            <header className="max-w-3xl space-y-4">
-              <div className="flex items-center gap-4">
-                <Badge variant="accent">Reseña</Badge>
+              <header className="mt-10 space-y-5">
+                {/* Metadata */}
+                <div className="flex flex-wrap items-center gap-4">
+                  <Badge variant="accent">Reseña</Badge>
 
-                <span className="inter-text font-semibold text-rating">
-                  ★ {review.rating}/10
-                </span>
-              </div>
+                  <span className="font-semibold text-rating">
+                    ★ {review.rating}/10
+                  </span>
 
-              <h1 className="text-2xl font-bold leading-[1.05] text-white md:text-4xl lg:text-6xl">
-                {review.title}
-              </h1>
+                  <span className="h-1 w-1 rounded-full bg-white/40" />
 
-              <div className="inter-text text-sm text-white/80">
-                {formatDate(review.createdAt)}
-              </div>
-
-              {movie && (
-                <div className="space-y-1">
-                  <p className="inter-text text-sm uppercase tracking-widest text-white/50">
-                    Película
-                  </p>
-
-                  <Link
-                    href={`/movies/${movie.id}`}
-                    className="
-                  
-                    text-xl
-                    font-semibold
-                    text-white
-                    transition-colors
-                    hover:text-accent
-                  "
-                  >
-                    {movie.title}
-                  </Link>
+                  <span className="text-sm text-white/70">
+                    {formatDate(review.createdAt)}
+                  </span>
                 </div>
-              )}
-            </header>
+
+                {/* Title */}
+                <h1
+                  className="
+              max-w-3xl
+              text-4xl
+              font-black
+              leading-[0.98]
+              tracking-tight
+              text-white
+              [text-shadow:0_3px_12px_rgba(0,0,0,0.8)]
+              md:text-5xl
+              lg:text-7xl
+            "
+                >
+                  {review.title}
+                </h1>
+
+                {/* Movie */}
+                {movie && (
+                  <div className="pt-2">
+                    <p
+                      className="
+                  text-xs
+                  uppercase
+                  tracking-[0.3em]
+                  text-white/50
+                "
+                    >
+                      Película
+                    </p>
+
+                    <Link
+                      href={`/movies/${movie.id}`}
+                      className="
+                  mt-1
+                  inline-block
+                  text-xl
+                  font-semibold
+                  text-white
+                  [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]
+                  transition-colors
+                  hover:text-rating
+                "
+                    >
+                      {movie.title}
+                    </Link>
+                  </div>
+                )}
+              </header>
+            </div>
           </div>
         </div>
       )}
