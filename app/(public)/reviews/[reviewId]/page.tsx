@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import ReviewDetail from '@/components/pages/ReviewDetail'
 import { getReview } from '@/lib/services/review'
+import { getImageUrl } from '@/lib/utils/image'
 
 interface ReviewDetailPageProps {
   params: Promise<{
@@ -27,9 +28,9 @@ export async function generateMetadata({
       images: review.backdropPath
         ? [
             {
-              url: review.backdropPath,
-              width: 1280,
-              height: 720,
+              url: getImageUrl(review.backdropPath, 'w780'),
+              width: 780,
+              height: 439,
               alt: review.movieTitle,
             },
           ]
@@ -40,7 +41,9 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${review.title} — Cine Blog`,
       description: review.excerpt,
-      images: review.backdropPath ? [review.backdropPath] : [],
+      images: review.backdropPath
+        ? [getImageUrl(review.backdropPath, 'w780')]
+        : [],
     },
   }
 }
