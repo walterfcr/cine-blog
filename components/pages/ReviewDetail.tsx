@@ -43,7 +43,7 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
     return <p>Review not found.</p>
   }
   return (
-    <article className="space-y-16 px-4 sm:px-0">
+    <article className="space-y-16 px-6 sm:px-0">
       {review.backdropPath && (
         <div
           className="
@@ -139,7 +139,7 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                   className="
               max-w-3xl
               text-4xl
-              font-black
+              font-black 
               leading-[0.98]
               tracking-tight
               text-white
@@ -188,20 +188,32 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
         </div>
       )}
 
-      <div className="my-16 h-px bg-border" />
+      <div className="mx-auto max-w-3xl py-16">
+        <div className="flex items-center gap-4">
+          <span className="h-px flex-1 bg-border" />
+
+          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-text-muted">
+            La reseña
+          </span>
+
+          <span className="h-px flex-1 bg-border" />
+        </div>
+      </div>
 
       <section className="mx-auto max-w-3xl space-y-8">
         {review.content.split('\n\n').map((paragraph, index) => (
           <p
             key={index}
-            className="
-              text-base
-              leading-8
-              text-text-secondary
-              md:text-lg
-              md:leading-9
-              
-            "
+            className={`
+        leading-8
+        text-text-secondary
+        md:leading-9
+        ${
+          index === 0
+            ? 'text-lg md:text-xl md:leading-10'
+            : 'text-base md:text-lg'
+        }
+      `}
           >
             {paragraph}
           </p>

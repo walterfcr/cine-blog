@@ -1,10 +1,5 @@
-:root {
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Atkinson Hyperlegible Next', sans-serif;
-}
-
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-body), sans-serif;
 }
 
 h1,
@@ -13,7 +8,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), sans-serif;
 }
 
 a,
@@ -21,10 +16,10 @@ button,
 input,
 textarea,
 select {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), sans-serif;
 }
 
 .badge,
 nav {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), sans-serif;
 }
