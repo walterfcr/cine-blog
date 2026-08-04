@@ -205,20 +205,54 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
           <p
             key={index}
             className={`
+        text-base
         leading-8
         text-text-secondary
+        md:text-lg
         md:leading-9
-        ${
-          index === 0
-            ? 'text-lg md:text-xl md:leading-10'
-            : 'text-base md:text-lg'
-        }
+        ${index === 0 ? 'text-lg leading-9 md:text-xl md:leading-10' : ''}
       `}
           >
             {paragraph}
           </p>
         ))}
       </section>
+      {movie && (
+        <div className="mx-auto max-w-3xl border-t border-border pt-8">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-text-muted">
+                Reseña
+              </p>
+
+              <p className="mt-2 text-sm text-text-secondary">
+                Publicada el {formatDate(review.createdAt)}
+              </p>
+            </div>
+
+            <Link
+              href={`/movies/${movie.id}`}
+              className="
+          inline-flex
+          items-center
+          justify-center
+          rounded-lg
+          border
+          border-border
+          px-5
+          py-3
+          font-semibold
+          text-text-primary
+          transition-colors
+          hover:border-accent
+          hover:text-accent
+        "
+            >
+              Ver ficha de la película →
+            </Link>
+          </div>
+        </div>
+      )}
     </article>
   )
 }
