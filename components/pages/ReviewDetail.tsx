@@ -122,14 +122,11 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
         lg:p-16
       "
           >
-            <div className="max-w-3xl">
-              <BackButton />
-
-              <header className="mt-10 space-y-5">
+            <BackButton variant="overlay" />
+            <div className="mt-auto max-w-3xl">
+              <header className="space-y-5">
                 {/* Metadata */}
                 <div className="flex flex-wrap items-center gap-4">
-                  <Badge variant="accent">Reseña</Badge>
-
                   <span className="font-semibold text-rating">
                     ★ {review.rating}/10
                   </span>
@@ -160,14 +157,14 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
 
                 {/* Movie */}
                 {movie && (
-                  <div className="pt-2">
+                  <div className="pt-1">
                     <p
                       className="
-                  text-xs
-                  uppercase
-                  tracking-[0.3em]
-                  text-white/50
-                "
+                      text-xs
+                      uppercase
+                      tracking-[0.3em]
+                      text-white/50
+                    "
                     >
                       Película
                     </p>
@@ -175,15 +172,16 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                     <Link
                       href={`/movies/${movie.id}`}
                       className="
-                  mt-1
-                  inline-block
-                  text-xl
-                  font-semibold
-                  text-white
-                  [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]
-                  transition-colors
-                  hover:text-rating
-                "
+                      mt-1
+                      inline-block
+                      text-lg
+                      font-semibold
+                      text-white/90
+                      [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]
+                      transition-colors
+                      hover:text-rating
+                      md:text-xl
+                    "
                     >
                       {movie.title}
                     </Link>
@@ -277,14 +275,14 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                 <Link
                   href="/reviews"
                   className="
-        hidden
-        text-sm
-        font-semibold
-        text-text-muted
-        transition-colors
-        hover:text-accent
-        sm:block
-      "
+                  hidden
+                  text-sm
+                  font-semibold
+                  text-text-muted
+                  transition-colors
+                  hover:text-accent
+                  sm:block
+                "
                 >
                   Ver todas →
                 </Link>
