@@ -10,32 +10,35 @@ function MovieCast({ cast }: Props) {
       <h2 className="text-2xl font-bold text-text-primary">Reparto</h2>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
-        {cast.slice(0, 6).map((actor) => (
-          <div key={actor.id}>
-            <img
-              src={
-                actor.profile_path
-                  ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-                  : '/placeholder-avatar.png'
-              }
-              alt={actor.name}
-              className="
+        {cast
+          .filter((actor) => actor.profile_path)
+          .slice(0, 6)
+          .map((actor) => (
+            <div key={actor.id}>
+              <img
+                src={
+                  actor.profile_path
+                    ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                    : '/placeholder-avatar.png'
+                }
+                alt={actor.name}
+                className="
                 aspect-[2/3]
                 w-full
                 rounded-lg
                 object-cover
               "
-            />
+              />
 
-            <p className="cast-text mt-2 text-sm font-semibold text-text-primary">
-              {actor.name}
-            </p>
+              <p className="cast-text mt-2 text-sm font-semibold text-text-primary">
+                {actor.name}
+              </p>
 
-            <p className="cast-text text-xs text-text-muted">
-              {actor.character}
-            </p>
-          </div>
-        ))}
+              <p className="cast-text text-xs text-text-muted">
+                {actor.character}
+              </p>
+            </div>
+          ))}
       </div>
     </section>
   )

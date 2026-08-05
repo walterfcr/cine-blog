@@ -10,6 +10,8 @@ import { formatDate } from '@/lib/utils/formatDate'
 import Spinner from '@/components/ui/Spinner'
 import { getImageUrl } from '@/lib/utils/image'
 import { reviewKeys } from '@/lib/queries/query-keys'
+import ReviewGrid from '@/components/review/ReviewGrid'
+import { getReviews } from '@/lib/services/review'
 
 interface ReviewDetailProps {
   reviewId: string
@@ -29,6 +31,11 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
     queryKey: ['movie', review?.movieId],
     queryFn: () => getMovieDetails(String(review!.movieId)),
     enabled: !!review,
+  })
+
+  const { data: reviews } = useQuery({
+    queryKey: ['reviews'],
+    queryFn: getReviews,
   })
 
   if (isLoading) {
@@ -233,25 +240,66 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
             <Link
               href={`/movies/${movie.id}`}
               className="
-          inline-flex
-          items-center
-          justify-center
-          rounded-lg
-          border
-          border-border
-          px-5
-          py-3
-          font-semibold
-          text-text-primary
-          transition-colors
-          hover:border-accent
-          hover:text-accent
-        "
+              inline-flex
+              items-center
+              justify-center
+              rounded-lg
+              border
+              border-border
+              px-5
+              py-3
+              font-semibold
+              text-text-primary
+              transition-colors
+              hover:border-accent
+              hover:text-accent
+            "
             >
               Ver ficha de la película →
             </Link>
           </div>
         </div>
+      )}
+
+      {reviews && reviews.length > 1 && (
+        <section className="mx-auto max-w-6xl space-y-8">
+          <div className="border-t border-border pt-12">
+            <div className="mb-10">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
+                Cine Blog
+              </p>
+
+              <div className="mt-3 flex items-end justify-between gap-4">
+                <h2 className="text-3xl tracking-tight md:text-4xl">
+                  Más reseñas
+                </h2>
+
+                <Link
+                  href="/reviews"
+                  className="
+        hidden
+        text-sm
+        font-semibold
+        text-text-muted
+        transition-colors
+        hover:text-accent
+        sm:block
+      "
+                >
+                  Ver todas →
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-2">
+              <ReviewGrid
+                reviews={reviews
+                  .filter((item) => item.id !== review.id)
+                  .slice(0, 2)}
+              />
+            </div>
+          </div>
+        </section>
       )}
     </article>
   )
