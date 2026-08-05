@@ -12,6 +12,7 @@ const inter = Inter({
 const atkinson = Atkinson_Hyperlegible_Next({
   variable: '--font-body',
   subsets: ['latin'],
+  adjustFontFallback: false,
 })
 
 export const metadata: Metadata = {

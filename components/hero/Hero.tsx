@@ -122,7 +122,7 @@ export default function Hero({ data }: HeroProps) {
           <h1
             className="
 
-              font-black
+              font-bold
               tracking-tight
               text-white
               text-4xl

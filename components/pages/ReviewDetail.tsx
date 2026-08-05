@@ -143,7 +143,7 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                   className="
               max-w-3xl
               text-4xl
-              font-black 
+              font-bold 
               leading-[0.98]
               tracking-tight
               text-white
