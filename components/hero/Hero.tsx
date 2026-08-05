@@ -22,7 +22,7 @@ type HeroSlide = IntroSlide | ReviewSlide
 
 const introSlide: IntroSlide = {
   type: 'intro',
-  backdrop: '/cinema-hero.jpg',
+  backdrop: '/cinema-hero.webp',
 }
 
 export default function Hero({ data }: HeroProps) {
