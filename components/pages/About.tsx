@@ -10,105 +10,68 @@ function About() {
         className="
     relative
     overflow-hidden
-    rounded-3xl
-    border
+    border-y
     border-border
-    bg-surface
-    px-6
     py-20
-    md:px-12
-    md:py-24
-    lg:px-16
-    lg:py-28
+    md:py-28
+    lg:py-32
   "
       >
-        <div
-          className="
-      pointer-events-none
-      absolute
-      -right-24
-      -top-24
-      h-72
-      w-72
-      rounded-full
-      bg-accent/15
-      blur-3xl
-    "
-        />
+        <div className="absolute right-0 top-0 h-full w-px bg-border" />
 
-        <div
-          className="
-      pointer-events-none
-      absolute
-      -bottom-32
-      -left-24
-      h-72
-      w-72
-      rounded-full
-      bg-rating/5
-      blur-3xl
-    "
-        />
+        <div className="grid gap-12 lg:grid-cols-[1fr_280px] lg:items-end">
+          <div className="max-w-4xl">
+            <div className="mb-8 flex items-center gap-4">
+              <span className="h-px w-10 bg-accent" />
 
-        <div className="relative z-10 max-w-4xl">
-          <p
-            className="
-        text-sm
-        font-semibold
-        uppercase
-        tracking-[0.35em]
-        text-accent
-      "
-          >
-            Sobre Cine Blog
-          </p>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+                Cine Blog / Sobre el blog
+              </p>
+            </div>
 
-          <h1
-            className="
-        mt-6
-        max-w-3xl
-        text-4xl
-        leading-[1.05]
-        tracking-tight
-        md:text-6xl
-        lg:text-7xl
-        font-bold
-      "
-          >
-            El cine desde
-            <span className="block text-accent">otra perspectiva.</span>
-          </h1>
-
-          <p
-            className="
-        mt-8
-        max-w-2xl
-        text-lg
-        leading-8
-        text-text-secondary
-        md:text-xl
-        md:leading-9
-      "
-          >
-            Un espacio para hablar de películas más allá de una simple
-            calificación. Reseñas personales, recomendaciones y conversaciones
-            sobre historias que merecen ser recordadas.
-          </p>
-
-          <div className="mt-10 flex items-center gap-4">
-            <span className="h-px w-12 bg-accent" />
-
-            <span
+            <h1
               className="
-          text-xs
-          font-semibold
-          uppercase
-          tracking-[0.25em]
-          text-text-muted
+          max-w-4xl
+          text-5xl
+          leading-[1.05]
+          tracking-tight
+          md:text-6xl
+          lg:text-8xl
         "
             >
-              Películas · Historias · Opiniones
-            </span>
+              El cine desde
+              <span className="block text-accent">otra perspectiva</span>
+            </h1>
+
+            <p
+              className="
+          mt-8
+          max-w-2xl
+          text-lg
+          leading-8
+          text-text-secondary
+          md:text-xl
+          md:leading-9
+        "
+            >
+              Un espacio donde las películas se viven más allá de una simple
+              calificación. Aquí encontrarás reseñas personales, recomendaciones
+              y conversaciones sobre historias que merecen ser recordadas.
+            </p>
+          </div>
+
+          <div className="hidden border-l border-border pl-8 lg:block">
+            <p className="text-7xl font-light leading-none text-text-muted/20">
+              01
+            </p>
+
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.3em] text-text-muted">
+              Miradas
+            </p>
+
+            <p className="mt-2 text-xs uppercase tracking-[0.2em] text-text-muted">
+              Historias · Cine · Opiniones
+            </p>
           </div>
         </div>
       </section>
