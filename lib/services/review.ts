@@ -47,7 +47,15 @@ export async function getAllReviews() {
 
   const { data, error } = await supabase
     .from('reviews')
-    .select(reviewSelect)
+    .select(
+      `
+      *,
+      profiles (
+        name,
+        avatar_url
+      )
+    `,
+    )
     .order('created_at', { ascending: false })
 
   if (error) {

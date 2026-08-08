@@ -101,14 +101,14 @@ function Dashboard() {
       </Modal>
 
       <div>
-        <h1 className="text-4xl font-bold">Dashboard</h1>
+        <h1 className="text-4xl font-bold pb-5">Dashboard</h1>
 
-        <p className="text-text-secondary">
+        <p className="text-text-secondary pb-5">
           Bienvenida al panel de administración.
         </p>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 pb-5">
         <Link href="/admin/reviews/new">
           <Button>Nueva reseña</Button>
         </Link>
@@ -118,7 +118,7 @@ function Dashboard() {
         </Link>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 pb-5">
         <div className="rounded-xl border border-border p-6">
           <p className="text-text-muted">Reseñas</p>
 

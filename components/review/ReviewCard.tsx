@@ -13,7 +13,10 @@ interface ReviewCardProps {
 
 function ReviewCard({ review }: ReviewCardProps) {
   return (
-    <Link href={`/reviews/${review.id}`} className="block h-full no-underline">
+    <Link
+      href={`/reviews/${review.id}`}
+      className="block h-full no-underline py-8 lg:py-0"
+    >
       <Card
         className="
           group

@@ -61,6 +61,7 @@ function AdminReviewCard({ review, onDelete }: AdminReviewCardProps) {
             )}
           </Badge>
         </div>
+        <p className="mt-2 text-sm text-text-muted">Por {review.authorName}</p>
 
         <div className="mt-auto flex gap-3 pt-6">
           <Link href={`/admin/reviews/${review.id}/edit`}>
