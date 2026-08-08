@@ -2,11 +2,20 @@ import { getSupabaseClient } from '@/lib/supabase'
 import { mapSupabaseReview } from '@/lib/mappers/supabase-review.mapper'
 import type { Review } from '@/types/Review'
 
+const reviewSelect = `
+  *,
+  profiles (
+    name,
+    avatar_url
+  )
+`
+
 export async function getReviews() {
   const supabase = getSupabaseClient()
+
   const { data, error } = await supabase
     .from('reviews')
-    .select('*')
+    .select(reviewSelect)
     .eq('published', true)
     .order('created_at', { ascending: false })
 
@@ -19,9 +28,10 @@ export async function getReviews() {
 
 export async function getReview(id: string) {
   const supabase = getSupabaseClient()
+
   const { data, error } = await supabase
     .from('reviews')
-    .select('*')
+    .select(reviewSelect)
     .eq('id', id)
     .maybeSingle()
 
@@ -29,14 +39,15 @@ export async function getReview(id: string) {
     throw error
   }
 
-  return mapSupabaseReview(data!)
+  return data ? mapSupabaseReview(data) : null
 }
 
 export async function getAllReviews() {
   const supabase = getSupabaseClient()
+
   const { data, error } = await supabase
     .from('reviews')
-    .select('*')
+    .select(reviewSelect)
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -48,9 +59,10 @@ export async function getAllReviews() {
 
 export async function getFeaturedReviews() {
   const supabase = getSupabaseClient()
+
   const { data, error } = await supabase
     .from('reviews')
-    .select('*')
+    .select(reviewSelect)
     .eq('published', true)
     .eq('featured', true)
     .order('created_at', { ascending: false })
@@ -67,6 +79,20 @@ export async function createReview(
   review: Omit<Review, 'id' | 'createdAt' | 'updatedAt'>,
 ) {
   const supabase = getSupabaseClient()
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser()
+
+  if (userError) {
+    throw userError
+  }
+
+  if (!user) {
+    throw new Error('No hay un usuario autenticado')
+  }
+
   const { error } = await supabase.from('reviews').insert([
     {
       movie_id: review.movieId,
@@ -79,8 +105,9 @@ export async function createReview(
       backdrop_path: review.backdropPath,
       featured: review.featured,
       published: review.published,
+      author_id: user.id,
     },
-  ] as any)
+  ])
 
   if (error) {
     throw error
@@ -89,6 +116,7 @@ export async function createReview(
 
 export async function deleteReview(id: string) {
   const supabase = getSupabaseClient()
+
   const { error } = await supabase.from('reviews').delete().eq('id', id)
 
   if (error) {
@@ -111,7 +139,8 @@ export async function updateReview(
   },
 ) {
   const supabase = getSupabaseClient()
-  const { error } = await (supabase
+
+  const { error } = await supabase
     .from('reviews')
     .update({
       movie_id: review.movieId,
@@ -123,17 +152,20 @@ export async function updateReview(
       backdrop_path: review.backdropPath,
       featured: review.featured,
       published: review.published,
-    } as any)
-    .eq('id', id) as any)
+    })
+    .eq('id', id)
 
-  if (error) throw error
+  if (error) {
+    throw error
+  }
 }
 
 export async function getReviewByMovie(movieId: number) {
   const supabase = getSupabaseClient()
+
   const { data, error } = await supabase
     .from('reviews')
-    .select('*')
+    .select(reviewSelect)
     .eq('movie_id', movieId)
     .eq('published', true)
     .maybeSingle()

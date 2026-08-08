@@ -1,10 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import Button from '@/components/ui/Button'
 import Spinner from '@/components/ui/Spinner'
+import Modal from '@/components/ui/Modal'
 
 import AdminReviewCard from '@/components/admin/AdminReviewCard'
 import AdminWatchlistCard from '@/components/admin/AdminWatchlistCard'
@@ -19,6 +21,8 @@ import { reviewKeys } from '@/lib/queries/query-keys'
 
 function Dashboard() {
   const queryClient = useQueryClient()
+
+  const [reviewToDelete, setReviewToDelete] = useState<string | null>(null)
 
   const { data: reviews, isLoading } = useQuery({
     queryKey: reviewKeys.admin,
@@ -37,6 +41,8 @@ function Dashboard() {
       queryClient.invalidateQueries({
         queryKey: reviewKeys.admin,
       })
+
+      setReviewToDelete(null)
     },
   })
 
@@ -55,7 +61,45 @@ function Dashboard() {
   }
 
   return (
-    <div className="space-y-8">
+    <>
+      <Modal
+        open={!!reviewToDelete}
+        title="Eliminar reseña"
+        onClose={() => setReviewToDelete(null)}
+        size="sm"
+      >
+        <div className="space-y-6">
+          <div>
+            <h3 className="font-semibold text-text-primary">
+              ¿Estás segura de que quieres eliminar esta reseña?
+            </h3>
+
+            <p className="mt-2 text-text-secondary">
+              Esta acción no se puede deshacer.
+            </p>
+          </div>
+
+          <div className="flex justify-end gap-3">
+            <Button variant="secondary" onClick={() => setReviewToDelete(null)}>
+              Cancelar
+            </Button>
+
+            <Button
+              onClick={() => {
+                if (!reviewToDelete) return
+
+                deleteReviewMutation.mutate(reviewToDelete)
+              }}
+              disabled={deleteReviewMutation.isPending}
+            >
+              {deleteReviewMutation.isPending
+                ? 'Eliminando...'
+                : 'Eliminar reseña'}
+            </Button>
+          </div>
+        </div>
+      </Modal>
+
       <div>
         <h1 className="text-4xl font-bold">Dashboard</h1>
 
@@ -115,11 +159,7 @@ function Dashboard() {
               key={review.id}
               review={review}
               onDelete={(id) => {
-                if (!confirm('¿Eliminar esta reseña?')) {
-                  return
-                }
-
-                deleteReviewMutation.mutate(id)
+                setReviewToDelete(id)
               }}
             />
           ))}
@@ -149,7 +189,7 @@ function Dashboard() {
           )}
         </div>
       </section>
-    </div>
+    </>
   )
 }
 

@@ -28,5 +28,11 @@ export function mapSupabaseReview(review: SupabaseReview): Review {
     published: review.published,
 
     featured: review.featured,
+
+    authorId: review.author_id,
+
+    authorName: review.profiles?.name ?? null,
+
+    authorAvatarUrl: review.profiles?.avatar_url ?? null,
   }
 }

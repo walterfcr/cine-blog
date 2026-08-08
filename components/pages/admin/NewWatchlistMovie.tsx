@@ -14,6 +14,7 @@ import Button from '@/components/ui/Button'
 
 import { createWatchlistMovie } from '@/lib/services/watchlist'
 import PrioritySelector from '@/components/ui/PrioritySelector'
+import BackButton from '@/components/ui/BackButton'
 
 function NewWatchlistMovie() {
   const router = useRouter()
@@ -75,6 +76,7 @@ function NewWatchlistMovie() {
 
   return (
     <div className="space-y-6">
+      <BackButton />
       <div>
         <h1 className="text-4xl font-bold">Película que quiero ver</h1>
 

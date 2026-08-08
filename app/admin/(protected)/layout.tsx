@@ -1,6 +1,7 @@
 'use client'
 
 import Button from '@/components/ui/Button'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 import { useAuth } from '@/lib/hooks/use-auth'
 import { useRouter } from 'next/navigation'
 
@@ -26,6 +27,7 @@ export default function AdminLayout({
 
             <p className="text-sm text-text-muted">{user?.email}</p>
           </div>
+          <ThemeToggle />
 
           <Button variant="secondary" onClick={handleLogout}>
             Cerrar sesión
@@ -33,9 +35,7 @@ export default function AdminLayout({
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl p-8">
-        {children}
-      </main>
+      <main className="mx-auto max-w-7xl p-8">{children}</main>
     </div>
   )
 }

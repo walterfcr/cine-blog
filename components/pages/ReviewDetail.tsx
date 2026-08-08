@@ -133,6 +133,16 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
 
                   <span className="h-1 w-1 rounded-full bg-white/40" />
 
+                  {review.authorName && (
+                    <>
+                      <span className="text-sm text-white/80">
+                        Por {review.authorName}
+                      </span>
+
+                      <span className="h-1 w-1 rounded-full bg-white/40" />
+                    </>
+                  )}
+
                   <span className="text-sm text-white/70">
                     {formatDate(review.createdAt)}
                   </span>

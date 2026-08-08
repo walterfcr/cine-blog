@@ -6,58 +6,42 @@ interface ModalProps {
   title: string
   children: ReactNode
   onClose: () => void
+  size?: 'sm' | 'lg'
 }
 
-function Modal({ open, title, children, onClose }: ModalProps) {
+function Modal({ open, title, children, onClose, size = 'lg' }: ModalProps) {
   if (!open) {
     return null
   }
 
   return (
-    <div
-      className="
-        fixed
-        inset-0
-        z-50
-        flex
-        items-center
-        justify-center
-        bg-black/70
-        p-6
-      "
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
       <div
-        className="
+        className={`
           flex
-          max-h-[90vh]
           w-full
-          max-w-6xl
+          ${size === 'sm' ? 'max-w-md' : 'max-w-4xl'}
+          max-h-[90vh]
           flex-col
           overflow-hidden
           rounded-xl
           border
           border-border
-          bg-background
-        "
+          bg-surface
+          shadow-xl
+        `}
       >
-        <div
-          className="
-            flex
-            items-center
-            justify-between
-            border-b
-            border-border
-            p-6
-          "
-        >
-          <h2 className="text-2xl font-semibold">{title}</h2>
+        {/* Header */}
+        <div className="flex shrink-0 items-center justify-between border-b border-border px-6 py-4">
+          <h2 className="text-xl font-semibold text-text-primary">{title}</h2>
 
           <Button variant="ghost" onClick={onClose}>
             ✕
           </Button>
         </div>
 
-        <div className="overflow-y-auto p-6">{children}</div>
+        {/* Scrollable content */}
+        <div className="min-h-0 flex-1 overflow-y-auto p-6">{children}</div>
       </div>
     </div>
   )

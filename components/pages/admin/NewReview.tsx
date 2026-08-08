@@ -10,6 +10,7 @@ import FormField from '@/components/ui/FormField'
 import StarRating from '@/components/ui/StarRating'
 import ToggleSwitch from '@/components/ui/ToggleSwitch'
 import Button from '@/components/ui/Button'
+import BackButton from '@/components/ui/BackButton'
 import MovieSelectionCard from '@/components/admin/MovieSelectionCard'
 import { getMovieImages } from '@/lib/services/tmdb'
 import { useQuery, useMutation } from '@tanstack/react-query'
@@ -94,6 +95,7 @@ function NewReview() {
 
   return (
     <div className="space-y-6">
+      <BackButton />
       <div>
         <h1 className="text-4xl font-bold">Nueva reseña</h1>
 

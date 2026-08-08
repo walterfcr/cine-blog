@@ -10,7 +10,12 @@ function StarRating({ value, onChange }: StarRatingProps) {
         const star = index + 1
 
         return (
-          <button key={star} type="button" onClick={() => onChange(star)}>
+          <button
+            className="cursor-pointer"
+            key={star}
+            type="button"
+            onClick={() => onChange(star)}
+          >
             {star <= value ? '★' : '☆'}
           </button>
         )

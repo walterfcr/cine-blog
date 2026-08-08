@@ -1,3 +1,8 @@
+export interface ReviewAuthor {
+  name: string
+  avatarUrl: string | null
+}
+
 export interface Review {
   id: string
 
@@ -18,4 +23,8 @@ export interface Review {
 
   published: boolean
   featured: boolean
+
+  authorId: string | null
+  authorName: string | null
+  authorAvatarUrl: string | null
 }

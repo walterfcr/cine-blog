@@ -33,6 +33,7 @@ function Button({
         font-medium
         transition-colors
         duration-200
+        cursor-pointer
         ${variants[variant]}
         ${className}
       `}

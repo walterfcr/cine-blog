@@ -84,9 +84,13 @@ function ReviewCard({ review }: ReviewCardProps) {
                 ★ {review.rating}/10
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-text-muted">
-                <LuCalendar />
-                <span>{formatDate(review.createdAt)}</span>
+              <div className="flex flex-wrap items-center gap-3 text-sm text-text-muted">
+                <span className="h-1 w-1 rounded-full bg-text-muted/50" />
+
+                <div className="flex items-center gap-2">
+                  <LuCalendar />
+                  <span>{formatDate(review.createdAt)}</span>
+                </div>
               </div>
             </div>
 
@@ -119,15 +123,24 @@ function ReviewCard({ review }: ReviewCardProps) {
               {review.excerpt}
             </p>
 
-            <div className="mt-auto pt-6 ">
+            <div className="mt-auto pt-6">
+              {review.authorName && (
+                <p className="mb-4 text-sm text-text-muted">
+                  Por{' '}
+                  <span className="font-medium text-text-secondary">
+                    {review.authorName}
+                  </span>
+                </p>
+              )}
+
               <span
                 className="
-                  font-medium
-                  text-accent
-                  transition-transform
-                  duration-300
-                  group-hover:translate-x-1
-                "
+                font-medium
+                text-accent
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+              "
               >
                 Leer reseña →
               </span>
