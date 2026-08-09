@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Container from '@/components/ui/Container'
+import { useTheme } from '@/lib/contexts/theme-context'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import { useState } from 'react'
 import { LuMenu, LuX } from 'react-icons/lu'
@@ -27,6 +28,7 @@ const links = [
 ]
 
 function Header() {
+  const { theme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
@@ -39,11 +41,12 @@ function Header() {
     <header className="border-b border-border bg-background">
       <Container>
         <div className="flex h-20 items-center justify-between">
-          <Link
-            href="/"
-            className="text-2xl font-semibold tracking-[0.2em] text-text-primary"
-          >
-            Butaca 24
+          <Link href="/" className="flex items-center">
+            <img
+              src={theme === 'dark' ? '/logo-d.webp' : '/logo-l.webp'}
+              alt="Butaca 24"
+              className="h-10 w-auto"
+            />
           </Link>
 
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
