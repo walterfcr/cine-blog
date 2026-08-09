@@ -43,7 +43,7 @@ function Header() {
             href="/"
             className="text-2xl font-semibold tracking-[0.2em] text-text-primary"
           >
-            cine blog
+            Butaca 24
           </Link>
 
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">

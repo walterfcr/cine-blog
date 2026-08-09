@@ -145,7 +145,7 @@ export default function Hero({ data }: HeroProps) {
                   md:tracking-[0.45em]
                 "
               >
-                CINE BLOG
+                Butaca 24
               </p>
 
               <h1
@@ -225,7 +225,7 @@ export default function Hero({ data }: HeroProps) {
                     sm:w-auto
                   "
                 >
-                  Sobre Cine Blog
+                  Sobre Butaca 24
                 </Link>
               </div>
             </>

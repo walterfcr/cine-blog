@@ -25,7 +25,7 @@ function About() {
               <span className="h-px w-10 bg-accent" />
 
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
-                Cine Blog / Sobre el blog
+                Butaca 24 / Sobre el blog
               </p>
             </div>
 
