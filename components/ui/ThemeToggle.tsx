@@ -12,8 +12,8 @@ function ThemeToggle() {
       className="
         relative
         flex
-        h-11
-        w-38
+        h-9
+        w-32
         items-center
         rounded-full
         border
@@ -21,57 +21,62 @@ function ThemeToggle() {
         bg-surface
         p-1
         transition-colors
-        
+        md:h-11
+        md:w-38
       "
     >
       <div
         className={`
           absolute
-          top-1
           left-1
-          h-9
+          top-1
+          h-7
           w-1/2
           rounded-full
           bg-accent
           transition-transform
           duration-300
+          md:h-9
           ${theme === 'light' ? 'translate-x-full' : 'translate-x-0'}
         `}
       />
 
       <div
         className={`
-    relative
-    z-10
-    flex
-    flex-1
-    items-center
-    justify-center
-    gap-1
-    transition-colors
-    duration-300
-     cursor-pointer
-    ${theme === 'dark' ? 'text-white' : 'text-text-muted'}
-  `}
+          relative
+          z-10
+          flex
+          flex-1
+          items-center
+          justify-center
+          gap-1
+          text-xs
+          transition-colors
+          duration-300
+          cursor-pointer
+          md:text-sm
+          ${theme === 'dark' ? 'text-white' : 'text-text-muted'}
+        `}
       >
-        <LuMoon size={16} />
-        <span className="inter-text text-xs font-medium">Cinema</span>
+        <LuMoon />
+        Cinema
       </div>
-
       <div
         className={`
-    relative
-    z-10
-    flex
-    flex-1
-    items-center
-    justify-center
-    gap-1
-    transition-colors
-    duration-300
-    cursor-pointer
-    ${theme === 'light' ? 'text-white' : 'text-text-muted'}
-  `}
+          relative
+          z-10
+          flex
+          flex-1
+          items-center
+          justify-center
+          gap-1
+          text-xs
+          transition-colors
+          duration-300
+          cursor-pointer
+          md:text-sm
+          ${theme === 'light' ? 'text-white' : 'text-text-muted'}
+        `}
       >
         <LuSun size={16} />
         <span className="inter-text text-xs font-medium">Revista</span>

@@ -45,7 +45,7 @@ function Header() {
             <img
               src={theme === 'dark' ? '/logo-d.webp' : '/logo-l.webp'}
               alt="Butaca 24"
-              className="h-10 w-auto"
+              className="h-8 w-auto md:h-10"
             />
           </Link>
 
