@@ -14,12 +14,12 @@ const links = [
     label: 'Inicio',
   },
   {
-    href: '/movies',
-    label: 'Películas',
-  },
-  {
     href: '/reviews',
     label: 'Reseñas',
+  },
+  {
+    href: '/movies',
+    label: 'Películas',
   },
   {
     href: '/about',

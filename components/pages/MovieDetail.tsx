@@ -46,7 +46,7 @@ function MovieDetail({ movieId }: MovieDetailProps) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 p-6">
       <BackButton />
       <section className="space-y-4">
         <div className="relative overflow-hidden rounded-xl">

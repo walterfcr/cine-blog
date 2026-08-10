@@ -204,11 +204,11 @@ function About() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Badge>Denis Villeneuve</Badge>
+            <Badge>Yorgos Lanthimos</Badge>
             <Badge>Christopher Nolan</Badge>
             <Badge>David Fincher</Badge>
             <Badge>Bong Joon-ho</Badge>
-            <Badge>Hayao Miyazaki</Badge>
+            <Badge>Quentin Tarantino</Badge>
             <Badge>Park Chan-wook</Badge>
           </div>
         </div>
