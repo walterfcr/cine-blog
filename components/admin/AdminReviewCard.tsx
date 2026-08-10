@@ -15,13 +15,15 @@ interface AdminReviewCardProps {
 
 function AdminReviewCard({ review, onDelete }: AdminReviewCardProps) {
   return (
-    <Card className="flex gap-6 p-5">
+    <Card className="flex flex-col sm:flex-row gap-6 p-5">
       <img
         src={getImageUrl(review.posterPath, 'w342')}
         alt={review.title}
         className="
-          h-44
-          w-32
+          h-56
+          w-full
+          sm:h-44
+          sm:w-32
           rounded-lg
           object-cover
           flex-shrink-0
@@ -29,14 +31,14 @@ function AdminReviewCard({ review, onDelete }: AdminReviewCardProps) {
       />
 
       <div className="flex flex-1 flex-col">
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between gap-4">
           <div>
             <h2 className="text-xl font-semibold">{review.title}</h2>
 
             <p className="mt-2 text-text-secondary">{review.excerpt}</p>
           </div>
 
-          <span className="text-rating">★ {review.rating}/10</span>
+          <span className="text-rating shrink-0">★ {review.rating}/10</span>
         </div>
 
         <div className="mt-5 flex flex-wrap gap-2">

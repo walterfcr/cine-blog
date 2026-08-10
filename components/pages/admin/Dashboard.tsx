@@ -150,7 +150,7 @@ function Dashboard() {
         </div>
       </div>
 
-      <section className="space-y-6">
+      <section className="space-y-6 py-10">
         <h2 className="text-2xl font-bold">Últimas reseñas</h2>
 
         <div className="space-y-4">
@@ -166,7 +166,7 @@ function Dashboard() {
         </div>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-6 py-20">
         <h2 className="text-2xl font-bold">Próximas reseñas</h2>
 
         <div className="space-y-4">
