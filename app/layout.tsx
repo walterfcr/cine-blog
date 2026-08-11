@@ -16,8 +16,14 @@ const atkinson = Atkinson_Hyperlegible_Next({
 })
 
 export const metadata: Metadata = {
-  title: 'Cine Blog',
-  description: 'A modern movie review and watchlist platform',
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  ),
+  title: {
+    default: 'Butaca 24',
+    template: '%s | Butaca 24',
+  },
+  description: 'Reseñas de cine, películas y recomendaciones desde Butaca 24.',
 }
 
 export default function RootLayout({
