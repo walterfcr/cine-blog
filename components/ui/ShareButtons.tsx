@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { LuCheck, LuCopy, LuFacebook, LuShare2 } from 'react-icons/lu'
+import { FaWhatsapp, FaXTwitter } from 'react-icons/fa6'
 
 interface ShareButtonsProps {
   title: string
@@ -36,7 +37,6 @@ function ShareButtons({ title }: ShareButtonsProps) {
   }
 
   function shareOnWhatsApp() {
-    const url = encodeURIComponent(getShareUrl())
     const text = encodeURIComponent(`${title}\n\n${getShareUrl()}`)
 
     window.open(`https://wa.me/?text=${text}`, '_blank')
@@ -73,6 +73,24 @@ function ShareButtons({ title }: ShareButtonsProps) {
     }
   }
 
+  const iconButtonClass = `
+    inline-flex
+    h-10
+    w-10
+    items-center
+    justify-center
+    rounded-lg
+    border
+    border-border
+    text-text-secondary
+    transition-colors
+    duration-200
+    cursor-pointer
+    hover:border-accent
+    hover:bg-surface-hover
+    hover:text-accent
+  `
+
   return (
     <section className="border-y border-border py-6">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -86,10 +104,11 @@ function ShareButtons({ title }: ShareButtonsProps) {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={handleShare}
+            aria-label="Compartir reseña"
             className="
               inline-flex
               h-10
@@ -103,110 +122,57 @@ function ShareButtons({ title }: ShareButtonsProps) {
               font-semibold
               text-white
               transition-colors
+              duration-200
+              cursor-pointer
               hover:bg-accent-hover
             "
           >
-            <LuShare2 />
-            Compartir
+            <LuShare2 className="size-4" />
+            <span className="hidden sm:inline">Compartir</span>
           </button>
 
           <button
             type="button"
             onClick={shareOnWhatsApp}
             aria-label="Compartir en WhatsApp"
-            className="
-              inline-flex
-              h-10
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-border
-              px-3
-              text-sm
-              font-semibold
-              text-text-primary
-              transition-colors
-              hover:border-accent
-              hover:text-accent
-            "
+            title="WhatsApp"
+            className={iconButtonClass}
           >
-            WhatsApp
+            <FaWhatsapp className="size-5" />
           </button>
 
           <button
             type="button"
             onClick={shareOnFacebook}
             aria-label="Compartir en Facebook"
-            className="
-              inline-flex
-              h-10
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-border
-              px-3
-              text-sm
-              font-semibold
-              text-text-primary
-              transition-colors
-              hover:border-accent
-              hover:text-accent
-            "
+            title="Facebook"
+            className={iconButtonClass}
           >
-            Facebook
+            <LuFacebook className="size-5" />
           </button>
 
           <button
             type="button"
             onClick={shareOnX}
             aria-label="Compartir en X"
-            className="
-              inline-flex
-              h-10
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-border
-              px-3
-              text-sm
-              font-semibold
-              text-text-primary
-              transition-colors
-              hover:border-accent
-              hover:text-accent
-            "
+            title="X"
+            className={iconButtonClass}
           >
-            X
+            <FaXTwitter className="size-4" />
           </button>
 
           <button
             type="button"
             onClick={copyLink}
-            aria-label="Copiar enlace"
-            className="
-              inline-flex
-              h-10
-              items-center
-              justify-center
-              gap-2
-              rounded-lg
-              border
-              border-border
-              px-3
-              text-sm
-              font-semibold
-              text-text-primary
-              transition-colors
-              hover:border-accent
-              hover:text-accent
-            "
+            aria-label={copied ? 'Enlace copiado' : 'Copiar enlace'}
+            title={copied ? 'Copiado' : 'Copiar enlace'}
+            className={iconButtonClass}
           >
-            {copied ? <LuCheck /> : <LuCopy />}
-
-            {copied ? 'Copiado' : 'Copiar'}
+            {copied ? (
+              <LuCheck className="size-5" />
+            ) : (
+              <LuCopy className="size-5" />
+            )}
           </button>
         </div>
       </div>
