@@ -12,6 +12,7 @@ import { getImageUrl } from '@/lib/utils/image'
 import { reviewKeys } from '@/lib/queries/query-keys'
 import ReviewGrid from '@/components/review/ReviewGrid'
 import { getReviews } from '@/lib/services/review'
+import ShareButtons from '@/components/ui/ShareButtons'
 
 interface ReviewDetailProps {
   reviewId: string
@@ -27,6 +28,7 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
     queryFn: () => getReview(reviewId!),
     enabled: !!reviewId,
   })
+
   const { data: movie } = useQuery({
     queryKey: ['movie', review?.movieId],
     queryFn: () => getMovieDetails(String(review!.movieId)),
@@ -49,33 +51,34 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
   if (!review) {
     return <p>Review not found.</p>
   }
+
   return (
     <article className="space-y-16 px-6 sm:px-0">
       {review.backdropPath && (
         <div
           className="
-      relative
-      min-h-[520px]
-      overflow-hidden
-      rounded-2xl
-      border
-      border-border
-      md:min-h-[580px]
-      lg:min-h-[620px]
-    "
+            relative
+            min-h-[520px]
+            overflow-hidden
+            rounded-2xl
+            border
+            border-border
+            md:min-h-[580px]
+            lg:min-h-[620px]
+          "
         >
           {/* Background */}
           <img
             src={getImageUrl(review.backdropPath, 'original')}
             alt={review.title}
             className="
-        absolute
-        inset-0
-        h-full
-        w-full
-        object-cover
-        object-center
-      "
+              absolute
+              inset-0
+              h-full
+              w-full
+              object-cover
+              object-center
+            "
           />
 
           {/* Overall cinematic darkening */}
@@ -84,45 +87,46 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
           {/* Text readability gradient */}
           <div
             className="
-        absolute
-        inset-0
-        bg-gradient-to-r
-        from-black/90
-        via-black/55
-        to-black/10
-      "
+              absolute
+              inset-0
+              bg-gradient-to-r
+              from-black/90
+              via-black/55
+              to-black/10
+            "
           />
 
           {/* Bottom fade */}
           <div
             className="
-        absolute
-        inset-x-0
-        bottom-0
-        h-48
-        bg-gradient-to-t
-        from-black/70
-        to-transparent
-      "
+              absolute
+              inset-x-0
+              bottom-0
+              h-48
+              bg-gradient-to-t
+              from-black/70
+              to-transparent
+            "
           />
 
           {/* Content */}
           <div
             className="
-        relative
-        z-10
-        flex
-        min-h-[520px]
-        flex-col
-        justify-end
-        p-7
-        md:min-h-[580px]
-        md:p-12
-        lg:min-h-[620px]
-        lg:p-16
-      "
+              relative
+              z-10
+              flex
+              min-h-[520px]
+              flex-col
+              justify-end
+              p-7
+              md:min-h-[580px]
+              md:p-12
+              lg:min-h-[620px]
+              lg:p-16
+            "
           >
             <BackButton variant="overlay" />
+
             <div className="mt-auto max-w-3xl">
               <header className="space-y-5">
                 {/* Metadata */}
@@ -151,16 +155,16 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                 {/* Title */}
                 <h1
                   className="
-              max-w-3xl
-              text-4xl
-              font-bold 
-              leading-[0.98]
-              tracking-tight
-              text-white
-              [text-shadow:0_3px_12px_rgba(0,0,0,0.8)]
-              md:text-5xl
-              lg:text-7xl
-            "
+                    max-w-3xl
+                    text-4xl
+                    font-bold
+                    leading-[0.98]
+                    tracking-tight
+                    text-white
+                    [text-shadow:0_3px_12px_rgba(0,0,0,0.8)]
+                    md:text-5xl
+                    lg:text-7xl
+                  "
                 >
                   {review.title}
                 </h1>
@@ -170,11 +174,11 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                   <div className="pt-1">
                     <p
                       className="
-                      text-xs
-                      uppercase
-                      tracking-[0.3em]
-                      text-white/50
-                    "
+                        text-xs
+                        uppercase
+                        tracking-[0.3em]
+                        text-white/50
+                      "
                     >
                       Película
                     </p>
@@ -182,16 +186,16 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                     <Link
                       href={`/movies/${movie.id}`}
                       className="
-                      mt-1
-                      inline-block
-                      text-lg
-                      font-semibold
-                      text-white/90
-                      [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]
-                      transition-colors
-                      hover:text-rating
-                      md:text-xl
-                    "
+                        mt-1
+                        inline-block
+                        text-lg
+                        font-semibold
+                        text-white/90
+                        [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]
+                        transition-colors
+                        hover:text-rating
+                        md:text-xl
+                      "
                     >
                       {movie.title}
                     </Link>
@@ -220,18 +224,22 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
           <p
             key={index}
             className={`
-        text-base
-        leading-8
-        text-text-secondary
-        md:text-lg
-        md:leading-9
-        ${index === 0 ? 'text-lg leading-9 md:text-xl md:leading-10' : ''}
-      `}
+              text-base
+              leading-8
+              text-text-secondary
+              md:text-lg
+              md:leading-9
+              ${index === 0 ? 'text-lg leading-9 md:text-xl md:leading-10' : ''}
+            `}
           >
             {paragraph}
           </p>
         ))}
       </section>
+      <section className="mx-auto max-w-3xl">
+        <ShareButtons title={review.title} />
+      </section>
+
       {movie && (
         <div className="mx-auto max-w-3xl border-t border-border pt-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
@@ -248,20 +256,20 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
             <Link
               href={`/movies/${movie.id}`}
               className="
-              inline-flex
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-border
-              px-5
-              py-3
-              font-semibold
-              text-text-primary
-              transition-colors
-              hover:border-accent
-              hover:text-accent
-            "
+                inline-flex
+                items-center
+                justify-center
+                rounded-lg
+                border
+                border-border
+                px-5
+                py-3
+                font-semibold
+                text-text-primary
+                transition-colors
+                hover:border-accent
+                hover:text-accent
+              "
             >
               Ver ficha de la película →
             </Link>
@@ -285,14 +293,14 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
                 <Link
                   href="/reviews"
                   className="
-                  hidden
-                  text-sm
-                  font-semibold
-                  text-text-muted
-                  transition-colors
-                  hover:text-accent
-                  sm:block
-                "
+                    hidden
+                    text-sm
+                    font-semibold
+                    text-text-muted
+                    transition-colors
+                    hover:text-accent
+                    sm:block
+                  "
                 >
                   Ver todas →
                 </Link>
