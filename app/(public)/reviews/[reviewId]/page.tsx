@@ -17,12 +17,19 @@ export async function generateMetadata({
 
   const review = await getReview(reviewId)
 
+  if (!review) {
+    return {
+      title: 'Reseña no encontrada — Butaca 24',
+      description: 'La reseña que buscas no existe.',
+    }
+  }
+
   return {
-    title: `${review.title} — Cine Blog`,
+    title: `${review.title} — Butaca 24`,
     description: review.excerpt,
 
     openGraph: {
-      title: `${review.title} — Cine Blog`,
+      title: `${review.title} — Butaca 24`,
       description: review.excerpt,
       type: 'article',
       images: review.backdropPath
@@ -39,7 +46,7 @@ export async function generateMetadata({
 
     twitter: {
       card: 'summary_large_image',
-      title: `${review.title} — Cine Blog`,
+      title: `${review.title} — Butaca 24`,
       description: review.excerpt,
       images: review.backdropPath
         ? [getImageUrl(review.backdropPath, 'w780')]
