@@ -2,6 +2,7 @@ import Badge from '@/components/ui/Badge'
 import Card from '@/components/ui/Card'
 import Container from '@/components/ui/Container'
 import SectionTitle from '@/components/ui/SectionTitle'
+import { LuClapperboard, LuFilm, LuPopcorn } from 'react-icons/lu'
 
 function About() {
   return (
@@ -94,7 +95,9 @@ function About() {
           "
           >
             <div className="flex items-center justify-between">
-              <span className="text-3xl">🎬</span>
+              <span className="text-3xl text-accent">
+                <LuClapperboard />
+              </span>
 
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
                 01
@@ -127,7 +130,9 @@ function About() {
           "
           >
             <div className="flex items-center justify-between">
-              <span className="text-3xl">🍿</span>
+              <span className="text-3xl text-accent">
+                <LuPopcorn />
+              </span>
 
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
                 02
@@ -160,7 +165,9 @@ function About() {
           "
           >
             <div className="flex items-center justify-between">
-              <span className="text-3xl">🎞️</span>
+              <span className="text-3xl text-accent">
+                <LuFilm />
+              </span>
 
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
                 03
