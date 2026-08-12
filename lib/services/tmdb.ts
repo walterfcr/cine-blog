@@ -3,9 +3,10 @@ import axios from 'axios'
 import { mapMovie } from '@/lib/mappers/movie.mapper'
 import type { Movie } from '@/types/Movie'
 import type { TmdbImagesResponse } from '@/types/TmdbImagesResponse'
-import type { TmdbCast } from '@/types/TmdbCast'
+import type { TmdbCast, TmdbCredits } from '@/types/TmdbCast'
 import type { TmdbMovieDetails } from '@/types/TmdbMovieDetails'
 import type { MovieDetails } from '@/types/MovieDetails'
+import type { TmdbVideo } from '@/types/TmdbVideo'
 
 const tmdbToken =
   process.env.NEXT_PUBLIC_TMDB_TOKEN || process.env.VITE_TMDB_TOKEN
@@ -135,12 +136,22 @@ export async function getMovieImages(movieId: string) {
   return response.data
 }
 
-export async function getMovieCredits(movieId: string): Promise<TmdbCast[]> {
-  const response = await tmdbApi.get(`/movie/${movieId}/credits`, {
+export async function getMovieCredits(movieId: string): Promise<TmdbCredits> {
+  const response = await tmdbApi.get<TmdbCredits>(`/movie/${movieId}/credits`, {
     params: {
       language: 'es-ES',
     },
   })
 
-  return response.data.cast
+  return response.data
+}
+
+export async function getMovieVideos(movieId: string): Promise<TmdbVideo[]> {
+  const response = await tmdbApi.get(`/movie/${movieId}/videos`, {
+    params: {
+      language: 'es-ES',
+    },
+  })
+
+  return response.data.results
 }

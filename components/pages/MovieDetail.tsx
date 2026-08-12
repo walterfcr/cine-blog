@@ -7,7 +7,11 @@ import Spinner from '@/components/ui/Spinner'
 import BackButton from '@/components/ui/BackButton'
 import MovieCast from '@/components/movie/MovieCast'
 
-import { getMovieCredits, getMovieDetails } from '@/lib/services/tmdb'
+import {
+  getMovieCredits,
+  getMovieDetails,
+  getMovieVideos,
+} from '@/lib/services/tmdb'
 
 import { getReviewByMovie } from '@/lib/services/review'
 
@@ -47,11 +51,30 @@ function MovieDetail({ movieId }: MovieDetailProps) {
     enabled: !!movie,
   })
 
-  const { data: cast } = useQuery({
-    queryKey: ['movie-cast', movieId],
+  const { data: credits } = useQuery({
+    queryKey: ['movie-credits', movieId],
     queryFn: () => getMovieCredits(movieId),
     enabled: !!movieId,
   })
+
+  const { data: videos } = useQuery({
+    queryKey: ['movie-videos', movieId],
+    queryFn: () => getMovieVideos(movieId),
+    enabled: !!movieId,
+  })
+
+  const trailer = videos?.find(
+    (video) => video.site === 'YouTube' && video.type === 'Trailer',
+  )
+
+  const director = credits?.crew.find((person) => person.job === 'Director')
+
+  const writers = credits?.crew.filter(
+    (person) =>
+      person.job === 'Writer' ||
+      person.job === 'Screenplay' ||
+      person.job === 'Story',
+  )
 
   if (!movieId) {
     return <p className="text-text-secondary">Película no encontrada.</p>
@@ -153,12 +176,52 @@ function MovieDetail({ movieId }: MovieDetailProps) {
         </p>
       </section>
 
+      {trailer && (
+        <section className="space-y-5">
+          <h2 className="text-2xl font-bold text-text-primary">Trailer</h2>
+
+          <div className="aspect-video overflow-hidden rounded-2xl border border-border bg-surface">
+            <iframe
+              src={`https://www.youtube.com/embed/${trailer.key}`}
+              title={trailer.name}
+              className="h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </section>
+      )}
+
       {/* Technical information */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold text-text-primary">Información</h2>
 
         <div className="divide-y divide-border border-y border-border">
-          {/* Original title */}
+          <div className="grid gap-2 py-5 sm:grid-cols-[180px_1fr]">
+            <span className="text-sm font-semibold uppercase tracking-[0.15em] text-text-muted">
+              Dirección
+            </span>
+
+            <span className="text-text-primary">
+              {director?.name || 'No disponible'}
+            </span>
+          </div>
+          <div className="grid gap-2 py-5 sm:grid-cols-[180px_1fr]">
+            <span className="text-sm font-semibold uppercase tracking-[0.15em] text-text-muted">
+              Guion
+            </span>
+
+            <span className="text-text-primary">
+              {writers && writers.length > 0
+                ? writers
+                    .map((writer) => writer.name)
+                    .filter(
+                      (name, index, names) => names.indexOf(name) === index,
+                    )
+                    .join(' · ')
+                : 'No disponible'}
+            </span>
+          </div>
           <div className="grid gap-2 py-5 sm:grid-cols-[180px_1fr]">
             <span className="text-sm font-semibold uppercase tracking-[0.15em] text-text-muted">
               Título original
@@ -233,7 +296,9 @@ function MovieDetail({ movieId }: MovieDetailProps) {
       </section>
 
       {/* Cast */}
-      {cast && cast.length > 0 && <MovieCast cast={cast} />}
+      {credits?.cast && credits.cast.length > 0 && (
+        <MovieCast cast={credits.cast} />
+      )}
 
       {/* Butaca 24 review */}
       <section className="space-y-5 rounded-2xl border border-border bg-surface p-6 md:p-8">
