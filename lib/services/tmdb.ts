@@ -4,6 +4,8 @@ import { mapMovie } from '@/lib/mappers/movie.mapper'
 import type { Movie } from '@/types/Movie'
 import type { TmdbImagesResponse } from '@/types/TmdbImagesResponse'
 import type { TmdbCast } from '@/types/TmdbCast'
+import type { TmdbMovieDetails } from '@/types/TmdbMovieDetails'
+import type { MovieDetails } from '@/types/MovieDetails'
 
 const tmdbToken =
   process.env.NEXT_PUBLIC_TMDB_TOKEN || process.env.VITE_TMDB_TOKEN
@@ -79,14 +81,34 @@ export async function getMoviesByFilter(
   }
 }
 
-export async function getMovieDetails(movieId: string) {
-  const response = await tmdbApi.get(`/movie/${movieId}`, {
+export async function getMovieDetails(movieId: string): Promise<MovieDetails> {
+  const response = await tmdbApi.get<TmdbMovieDetails>(`/movie/${movieId}`, {
     params: {
       language: 'es-ES',
     },
   })
 
-  return mapMovie(response.data)
+  const movie = response.data
+
+  return {
+    ...mapMovie(movie),
+
+    originalTitle: movie.original_title,
+
+    runtime: movie.runtime,
+
+    genres: movie.genres.map((genre) => genre.name),
+
+    originalLanguage: movie.original_language,
+
+    productionCountries: movie.production_countries.map(
+      (country) => country.name,
+    ),
+
+    productionCompanies: movie.production_companies.map(
+      (company) => company.name,
+    ),
+  }
 }
 
 export async function searchMovies(query: string): Promise<Movie[]> {
