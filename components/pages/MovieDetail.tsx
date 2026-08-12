@@ -176,22 +176,6 @@ function MovieDetail({ movieId }: MovieDetailProps) {
         </p>
       </section>
 
-      {trailer && (
-        <section className="space-y-5">
-          <h2 className="text-2xl font-bold text-text-primary">Trailer</h2>
-
-          <div className="aspect-video overflow-hidden rounded-2xl border border-border bg-surface">
-            <iframe
-              src={`https://www.youtube.com/embed/${trailer.key}`}
-              title={trailer.name}
-              className="h-full w-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </section>
-      )}
-
       {/* Technical information */}
       <section className="space-y-6">
         <h2 className="text-2xl font-bold text-text-primary">Información</h2>
@@ -295,11 +279,6 @@ function MovieDetail({ movieId }: MovieDetailProps) {
         </div>
       </section>
 
-      {/* Cast */}
-      {credits?.cast && credits.cast.length > 0 && (
-        <MovieCast cast={credits.cast} />
-      )}
-
       {/* Butaca 24 review */}
       <section className="space-y-5 rounded-2xl border border-border bg-surface p-6 md:p-8">
         <div>
@@ -349,6 +328,27 @@ function MovieDetail({ movieId }: MovieDetailProps) {
           </p>
         )}
       </section>
+
+      {trailer && (
+        <section className="space-y-5">
+          <h2 className="text-2xl font-bold text-text-primary">Trailer</h2>
+
+          <div className="aspect-video overflow-hidden rounded-2xl border border-border bg-surface">
+            <iframe
+              src={`https://www.youtube.com/embed/${trailer.key}`}
+              title={trailer.name}
+              className="h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Cast */}
+      {credits?.cast && credits.cast.length > 0 && (
+        <MovieCast cast={credits.cast} />
+      )}
     </div>
   )
 }
