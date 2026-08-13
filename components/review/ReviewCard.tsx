@@ -62,23 +62,23 @@ function ReviewCard({ review }: ReviewCardProps) {
             alt={review.title}
             className="
                 -mt-8
-  mx-auto
-  h-52
-  w-36
-  rounded-lg
-  border-2
-  border-border
-  object-cover
-  shadow-lg
-  transition-transform
-  duration-500
-  group-hover:scale-105
+                mx-auto
+                h-52
+                w-36
+                rounded-lg
+                border-2
+                border-border
+                object-cover
+                shadow-lg
+                transition-transform
+                duration-500
+                group-hover:scale-105
 
-  md:mt-0
-  md:mx-0
-  md:h-48
-  md:w-32
-            "
+                md:mt-0
+                md:mx-0
+                md:h-48
+                md:w-32
+                          "
           />
 
           <div className="flex flex-1 flex-col pt-5 md:pt-4 md:pl-6">
