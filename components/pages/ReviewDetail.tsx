@@ -207,15 +207,15 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
         </div>
       )}
 
-      <section className="mx-auto max-w-3xl px-6 sm:px-0">
+      <section className="mx-auto max-w-3xl sm:px-0">
         <p
           className="
-      text-xl
-      leading-8
-      text-text-secondary
-      md:text-2xl
-      md:leading-9
-    "
+            text-xl
+            leading-8
+            text-text-secondary
+            md:text-2xl
+            md:leading-9
+          "
         >
           {review.excerpt}
         </p>

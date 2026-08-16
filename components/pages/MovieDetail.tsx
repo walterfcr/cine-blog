@@ -93,7 +93,7 @@ function MovieDetail({ movieId }: MovieDetailProps) {
   }
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 px-6">
       <BackButton />
 
       {/* Hero */}
