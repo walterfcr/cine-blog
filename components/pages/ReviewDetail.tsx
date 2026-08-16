@@ -207,7 +207,20 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
         </div>
       )}
 
-      <div className="mx-auto max-w-3xl py-16">
+      <section className="mx-auto max-w-3xl px-6 sm:px-0">
+        <p
+          className="
+      text-xl
+      leading-8
+      text-text-secondary
+      md:text-2xl
+      md:leading-9
+    "
+        >
+          {review.excerpt}
+        </p>
+      </section>
+      <div className="mx-auto max-w-3xl py-12">
         <div className="flex items-center gap-4">
           <span className="h-px flex-1 bg-border" />
 
@@ -229,7 +242,7 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
               text-text-secondary
               md:text-lg
               md:leading-9
-              ${index === 0 ? 'text-lg leading-9 md:text-xl md:leading-10' : ''}
+              
             `}
           >
             {paragraph}

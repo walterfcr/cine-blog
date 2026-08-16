@@ -101,7 +101,7 @@ function ReviewCard({ review }: ReviewCardProps) {
               className="
                 mt-3
                 min-h-[5rem]
-                line-clamp-2
+                line-clamp-3
                 text-3xl
                 font-bold
                 leading-tight
