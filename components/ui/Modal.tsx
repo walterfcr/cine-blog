@@ -72,7 +72,7 @@ function Modal({
             min-h-0
             flex-1
             overflow-y-auto
-            ${noPadding ? '' : 'p-6'}
+            ${noPadding ? 'px-4 py-4' : 'p-6'}
           `}
         >
           {children}
