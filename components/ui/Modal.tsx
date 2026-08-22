@@ -6,13 +6,28 @@ interface ModalProps {
   title: string
   children: ReactNode
   onClose: () => void
-  size?: 'sm' | 'lg'
+  size?: 'sm' | 'lg' | 'full'
+  noPadding?: boolean
 }
 
-function Modal({ open, title, children, onClose, size = 'lg' }: ModalProps) {
+function Modal({
+  open,
+  title,
+  children,
+  onClose,
+  size = 'lg',
+  noPadding = false,
+}: ModalProps) {
   if (!open) {
     return null
   }
+
+  const sizeClass =
+    size === 'sm'
+      ? 'max-w-md'
+      : size === 'full'
+        ? 'max-w-[1400px]'
+        : 'max-w-4xl'
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
@@ -20,8 +35,8 @@ function Modal({ open, title, children, onClose, size = 'lg' }: ModalProps) {
         className={`
           flex
           w-full
-          ${size === 'sm' ? 'max-w-md' : 'max-w-4xl'}
-          max-h-[90vh]
+          ${sizeClass}
+          max-h-[95vh]
           flex-col
           overflow-hidden
           rounded-xl
@@ -32,7 +47,18 @@ function Modal({ open, title, children, onClose, size = 'lg' }: ModalProps) {
         `}
       >
         {/* Header */}
-        <div className="flex shrink-0 items-center justify-between border-b border-border px-6 py-4">
+        <div
+          className="
+            flex
+            shrink-0
+            items-center
+            justify-between
+            border-b
+            border-border
+            px-6
+            py-4
+          "
+        >
           <h2 className="text-xl font-semibold text-text-primary">{title}</h2>
 
           <Button variant="ghost" onClick={onClose}>
@@ -41,7 +67,16 @@ function Modal({ open, title, children, onClose, size = 'lg' }: ModalProps) {
         </div>
 
         {/* Scrollable content */}
-        <div className="min-h-0 flex-1 overflow-y-auto p-6">{children}</div>
+        <div
+          className={`
+            min-h-0
+            flex-1
+            overflow-y-auto
+            ${noPadding ? '' : 'p-6'}
+          `}
+        >
+          {children}
+        </div>
       </div>
     </div>
   )

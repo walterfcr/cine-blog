@@ -1,6 +1,6 @@
 import { getSupabaseClient } from '@/lib/supabase'
 import { mapSupabaseReview } from '@/lib/mappers/supabase-review.mapper'
-import type { Review } from '@/types/Review'
+import type { CreateReviewInput, Review } from '@/types/Review'
 
 const reviewSelect = `
   *,
@@ -83,9 +83,7 @@ export async function getFeaturedReviews() {
   return data.map(mapSupabaseReview)
 }
 
-export async function createReview(
-  review: Omit<Review, 'id' | 'createdAt' | 'updatedAt'>,
-) {
+export async function createReview(review: CreateReviewInput) {
   const supabase = getSupabaseClient()
 
   const {

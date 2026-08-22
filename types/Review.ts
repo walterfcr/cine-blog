@@ -28,3 +28,16 @@ export interface Review {
   authorName: string | null
   authorAvatarUrl: string | null
 }
+
+export interface CreateReviewInput {
+  movieId: number
+  movieTitle: string
+  title: string
+  excerpt: string
+  content: string
+  rating: number
+  posterPath: string | null
+  backdropPath: string | null
+  published: boolean
+  featured: boolean
+}

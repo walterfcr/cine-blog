@@ -18,6 +18,7 @@ import Modal from '@/components/ui/Modal'
 import ImagePicker from '@/components/admin/ImagePicker'
 import { createReview } from '@/lib/services/review'
 import { useRouter } from 'next/navigation'
+import ReviewPreview from '@/components/admin/ReviewPreview'
 
 function NewReview() {
   const router = useRouter()
@@ -35,6 +36,7 @@ function NewReview() {
   const [pickerOpen, setPickerOpen] = useState(false)
 
   const [pickerType, setPickerType] = useState<'poster' | 'backdrop'>('poster')
+  const [previewOpen, setPreviewOpen] = useState(false)
 
   function handleMovieSelect(movie: Movie) {
     setMovie(movie)
@@ -131,6 +133,25 @@ function NewReview() {
           />
         )}
       </Modal>
+      <Modal
+        open={previewOpen}
+        title="Vista previa"
+        onClose={() => setPreviewOpen(false)}
+        size="full"
+        noPadding
+      >
+        {movie && (
+          <ReviewPreview
+            movie={movie}
+            title={title}
+            excerpt={excerpt}
+            content={content}
+            rating={rating}
+            posterPath={posterPath}
+            backdropPath={backdropPath}
+          />
+        )}
+      </Modal>
       <MovieSearch onSelect={handleMovieSelect} />
 
       <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
@@ -204,15 +225,24 @@ function NewReview() {
               />
             </div>
 
-            <Button
-              className="w-full"
-              onClick={handleSave}
-              disabled={createReviewMutation.isPending}
-            >
-              {createReviewMutation.isPending
-                ? 'Guardando...'
-                : 'Guardar reseña'}
-            </Button>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Button
+                variant="secondary"
+                onClick={() => setPreviewOpen(true)}
+                disabled={!movie}
+              >
+                Vista previa
+              </Button>
+
+              <Button
+                onClick={handleSave}
+                disabled={createReviewMutation.isPending}
+              >
+                {createReviewMutation.isPending
+                  ? 'Guardando...'
+                  : 'Guardar reseña'}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

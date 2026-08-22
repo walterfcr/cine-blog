@@ -107,7 +107,7 @@ function ReviewCard({ review }: ReviewCardProps) {
                 leading-tight
                 transition-colors
                 duration-300
-                group-hover:text-accent
+                group-hover:text-accent 
               "
             >
               {review.title}

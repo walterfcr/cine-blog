@@ -1,18 +1,19 @@
 'use client'
 
 import Link from 'next/link'
-import { getReview } from '@/lib/services/review'
-import Badge from '@/components/ui/Badge'
+
+import { getReview, getReviews } from '@/lib/services/review'
 import { getMovieDetails } from '@/lib/services/tmdb'
+
 import { useQuery } from '@tanstack/react-query'
-import BackButton from '@/components/ui/BackButton'
-import { formatDate } from '@/lib/utils/formatDate'
+
 import Spinner from '@/components/ui/Spinner'
-import { getImageUrl } from '@/lib/utils/image'
-import { reviewKeys } from '@/lib/queries/query-keys'
-import ReviewGrid from '@/components/review/ReviewGrid'
-import { getReviews } from '@/lib/services/review'
 import ShareButtons from '@/components/ui/ShareButtons'
+import ReviewGrid from '@/components/review/ReviewGrid'
+import ReviewArticle from '@/components/review/ReviewArticle'
+
+import { reviewKeys } from '@/lib/queries/query-keys'
+import { formatDate } from '@/lib/utils/formatDate'
 
 interface ReviewDetailProps {
   reviewId: string
@@ -24,8 +25,8 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
     isLoading,
     error,
   } = useQuery({
-    queryKey: reviewKeys.detail(reviewId!),
-    queryFn: () => getReview(reviewId!),
+    queryKey: reviewKeys.detail(reviewId),
+    queryFn: () => getReview(reviewId),
     enabled: !!reviewId,
   })
 
@@ -54,201 +55,8 @@ function ReviewDetail({ reviewId }: ReviewDetailProps) {
 
   return (
     <article className="space-y-16 px-6 sm:px-0">
-      {review.backdropPath && (
-        <div
-          className="
-            relative
-            min-h-[520px]
-            overflow-hidden
-            rounded-2xl
-            border
-            border-border
-            md:min-h-[580px]
-            lg:min-h-[620px]
-          "
-        >
-          {/* Background */}
-          <img
-            src={getImageUrl(review.backdropPath, 'original')}
-            alt={review.title}
-            className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              object-cover
-              object-center
-            "
-          />
+      <ReviewArticle review={review} movie={movie ?? null} />
 
-          {/* Overall cinematic darkening */}
-          <div className="absolute inset-0 bg-black/20 dark:bg-black/35" />
-
-          {/* Text readability gradient */}
-          <div
-            className="
-              absolute
-              inset-0
-              bg-gradient-to-r
-              from-black/90
-              via-black/55
-              to-black/10
-            "
-          />
-
-          {/* Bottom fade */}
-          <div
-            className="
-              absolute
-              inset-x-0
-              bottom-0
-              h-48
-              bg-gradient-to-t
-              from-black/70
-              to-transparent
-            "
-          />
-
-          {/* Content */}
-          <div
-            className="
-              relative
-              z-10
-              flex
-              min-h-[520px]
-              flex-col
-              justify-end
-              p-7
-              md:min-h-[580px]
-              md:p-12
-              lg:min-h-[620px]
-              lg:p-16
-            "
-          >
-            <BackButton variant="overlay" />
-
-            <div className="mt-auto max-w-3xl">
-              <header className="space-y-5">
-                {/* Metadata */}
-                <div className="flex flex-wrap items-center gap-4">
-                  <span className="font-semibold text-rating">
-                    ★ {review.rating}/10
-                  </span>
-
-                  <span className="h-1 w-1 rounded-full bg-white/40" />
-
-                  {review.authorName && (
-                    <>
-                      <span className="text-sm text-white/80">
-                        Por {review.authorName}
-                      </span>
-
-                      <span className="h-1 w-1 rounded-full bg-white/40" />
-                    </>
-                  )}
-
-                  <span className="text-sm text-white/70">
-                    {formatDate(review.createdAt)}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h1
-                  className="
-                    max-w-3xl
-                    text-4xl
-                    font-bold
-                    leading-[0.98]
-                    tracking-tight
-                    text-white
-                    [text-shadow:0_3px_12px_rgba(0,0,0,0.8)]
-                    md:text-5xl
-                    lg:text-7xl
-                  "
-                >
-                  {review.title}
-                </h1>
-
-                {/* Movie */}
-                {movie && (
-                  <div className="pt-1">
-                    <p
-                      className="
-                        text-xs
-                        uppercase
-                        tracking-[0.3em]
-                        text-white/50
-                      "
-                    >
-                      Película
-                    </p>
-
-                    <Link
-                      href={`/movies/${movie.id}`}
-                      className="
-                        mt-1
-                        inline-block
-                        text-lg
-                        font-semibold
-                        text-white/90
-                        [text-shadow:0_2px_8px_rgba(0,0,0,0.8)]
-                        transition-colors
-                        hover:text-rating
-                        md:text-xl
-                      "
-                    >
-                      {movie.title}
-                    </Link>
-                  </div>
-                )}
-              </header>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <section className="mx-auto max-w-3xl sm:px-0">
-        <p
-          className="
-            text-xl
-            leading-8
-            text-text-secondary
-            md:text-2xl
-            md:leading-9
-          "
-        >
-          {review.excerpt}
-        </p>
-      </section>
-      <div className="mx-auto max-w-3xl py-12">
-        <div className="flex items-center gap-4">
-          <span className="h-px flex-1 bg-border" />
-
-          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-text-muted">
-            La reseña
-          </span>
-
-          <span className="h-px flex-1 bg-border" />
-        </div>
-      </div>
-
-      <section className="mx-auto max-w-3xl space-y-8">
-        {review.content.split('\n\n').map((paragraph, index) => (
-          <p
-            key={index}
-            className={`
-              text-base
-              leading-8
-              text-text-secondary
-              md:text-lg
-              md:leading-9
-              
-            `}
-          >
-            {paragraph}
-          </p>
-        ))}
-      </section>
       <section className="mx-auto max-w-3xl">
         <ShareButtons title={review.title} />
       </section>
