@@ -116,6 +116,7 @@ function NewReview() {
         {images && (
           <ImagePicker
             title=""
+            type={pickerType}
             images={pickerType === 'poster' ? images.posters : images.backdrops}
             selected={pickerType === 'poster' ? posterPath : backdropPath}
             onSelect={(path) => {
